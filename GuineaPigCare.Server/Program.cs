@@ -1,4 +1,9 @@
+using GuineaPigCare.Server;
 using GuineaPigCare.Server.Database;
+using GuineaPigCare.Server.Database.Entities;
+using GuineaPigCare.Server.Interfaces;
+using GuineaPigCare.Server.Service;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +16,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<MyDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("GuineaPigCareConnectionString")));
+
+builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 var app = builder.Build();
 

@@ -1,4 +1,6 @@
-﻿using GuineaPigCare.Server.Database;
+﻿using AutoMapper;
+using GuineaPigCare.Server.Database;
+using GuineaPigCare.Server.Interfaces;
 using GuineaPigCare.Server.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,18 +11,18 @@ namespace GuineaPigCare.Server.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-        private readonly MyDbContext _context;
+        private readonly IAccountService _accountService;
 
-        public AccountController(MyDbContext context)
+        public AccountController(IAccountService accountService, IMapper mapper)
         {
-            _context = context;
+            _accountService = accountService;
         }
         [HttpPost("register")]
         public ActionResult Register([FromBody] RegisterUserDto registerUserDto)
         {
-            //TODO
+            _accountService.RegisterUser(registerUserDto);
 
-            return Ok();
+            return Ok($"Pomyślnie zarejestrowano użytkownika.");
         }
 
         [HttpPost("login")]
