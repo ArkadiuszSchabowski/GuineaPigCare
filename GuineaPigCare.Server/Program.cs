@@ -15,6 +15,7 @@ builder.Services.AddControllers();
 
 var authenticationSettings = new AuthenticationSettings();
 
+builder.Services.AddSingleton(authenticationSettings);
 builder.Configuration.GetSection("Authentication").Bind(authenticationSettings);
 builder.Services.AddAuthentication(option =>
 {

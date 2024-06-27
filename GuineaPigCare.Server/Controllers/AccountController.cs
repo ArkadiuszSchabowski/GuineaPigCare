@@ -30,7 +30,7 @@ namespace GuineaPigCare.Server.Controllers
         {
             string token = _accountService.GenerateJWT(loginUserDto);
 
-            return Ok();
+            return Ok(token);
         }
 
     }

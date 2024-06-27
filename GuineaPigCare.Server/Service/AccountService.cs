@@ -5,7 +5,10 @@ using GuineaPigCare.Server.Exceptions;
 using GuineaPigCare.Server.Interfaces;
 using GuineaPigCare.Server.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Text;
 
 namespace GuineaPigCare.Server.Service
 {
@@ -14,12 +17,14 @@ namespace GuineaPigCare.Server.Service
         private readonly MyDbContext _context;
         private readonly IPasswordHasher<User> _hasher;
         private readonly IMapper _mapper;
+        private readonly AuthenticationSettings _authenticationSettings;
 
-        public AccountService(MyDbContext context, IPasswordHasher<User> hasher, IMapper mapper)
+        public AccountService(MyDbContext context, IPasswordHasher<User> hasher, IMapper mapper, AuthenticationSettings authenticationSettings)
         {
             _context = context;
             _hasher = hasher;
             _mapper = mapper;
+            _authenticationSettings = authenticationSettings;
         }
 
         public string GenerateJWT(LoginUserDto loginUserDto)
@@ -41,11 +46,23 @@ namespace GuineaPigCare.Server.Service
             var claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Name, loginUserDto.Email),
+                new Claim(ClaimTypes.Name, user.Email),
+                new Claim(ClaimTypes.Role, user.RoleId.ToString())
             };
 
-            return "1";
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_authenticationSettings.JwtKey));
+            var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            var expiresDays = DateTime.Now.AddDays(_authenticationSettings.ExpireDays);
+
+            var token = new JwtSecurityToken(_authenticationSettings.JwtIssuer, _authenticationSettings.JwtIssuer, 
+                claims, 
+                expires: expiresDays,
+                signingCredentials: cred);
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            return tokenHandler.WriteToken(token);
         }
+
 
         public void RegisterUser(RegisterUserDto dto)
         {
