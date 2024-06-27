@@ -28,7 +28,7 @@ namespace GuineaPigCare.Server.Controllers
         [HttpPost("login")]
         public ActionResult Login([FromBody] LoginUserDto loginUserDto)
         {
-            // TODO
+            string token = _accountService.GenerateJWT(loginUserDto);
 
             return Ok();
         }

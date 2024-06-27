@@ -11,6 +11,11 @@ namespace GuineaPigCare.Server.Middleware
 			{
 				await next.Invoke(context);
 			}
+			catch (BadRequestException e)
+			{
+				context.Response.StatusCode = 400;
+				await context.Response.WriteAsync(e.Message);
+			}
 			catch(ConflictException e)
 			{
 				context.Response.StatusCode = 409;
