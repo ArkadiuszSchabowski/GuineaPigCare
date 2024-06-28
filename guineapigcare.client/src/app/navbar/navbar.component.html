@@ -1,7 +1,13 @@
 <div id="container">
-  <mat-toolbar color="primary">
+  <mat-toolbar [ngClass]="{'light-theme': currentValue, 'dark-theme': !currentValue}">
       <mat-toolbar-row>
-          <span>Witaj na naszej stronie o świnkach morskich!</span>
+        <button mat-button routerLink="/">Strona główna</button>
+          <button mat-button routerLink="/login">Logowanie</button>
+          <button mat-button>Rejestracja</button>
+          <button mat-button>Dla kogo świnka?</button>
+          <button mat-button>Dieta Twojego pupila</button>
+          <button mat-button>Produkty zabronione</button>
+          <span class="paddingRight">Tryb<mat-slide-toggle (change)="changeTheme()"></mat-slide-toggle></span>
         </mat-toolbar-row>
   </mat-toolbar>
 </div>

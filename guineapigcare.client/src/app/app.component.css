@@ -1,27 +1,21 @@
 ﻿#container{
     display: flex;
     flex-direction: column;
-    height: 80%;
-    min-height: 100px;
+    height: auto;
     width: 100vw;
-    min-height: 50vh;
 }
 app-navbar{
     display: flex;
-    width: 100vw;
-    height: 10vh;
+    width: 100%;
     min-height: 10vh;
+    margin-top: 5px;
 }
 router-outlet{
     display: flex;
     width: 100vw;
-    min-height: 50px;
+    justify-content: center;
+    align-items: center;
 }
 app-footer-navigation{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: auto;
-    height: 20vh;
-    min-height: 200px;
+    min-height: 250px;
 }

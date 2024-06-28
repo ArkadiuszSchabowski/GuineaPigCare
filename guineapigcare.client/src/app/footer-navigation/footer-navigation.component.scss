@@ -23,53 +23,52 @@ $guineapigcare_client-theme: mat.define-light-theme(
 
 // Włączenie wszystkich tematów komponentów Angular Material
 @include mat.all-component-themes($guineapigcare_client-theme);
-#container{
+#container {
   display: flex;
   flex-direction: column;
   width: 100vw;
+  height: 100%;
 }
-#pageChangerContainer {
+#bar {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   padding-left: 50px;
-    width: 100%;
-    height: 15%;
-    min-height: 100px;
-    margin-top: auto;
-    margin-bottom: 0px;
-    background-color: mat.get-color-from-palette($guineapigcare_client-primary);
-    color: mat.get-contrast-color-from-palette(
-      $guineapigcare_client-primary,
-      "default-contrast"
-    );
-  }
-  
-  .pageChanger {
-    text-align: center;
-    padding-bottom: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-  }
-  .pageChangerTop{
-    padding-top: 10px;
-  }
+  width: 100%;
+  min-height: 70px;
+  min-width: 1000px;
+  background-color: mat.get-color-from-palette($guineapigcare_client-primary);
+  color: mat.get-contrast-color-from-palette(
+    $guineapigcare_client-primary,
+    "default"
+  );
+}
+#photoContainer{
+min-width: 1000px;
+}
 
-  #photoContainer {
-    display: flex;
-  }
-  #photoGuineaPig {
-    display: flex;
-    width: 200px;
-    height: 200px;
-    background-image: url(../../assets/images/guineapig.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    margin-top: auto;
-    margin-bottom: 0;
-    padding-bottom: 30px;
-    margin-left: auto;
-    margin-right: 100px;
-  }
+#photoGuineaPig {
+  display: flex;
+  width: 200px;
+  height: 200px;
+  background-image: url(../../assets/images/guineapig.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  margin: auto 100px 0 auto;
+}
+.light-theme {
+  background-color: green !important;
+}
+.dark-theme {
+  background-color: red !important;
+}
+#sound{
+  display: flex;
+  margin-top: 15px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  margin-right: 170px;
+  margin-left: auto;
+  color: green;
+  background-color: white;
+}

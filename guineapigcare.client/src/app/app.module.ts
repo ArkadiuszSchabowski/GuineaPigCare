@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { DietGuineaPigComponent } from './diet-guinea-pig/diet-guinea-pig.component';
 import { BeforeBuyGuineaPigComponent } from './before-buy-guinea-pig/before-buy-guinea-pig.component';
 import { GoodProductsComponent } from './good-products/good-products.component';
 import { BadProductsComponent } from './bad-products/bad-products.component';
@@ -15,6 +14,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { AppRoutingModule } from './app-routing.module';
 import { FooterNavigationComponent } from './footer-navigation/footer-navigation.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { FormsModule } from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -22,7 +28,6 @@ import { FooterNavigationComponent } from './footer-navigation/footer-navigation
     MainPageComponent,
     RegisterComponent,
     LoginComponent,
-    DietGuineaPigComponent,
     BeforeBuyGuineaPigComponent,
     GoodProductsComponent,
     BadProductsComponent,
@@ -34,7 +39,14 @@ import { FooterNavigationComponent } from './footer-navigation/footer-navigation
      HttpClientModule, 
      BrowserAnimationsModule,
      MatToolbarModule,
-     AppRoutingModule
+     AppRoutingModule,
+     MatSlideToggleModule,
+     FormsModule,
+     MatIconModule,
+     MatButtonModule,
+     MatCardModule,
+     MatInputModule,
+     MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

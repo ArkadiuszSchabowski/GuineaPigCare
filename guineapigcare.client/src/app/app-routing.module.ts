@@ -9,7 +9,11 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   {path: "", component: MainPageComponent},
   {path: "register", component: RegisterComponent},
-  {path: "login", component: LoginComponent}
+  {path: "login", component: LoginComponent},
+  {path: "good-products", component: MainPageComponent},
+  {path: "bad-products", component: RegisterComponent},
+  {path: "login", component: LoginComponent},
+  {path: "**", component: MainPageComponent}
 ];
 
 @NgModule({

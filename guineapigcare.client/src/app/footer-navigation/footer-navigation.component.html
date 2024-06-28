@@ -2,11 +2,7 @@
   <div id="photoContainer">
     <div id="photoGuineaPig"></div>
   </div>
-  <div id="pageChangerContainer">
-      <div class="pageChangerTop pageChanger">
-        Informacje przed adopcją/zakupem świnki morskiej
-      </div>
-      <div class="pageChanger">Dieta Twojego pupila</div>
-      <div class="pageChangerBottom pageChanger">Produkty zakazane</div>
+  <div id="bar" [ngClass]="{'light-theme': currentValue, 'dark-theme': !currentValue}">
+    <button mat-flat-button id="sound" (click)="guineaPigSound()"><mat-icon>volume_up</mat-icon></button>
     </div>
 </div>
