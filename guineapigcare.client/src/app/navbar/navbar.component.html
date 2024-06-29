@@ -3,10 +3,10 @@
       <mat-toolbar-row>
         <button mat-button routerLink="/">Strona główna</button>
           <button mat-button routerLink="/login">Logowanie</button>
-          <button mat-button>Rejestracja</button>
-          <button mat-button>Dla kogo świnka?</button>
-          <button mat-button>Dieta Twojego pupila</button>
-          <button mat-button>Produkty zabronione</button>
+          <button mat-button routerLink="register">Rejestracja</button>
+          <button mat-button routerLink="info">Dla kogo świnka?</button>
+          <button mat-button routerLink="good-products">Dieta Twojego pupila</button>
+          <button mat-button routerLink="bad-products">Produkty zabronione</button>
           <span class="paddingRight">Tryb<mat-slide-toggle (change)="changeTheme()"></mat-slide-toggle></span>
         </mat-toolbar-row>
   </mat-toolbar>

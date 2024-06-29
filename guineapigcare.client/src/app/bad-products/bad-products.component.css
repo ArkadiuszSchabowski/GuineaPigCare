@@ -5,3 +5,31 @@
     min-height: 350px;
     padding-left: 5%;
   }
+  title{
+    color: black;
+    font-size: 16px;
+  }
+  #product-container{
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    height: auto;
+    margin-top: 10px;
+    background-color: orange;
+  }
+  #product, #description{
+    display: flex;
+    flex-direction: column;
+  }
+  .product-name{
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    padding: 10px;
+  }
+  .product-description{
+    width: 500px;
+    height: 100px;
+    border: 1px solid black;
+    padding: 10px;
+  }

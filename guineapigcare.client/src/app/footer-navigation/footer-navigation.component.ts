@@ -16,8 +16,7 @@ export class FooterNavigationComponent implements OnInit{
   ngOnInit(): void {
     this.theme.isLightTheme$.subscribe({
       next: response => {
-        this.currentValue = response,
-        console.log("navbar response" + response)
+        this.currentValue = response
       },
       error: error => console.log(error)
     });
