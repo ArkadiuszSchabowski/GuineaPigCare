@@ -1,21 +1,7 @@
-#container {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  min-height: 350px;
-  padding-left: 5%;
-}
 #left-container {
   flex-direction: column;
   text-align: left;
-}
-#infoContainer,
-#photoContainer {
-  display: flex;
-  height: 100%;
-}
-#infoContainer {
-  width: 60%;
+  height: auto;
 }
 #photoContainer {
   width: 40%;
@@ -26,11 +12,6 @@
   padding-top: 20px;
   font-size: 16px;
   font-weight: bold;
-}
-#infoContainer{
-  display: flex;
-  width: 40%;
-  min-width: 400px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {
@@ -56,9 +37,6 @@
   }
 }
 @media screen and (min-width: 1200px) {
-  #infoContainer {
-    width: 65%;
-  }
   #photoContainer {
     width: 35%;
   }

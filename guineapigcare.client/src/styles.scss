@@ -4,28 +4,30 @@
   padding: 0;
   max-width: 100vw;
 }
-#left-container{
-  display: flex;
-  width: 40%;
-  min-width: 400px;
-}
-#piggyCloudContainer{
+#container {
   display: flex;
   flex-direction: column;
-  width: 60%;
-  min-width: 400px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 25px 50px 20px 50px;
+}
+#left-container{
+  display: flex;
+  width: 100%;
+  padding-top: 50px;
+}
+#piggyCloudContainer{
+  display: none;
 }
 #cloud{
   width: 50%;
-  min-width: 300px;
-  height: 100px;
+  min-width: 200px;
   text-align: center;
   justify-content: center;
   align-items: center;
   margin-left: auto;
   margin-right: 10px;
-  margin-top: 160px;
-  padding: 10px;
   display: flex;
   border-radius: 40px;
   border: 1px solid black;
@@ -46,10 +48,119 @@
   height: 20px;
 }
 #point1, #point2, #point3{
-  margin-top: 10px;
   margin-left: auto;
-  margin-right: 190px;
+  margin-right: 210px;
   border-radius: 50px;
   border: 1px solid black;
   background-color: silver;
+}
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  #container{
+    min-height: 350px;
+    flex-direction: row;
+  }
+  #cloud{
+    width: 50%;
+    min-width: 300px;
+    height: 100px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 10px;
+    margin-top: 160px;
+    padding: 10px;
+    display: flex;
+    border-radius: 40px;
+    border: 1px solid black;
+    color: white;
+    background-color: silver;
+    font-size: 20px;
+  }
+  #point1{
+    width: 10px;
+    height: 10px;
+  }
+  #point2{
+    width: 15px;
+    height: 15px;
+  }
+  #point3{
+    width: 20px;
+    height: 20px;
+  }
+  #point1, #point2, #point3{
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: 210px;
+    border-radius: 50px;
+    border: 1px solid black;
+    background-color: silver;
+  }
+  #left-container{
+    display: flex;
+    width: 40%;
+    min-width: 400px;
+  }
+  #piggyCloudContainer{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    min-width: 400px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  #container{
+    min-height: 350px;
+    flex-direction: row;
+  }
+  #cloud{
+    width: 50%;
+    min-width: 300px;
+    height: 100px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 10px;
+    margin-top: 160px;
+    padding: 10px;
+    display: flex;
+    border-radius: 40px;
+    border: 1px solid black;
+    color: white;
+    background-color: silver;
+    font-size: 20px;
+  }
+  #point1{
+    width: 10px;
+    height: 10px;
+  }
+  #point2{
+    width: 15px;
+    height: 15px;
+  }
+  #point3{
+    width: 20px;
+    height: 20px;
+  }
+  #point1, #point2, #point3{
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: 210px;
+    border-radius: 50px;
+    border: 1px solid black;
+    background-color: silver;
+  }
+  #left-container{
+    display: flex;
+    width: 40%;
+    min-width: 400px;
+  }
+  #piggyCloudContainer{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    min-width: 400px;
+  }
 }

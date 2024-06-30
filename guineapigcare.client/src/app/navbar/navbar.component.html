@@ -1,13 +1,30 @@
-<div id="container">
-  <mat-toolbar [ngClass]="{'light-theme': currentValue, 'dark-theme': !currentValue}">
-      <mat-toolbar-row>
-        <button mat-button routerLink="/">Strona główna</button>
-          <button mat-button routerLink="/login">Logowanie</button>
-          <button mat-button routerLink="register">Rejestracja</button>
-          <button mat-button routerLink="info">Dla kogo świnka?</button>
-          <button mat-button routerLink="good-products">Dieta Twojego pupila</button>
-          <button mat-button routerLink="bad-products">Produkty zabronione</button>
-          <span class="paddingRight">Tryb<mat-slide-toggle (change)="changeTheme()"></mat-slide-toggle></span>
-        </mat-toolbar-row>
+<div id="navbar-container">
+  <mat-toolbar
+    [ngClass]="{ 'light-theme': currentValue, 'dark-theme': !currentValue }"
+  >
+    <mat-toolbar-row>
+      <button mat-button [matMenuTriggerFor]="menu" id="hamburger-menu-button">
+        <mat-icon>menu</mat-icon>
+      </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Strona główna</button>
+          <button mat-menu-item>Logowanie</button>
+          <button mat-menu-item>Rejestracja</button>
+          <button mat-menu-item>Dla kogo świnka?</button>
+          <button mat-menu-item>Dieta Twojego pupila</button>
+          <button mat-menu-item>Produkty zabronione</button>
+        </mat-menu>
+      <button mat-button routerLink="/" class="menu-button">Strona główna</button>
+      <button mat-button routerLink="/login" class="menu-button">Logowanie</button>
+      <button mat-button routerLink="register" class="menu-button">Rejestracja</button>
+      <button mat-button routerLink="info" class="menu-button">Dla kogo świnka?</button>
+      <button mat-button routerLink="good-products" class="menu-button">
+        Dieta Twojego pupila
+      </button>
+      <button mat-button routerLink="bad-products" class="menu-button">Produkty zabronione</button>
+      <span class="paddingRight"
+        >Tryb<mat-slide-toggle (change)="changeTheme()"></mat-slide-toggle
+      ></span>
+    </mat-toolbar-row>
   </mat-toolbar>
 </div>

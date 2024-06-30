@@ -21,6 +21,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     GoodProductsComponent,
     BadProductsComponent,
     NavbarComponent,
-    FooterNavigationComponent,
+    FooterNavigationComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +47,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
      MatButtonModule,
      MatCardModule,
      MatInputModule,
-     MatFormFieldModule
+     MatFormFieldModule,
+     MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

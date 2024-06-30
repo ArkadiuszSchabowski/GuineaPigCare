@@ -21,28 +21,27 @@ $guineapigcare_client-theme: mat.define-light-theme(
   )
 );
 
-// Włączenie wszystkich tematów komponentów Angular Material
+
 @include mat.all-component-themes($guineapigcare_client-theme);
-#container {
+
+#footer-container {
   display: flex;
   flex-direction: column;
   width: 100vw;
   height: 100%;
+  justify-content: center;
+  align-items: center;
 }
 #bar {
   display: flex;
-  padding-left: 50px;
   width: 100%;
   min-height: 70px;
-  min-width: 1000px;
+  justify-content: center;
   background-color: mat.get-color-from-palette($guineapigcare_client-primary);
   color: mat.get-contrast-color-from-palette(
     $guineapigcare_client-primary,
     "default"
   );
-}
-#photoContainer{
-min-width: 1000px;
 }
 
 #photoGuineaPig {
@@ -53,7 +52,7 @@ min-width: 1000px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  margin: auto 100px 0 auto;
+  margin-top: 20px;
 }
 .light-theme {
   background-color: green !important;
@@ -73,8 +72,32 @@ min-width: 1000px;
   justify-content: center;
   align-items: center;
   color: white;
-  margin-right: 170px;
-  margin-left: auto;
   color: green;
   background-color: white;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  #photoGuineaPig {
+    margin: auto 80px 0 auto;
+  }
+  #sound{
+    margin-right: 150px;
+    margin-left: auto;
+  }
+}
+@media screen and (min-width: 1200px) {
+  #bar{
+    min-width: 1000px;
+    padding-left: 100px;
+  }
+  #photoGuineaPig {
+    margin: auto 100px 0 auto;
+  }
+  #sound{
+    margin-right: 170px;
+    margin-left: auto;
+  }
+  #photoContainer{
+    min-width: 1000px;
+    }
 }
