@@ -5,8 +5,7 @@
   min-height: 350px;
   padding-left: 5%;
 }
-#infoContainer {
-  display: flex;
+#left-container {
   flex-direction: column;
   text-align: left;
 }
@@ -27,6 +26,11 @@
   padding-top: 20px;
   font-size: 16px;
   font-weight: bold;
+}
+#infoContainer{
+  display: flex;
+  width: 40%;
+  min-width: 400px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {
