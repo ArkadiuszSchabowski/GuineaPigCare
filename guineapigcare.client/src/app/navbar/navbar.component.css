@@ -32,6 +32,10 @@ mat-slide-toggle {
   display: none;
 }
 @media screen and (min-width: 768px) and (max-width: 1199px) {
+  #navbar-container {
+    display: flex;
+    min-width: 800px;
+  }
   #hamburger-menu-button{
         display: flex;
     }
@@ -45,6 +49,10 @@ mat-slide-toggle {
   }
       .menu-button{
       display:flex
+    }
+    #navbar-container {
+      display: flex;
+      min-width: 800px;
     }
   }
   

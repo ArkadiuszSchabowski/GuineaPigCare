@@ -22,6 +22,9 @@ import {MatCardModule} from '@angular/material/card';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatMenuModule} from '@angular/material/menu';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { GuineaPigManagerComponent } from './guinea-pig-manager/guinea-pig-manager.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,9 @@ import {MatMenuModule} from '@angular/material/menu';
     GoodProductsComponent,
     BadProductsComponent,
     NavbarComponent,
-    FooterNavigationComponent
+    FooterNavigationComponent,
+    UserProfileComponent,
+    GuineaPigManagerComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +53,7 @@ import {MatMenuModule} from '@angular/material/menu';
      MatCardModule,
      MatInputModule,
      MatFormFieldModule,
-     MatMenuModule
+     MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

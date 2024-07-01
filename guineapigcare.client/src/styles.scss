@@ -16,6 +16,7 @@
   display: flex;
   width: 100%;
   padding-top: 50px;
+  margin-right: 20px;
 }
 #piggyCloudContainer{
   display: none;
@@ -57,17 +58,19 @@
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   #container{
     min-height: 350px;
+    min-width: 800px;
     flex-direction: row;
   }
   #cloud{
     width: 50%;
-    min-width: 300px;
+    min-width: 200px;
+    min-height: 150px;
     height: 100px;
     text-align: center;
     justify-content: center;
     align-items: center;
+    margin-right: 100px;
     margin-left: auto;
-    margin-right: 10px;
     margin-top: 160px;
     padding: 10px;
     display: flex;
@@ -80,38 +83,41 @@
   #point1{
     width: 10px;
     height: 10px;
+    margin-right: 120px;
   }
   #point2{
     width: 15px;
     height: 15px;
+    margin-right: 110px;
   }
   #point3{
     width: 20px;
     height: 20px;
+    margin-right: 105px;
   }
   #point1, #point2, #point3{
     margin-top: 10px;
     margin-left: auto;
-    margin-right: 210px;
     border-radius: 50px;
     border: 1px solid black;
     background-color: silver;
   }
   #left-container{
     display: flex;
-    width: 40%;
-    min-width: 400px;
+    width: 50%;
+    min-width: 500px;
   }
   #piggyCloudContainer{
     display: flex;
     flex-direction: column;
-    width: 60%;
-    min-width: 400px;
+    width: 50%;
+    min-width: 200px;
   }
 }
 @media screen and (min-width: 1200px) {
   #container{
     min-height: 350px;
+    min-width: 800px;
     flex-direction: row;
   }
   #cloud{
@@ -135,32 +141,34 @@
   #point1{
     width: 10px;
     height: 10px;
+    margin-right: 120px;
   }
   #point2{
     width: 15px;
     height: 15px;
+    margin-right: 110px;
   }
   #point3{
     width: 20px;
     height: 20px;
+    margin-right: 105px;
   }
   #point1, #point2, #point3{
     margin-top: 10px;
     margin-left: auto;
-    margin-right: 210px;
     border-radius: 50px;
     border: 1px solid black;
     background-color: silver;
   }
   #left-container{
     display: flex;
-    width: 40%;
-    min-width: 400px;
+    width: 50%;
+    min-width: 500px;
   }
   #piggyCloudContainer{
     display: flex;
     flex-direction: column;
-    width: 60%;
-    min-width: 400px;
+    width: 50%;
+    min-width: 300px;
   }
 }

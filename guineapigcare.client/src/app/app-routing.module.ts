@@ -7,7 +7,8 @@ import { LoginComponent } from './login/login.component';
 import { BeforeBuyGuineaPigComponent } from './before-buy-guinea-pig/before-buy-guinea-pig.component';
 import { GoodProductsComponent } from './good-products/good-products.component';
 import { BadProductsComponent } from './bad-products/bad-products.component';
-
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { GuineaPigManagerComponent } from './guinea-pig-manager/guinea-pig-manager.component';
 
 const routes: Routes = [
   {path: "", component: MainPageComponent},
@@ -16,6 +17,8 @@ const routes: Routes = [
   {path: "good-products", component: GoodProductsComponent},
   {path: "bad-products", component: BadProductsComponent},
   {path: "info", component: BeforeBuyGuineaPigComponent},
+  {path: "profile", component: UserProfileComponent},
+  {path: "profile/guinea-pigs-manager", component: GuineaPigManagerComponent},
   {path: "**", component: MainPageComponent}
 ];
 

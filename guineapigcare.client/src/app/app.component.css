@@ -1,21 +1,31 @@
-﻿#app-container{
-    display: flex;
-    flex-direction: column;
-    height: auto;
-    width: 100vw;
+﻿#app-container {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  width: 100vw;
 }
-app-navbar{
-    display: flex;
-    width: 100%;
-    min-height: 10vh;
-    margin-top: 5px;
+app-navbar {
+  display: flex;
+  width: 100%;
+  min-height: 10vh;
+  margin-top: 5px;
 }
-router-outlet{
-    display: flex;
-    width: 100vw;
-    justify-content: center;
-    align-items: center;
+router-outlet {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
 }
-app-footer-navigation{
-    min-height: 250px;
+app-footer-navigation {
+  min-height: 250px;
+}
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  app-navbar, app-footer-navigation {
+    min-width: 800px;
+  }
+}
+@media screen and (min-width: 1200px) {
+    app-navbar, app-footer-navigation {
+        min-width: 800px;
+      }
 }
