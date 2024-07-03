@@ -24,7 +24,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatMenuModule} from '@angular/material/menu';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { GuineaPigManagerComponent } from './guinea-pig-manager/guinea-pig-manager.component';
-import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -38,7 +37,7 @@ import {MatSelectModule} from '@angular/material/select';
     NavbarComponent,
     FooterNavigationComponent,
     UserProfileComponent,
-    GuineaPigManagerComponent
+    GuineaPigManagerComponent,
   ],
   imports: [
     BrowserModule,

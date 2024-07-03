@@ -1,3 +1,6 @@
+@use '@angular/material' as mat;
+@use 'src/custom-theme' as theme;
+
 #navbar-container {
   display: flex;
   height: 60px;
@@ -8,11 +11,12 @@ mat-toolbar-row {
   font-size: 20px;
   font-weight: bold;
 }
-button {
+mat-flat-button {
   display: flex;
   padding: 0 50px;
   font-size: 16px;
   border-radius: 20px;
+  background-color: mat.get-color-from-palette(theme.$guineapigcare_client-warn) !important;
 }
 .paddingRight {
   display: flex;
@@ -21,12 +25,6 @@ button {
 }
 mat-slide-toggle {
   padding-left: 10px;
-}
-.light-theme {
-  background-color: red;
-}
-.dark-theme {
-  background-color: green;
 }
 .menu-button{
   display: none;

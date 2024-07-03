@@ -7,15 +7,19 @@
         <mat-icon>menu</mat-icon>
       </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item>Strona główna</button>
-          <button mat-menu-item>Logowanie</button>
-          <button mat-menu-item>Rejestracja</button>
-          <button mat-menu-item>Dla kogo świnka?</button>
-          <button mat-menu-item>Dieta Twojego pupila</button>
-          <button mat-menu-item>Produkty zabronione</button>
+          <button mat-menu-item routerLink="">Strona główna</button>
+          <button mat-menu-item routerLink="profile">Mój profil</button>
+          <button mat-menu-item routerLink="profile/guinea-pigs-manager">Moje świnki</button>
+          <button mat-menu-item routerLink="login">Logowanie</button>
+          <button mat-menu-item routerLink="register">Rejestracja</button>
+          <button mat-menu-item routerLink="info">Dla kogo świnka?</button>
+          <button mat-menu-item routerLink="good-products">Dieta Twojego pupila</button>
+          <button mat-menu-item routerLink="bad-products">Produkty zabronione</button>
         </mat-menu>
-      <button mat-button routerLink="/" class="menu-button">Strona główna</button>
-      <button mat-button routerLink="/login" class="menu-button">Logowanie</button>
+      <button mat-button routerLink="" class="menu-button">Strona główna</button>
+      <button mat-button routerLink="profile" class="menu-button">Mój profil</button>
+      <button mat-button routerLink="profile/guinea-pigs-manager" class="menu-button">Moje świnki</button>
+      <button mat-button routerLink="login" class="menu-button">Logowanie</button>
       <button mat-button routerLink="register" class="menu-button">Rejestracja</button>
       <button mat-button routerLink="info" class="menu-button">Dla kogo świnka?</button>
       <button mat-button routerLink="good-products" class="menu-button">

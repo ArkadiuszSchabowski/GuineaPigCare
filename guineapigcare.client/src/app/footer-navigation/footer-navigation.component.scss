@@ -1,28 +1,5 @@
-@use "@angular/material" as mat;
-
-// Definicja palet kolorów
-$guineapigcare_client-primary: mat.define-palette(mat.$green-palette);
-$guineapigcare_client-accent: mat.define-palette(
-  mat.$green-palette,
-  A200,
-  A200,
-  A400
-);
-$guineapigcare_client-warn: mat.define-palette(mat.$red-palette);
-
-// Definicja tematu
-$guineapigcare_client-theme: mat.define-light-theme(
-  (
-    color: (
-      primary: $guineapigcare_client-primary,
-      accent: $guineapigcare_client-accent,
-      warn: $guineapigcare_client-warn,
-    ),
-  )
-);
-
-
-@include mat.all-component-themes($guineapigcare_client-theme);
+@use '@angular/material' as mat;
+@use 'src/custom-theme' as theme;
 
 #footer-container {
   display: flex;
@@ -37,11 +14,7 @@ $guineapigcare_client-theme: mat.define-light-theme(
   width: 100%;
   min-height: 70px;
   justify-content: center;
-  background-color: mat.get-color-from-palette($guineapigcare_client-primary);
-  color: mat.get-contrast-color-from-palette(
-    $guineapigcare_client-primary,
-    "default"
-  );
+  background-color: mat.get-color-from-palette(theme.$guineapigcare_client-warn);
 }
 
 #photoGuineaPig {
@@ -53,18 +26,6 @@ $guineapigcare_client-theme: mat.define-light-theme(
   background-position: center;
   background-size: cover;
   margin-top: 20px;
-}
-.light-theme {
-  background-color: green !important;
-}
-.dark-theme {
-  background-color: red !important;
-}
-.light-theme-icon {
-  color: green !important;
-}
-.dark-theme-icon {
-  color: red !important;
 }
 #sound{
   display: flex;
