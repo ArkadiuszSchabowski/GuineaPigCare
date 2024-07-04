@@ -5,12 +5,12 @@
       <mat-card-content>
         <label>Formularz logowania</label>
         <mat-form-field>
-          <mat-label>Podaj swój e-mail:</mat-label>
+          <mat-label [ngClass]="{'light-theme-icon': currentValue, 'dark-theme-icon': !currentValue}">Podaj swój e-mail:</mat-label>
           <input matInput />
         </mat-form-field>
 
         <mat-form-field>
-          <mat-label>Podaje swoje hasło:</mat-label>
+          <mat-label [ngClass]="{'light-theme-icon': currentValue, 'dark-theme-icon': !currentValue}">Podaje swoje hasło:</mat-label>
           <input matInput [type]="hide ? 'password' : 'text'" />
           <button
             mat-icon-button
