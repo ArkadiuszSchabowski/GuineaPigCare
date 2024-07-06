@@ -1,5 +1,26 @@
 <div id="container">
-    <div id="left-container"></div>
+  <div class="title">{{information.title}}</div>
+  <div id="description">{{information.description}}</div>
+    <div id="left-container">
+      <div id="benefits-container" class="sub-container">
+        <div class="title">Korzyści posiadania świnki morskiej:</div>
+        <ul id="benefits" *ngFor="let benefit of information.benefits">
+          <li>{{benefit}}</li>
+         </ul>
+      </div>
+      <div id="dangers-container" class="sub-container">
+        <div class="title">Poważne zagrożenia dla świnki morskiej:</div>
+        <ul id="dangers" *ngFor="let danger of information.dangers">
+          <li>{{danger}}</li>
+        </ul>
+      </div>
+      <div id="responsibilities-container" class="sub-container">
+        <div class="title">Obowiązki opiekuna świnki morskiej:</div>
+        <ul id="responsibilities" *ngFor="let responsibilities of information.responsibilities">
+          <li>{{responsibilities}}</li>
+        </ul>
+      </div>
+    </div>
     <div id="piggyCloudContainer">
         <div id="cloud">Zapewnij mi proszę odpowiednie warunki do rozwoju!</div>
         <div id="point3"></div>

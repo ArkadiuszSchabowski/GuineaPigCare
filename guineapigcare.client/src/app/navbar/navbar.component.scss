@@ -11,13 +11,6 @@ mat-toolbar-row {
   font-size: 20px;
   font-weight: bold;
 }
-mat-flat-button {
-  display: flex;
-  padding: 0 50px;
-  font-size: 16px;
-  border-radius: 20px;
-  background-color: mat.get-color-from-palette(theme.$guineapigcare_client-warn) !important;
-}
 .paddingRight {
   display: flex;
   padding-right: 20px;

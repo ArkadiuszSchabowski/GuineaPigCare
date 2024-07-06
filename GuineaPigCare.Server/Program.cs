@@ -40,6 +40,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<MyDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("GuineaPigCareConnectionString")));
 
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IGuineaPigService, GuineaPigService>();
+
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
@@ -47,6 +49,8 @@ builder.Services.AddScoped<ErrorHandlingMiddleware>();
 var app = builder.Build();
 
 app.UseMiddleware<ErrorHandlingMiddleware>();
+
+app.UseCors(x => x.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
 
 app.UseDefaultFiles();
 app.UseStaticFiles();

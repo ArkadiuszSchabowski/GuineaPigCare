@@ -53,6 +53,7 @@ import { GuineaPigManagerComponent } from './guinea-pig-manager/guinea-pig-manag
      MatInputModule,
      MatFormFieldModule,
      MatMenuModule,
+     HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
