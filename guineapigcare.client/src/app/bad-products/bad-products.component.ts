@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GuineapigService } from '../_service/guineapig.service';
 
 @Component({
   selector: 'app-bad-products',
@@ -7,4 +8,19 @@ import { Component } from '@angular/core';
 })
 export class BadProductsComponent {
 
+  products: any;
+
+  constructor(private service: GuineapigService){
+    this.GetBadProducts();
+  }
+
+  GetBadProducts(){
+    this.service.GetBadProducts().subscribe({
+      next: response => {
+        this.products = response,
+        console.log(this.products)
+      },
+      error: error => console.log(error)
+    })
+  };
 }

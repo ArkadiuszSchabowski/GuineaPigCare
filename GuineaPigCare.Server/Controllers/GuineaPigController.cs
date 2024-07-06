@@ -21,5 +21,11 @@ namespace GuineaPigCare.Server.Controllers
             GuineaPigInformationDto information = _service.GetInformationGuineaPig();
             return Ok(information);
         }
+        [HttpGet("bad-products")]
+        public ActionResult GetBadProductsForGuineaPig()
+        {
+            List<ProductDto> products = _service.GetBadProductsInformation();
+            return Ok(products);
+        }
     }
 }
