@@ -14,7 +14,6 @@ mat-form-field {
 mat-label{
   color: mat.get-color-from-palette(theme.$guineapigcare_client-primary) !important;
 }
-
 #container {
   display: flex;
   flex-direction: column;
@@ -33,7 +32,7 @@ mat-label{
   margin-right: 20px;
 }
 
-#piggyCloudContainer {
+#point1, #point2, #point3 {
   display: none;
 }
 

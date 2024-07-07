@@ -1,61 +1,61 @@
 <div id="manager-container">
 
-  <div id="add-container" [ngClass]="{'light-theme': currentValue, 'dark-theme': !currentValue}">
+  <div id="add-container" [ngClass]="{'light-theme': currentTheme, 'dark-theme': !currentTheme}">
     <div class="info">Dodaj profil Twojej świnki</div>
     <form>
       <mat-form-field>
-        <mat-label [ngClass]="{'light-theme-icon': currentValue, 'dark-theme-icon': !currentValue}">Imię świnki</mat-label>
+        <mat-label [ngClass]="{'light-theme-icon': currentTheme, 'dark-theme-icon': !currentTheme}">Imię świnki</mat-label>
         <input matInput />
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label [ngClass]="{'light-theme-icon': currentValue, 'dark-theme-icon': !currentValue}">Rasa</mat-label>
+        <mat-label [ngClass]="{'light-theme-icon': currentTheme, 'dark-theme-icon': !currentTheme}">Rasa</mat-label>
         <input matInput />
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label [ngClass]="{'light-theme-icon': currentValue, 'dark-theme-icon': !currentValue}">Waga</mat-label>
+        <mat-label [ngClass]="{'light-theme-icon': currentTheme, 'dark-theme-icon': !currentTheme}">Waga</mat-label>
         <input matInput />
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label [ngClass]="{'light-theme-icon': currentValue, 'dark-theme-icon': !currentValue}">Własne notatki</mat-label>
+        <mat-label [ngClass]="{'light-theme-icon': currentTheme, 'dark-theme-icon': !currentTheme}">Własne notatki</mat-label>
         <input matInput />
       </mat-form-field>
       <button mat-flat-button type="submit">Ok</button>
     </form>
   </div>
-  <div id="update-container" [ngClass]="{'light-theme white': currentValue, 'dark-theme white white': !currentValue}">
+  <div id="update-container" [ngClass]="{'light-theme white': currentTheme, 'dark-theme white white': !currentTheme}">
     <div class="info">Zaaktualizuj informacje o śwince</div>
     <form>
       <mat-form-field>
-        <mat-label [ngClass]="{'light-theme-icon': currentValue, 'dark-theme-icon': !currentValue}">Imię świnki</mat-label>
+        <mat-label [ngClass]="{'light-theme-icon': currentTheme, 'dark-theme-icon': !currentTheme}">Imię świnki</mat-label>
         <input matInput />
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label [ngClass]="{'light-theme-icon': currentValue, 'dark-theme-icon': !currentValue}">Rasa</mat-label>
+        <mat-label [ngClass]="{'light-theme-icon': currentTheme, 'dark-theme-icon': !currentTheme}">Rasa</mat-label>
         <input matInput />
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label [ngClass]="{'light-theme-icon': currentValue, 'dark-theme-icon': !currentValue}">Waga</mat-label>
+        <mat-label [ngClass]="{'light-theme-icon': currentTheme, 'dark-theme-icon': !currentTheme}">Waga</mat-label>
         <input matInput />
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label [ngClass]="{'light-theme-icon': currentValue, 'dark-theme-icon': !currentValue}">Własne notatki</mat-label>
+        <mat-label [ngClass]="{'light-theme-icon': currentTheme, 'dark-theme-icon': !currentTheme}">Własne notatki</mat-label>
         <input matInput />
       </mat-form-field>
       <button mat-flat-button type="submit">Ok</button>
     </form>
   </div>
 
-  <div id="remove-container" [ngClass]="{'light-theme': currentValue, 'dark-theme': !currentValue}">
+  <div id="remove-container" [ngClass]="{'light-theme': currentTheme, 'dark-theme': !currentTheme}">
     <div class="info">Usuń profil Twojej świnki</div>
     <form>
       <mat-form-field>
-        <mat-label [ngClass]="{'light-theme-icon': currentValue, 'dark-theme-icon': !currentValue}">Imię świnki</mat-label>
+        <mat-label [ngClass]="{'light-theme-icon': currentTheme, 'dark-theme-icon': !currentTheme}">Imię świnki</mat-label>
         <input matInput />
       </mat-form-field>
       <div id="button-container">
