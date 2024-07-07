@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ThemeService } from '../_service/theme.service';
+import { GuineapigService } from '../_service/guineapig.service';
 
 @Component({
   selector: 'app-good-products',
@@ -8,10 +8,19 @@ import { ThemeService } from '../_service/theme.service';
 })
 export class GoodProductsComponent implements OnInit{
 
-  constructor(public theme: ThemeService){
+  cloudText: string = "Co za pyszności! Pamiętaj o porze karmienia!"
+
+  constructor(private guineaPigService: GuineapigService){
 
   }
   ngOnInit(): void {
+
+    this.setCloudText();
+
+  }
+  
+  setCloudText() {
+    this.guineaPigService.setCloudText(this.cloudText);
   }
 
 }

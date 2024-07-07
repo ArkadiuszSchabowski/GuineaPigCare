@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemeService } from '../_service/theme.service';
+import { GuineapigService } from '../_service/guineapig.service';
 
 @Component({
   selector: 'app-footer-navigation',
@@ -8,20 +9,36 @@ import { ThemeService } from '../_service/theme.service';
 })
 export class FooterNavigationComponent implements OnInit{
 
-  currentValue: boolean = false;
+  currentTheme: boolean | undefined = undefined;
+  componentText: string ="";
 
-  constructor(public theme: ThemeService) {
+  constructor(private theme: ThemeService, private guineaPigService: GuineapigService) {
 
   }
   ngOnInit(): void {
+
+    this.setTheme();
+    this.setComponentCloudText();
+
+  }
+
+  setComponentCloudText() {
+    this.guineaPigService.isTextSubject$.subscribe({
+      next: response => this.componentText = response,
+      error: error => console.log(error)
+    });
+  }
+
+  setTheme() {
     this.theme.isLightTheme$.subscribe({
       next: response => {
-        this.currentValue = response
+        this.currentTheme = response
       },
       error: error => console.log(error)
     });
   }
-  guineaPigSound(){
+  
+  playGuineaPigSound(){
     var sound = new Audio();
     sound.src = "../assets/sounds/sound.mp3";
     sound.load();

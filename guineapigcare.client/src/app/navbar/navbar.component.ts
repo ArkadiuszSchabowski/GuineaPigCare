@@ -7,20 +7,28 @@ import { ThemeService } from '../_service/theme.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  currentValue: boolean = true;
 
-  constructor(public theme: ThemeService) {}
+  currentTheme: boolean | undefined = undefined;
+
+  constructor(private theme: ThemeService) {}
+
   ngOnInit(): void {
+
+    this.setTheme();
+
+  }
+
+  setTheme() {
     this.theme.isLightTheme$.subscribe({
       next: (response) => {
-        this.currentValue = response;
+        this.currentTheme = response;
       },
       error: (error) => console.log(error),
     });
   }
 
   changeTheme(): void {
-    this.currentValue = this.theme.themeSubject.value;
-    this.theme.themeSubject.next(!this.currentValue);
+    this.currentTheme = this.theme.themeSubject.value;
+    this.theme.themeSubject.next(!this.currentTheme);
   }
 }

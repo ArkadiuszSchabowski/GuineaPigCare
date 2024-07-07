@@ -21,7 +21,7 @@
   display: flex;
   width: 200px;
   height: 200px;
-  background-image: url(../../assets/images/guineapig.png);
+  background-image: url(../../assets/images/guineapig.webp);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -36,6 +36,25 @@
   color: green;
   background-color: white;
 }
+#cloud{
+    width: 50%;
+    min-width: 200px;
+    min-height: 150px;
+    height: 100px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-right: 100px;
+    margin-left: auto;
+    margin-top: 10px;
+    padding: 10px;
+    display: flex;
+    border-radius: 40px;
+    border: 1px solid black;
+    color: white;
+    background-color: silver;
+    font-size: 20px;
+  }
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   #photoGuineaPig {

@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { ThemeService } from '../_service/theme.service';
+import { GuineapigService } from '../_service/guineapig.service';
 
 @Component({
   selector: 'app-login',
@@ -9,27 +10,37 @@ import { ThemeService } from '../_service/theme.service';
 })
 export class LoginComponent implements OnInit{
 
-  currentValue: boolean = true;
+  currentTheme: boolean | undefined = undefined;
+  hidePassword = true;
+  cloudText: string = "Hej, na co czekasz? Zaloguj się! Chrum chrum!"
 
-  constructor(public theme: ThemeService, private cd: ChangeDetectorRef){
+  constructor(private theme: ThemeService, private guineaPigService: GuineapigService, private cd: ChangeDetectorRef){
 
   }
 
   ngOnInit(): void {
 
-this.theme.isLightTheme$.subscribe({
-  next: response => {
-    this.currentValue = response,
-    this.cd.markForCheck(),
-    console.log("login " + this.currentValue)
-  },
-  error: error => console.log(error)
-});
+    this.setTheme();
+    this.setCloudText();
 
   }
-  hide = true;
+  setCloudText() {
+    this.guineaPigService.setCloudText(this.cloudText);
+  }
+
   clickEvent(event: MouseEvent) {
-    this.hide =!this.hide
+    this.hidePassword =!this.hidePassword
     event.stopPropagation();
+  }
+
+  setTheme(){
+    this.theme.isLightTheme$.subscribe({
+      next: response => {
+        this.currentTheme = response,
+        this.cd.markForCheck(),
+        console.log("login " + this.currentTheme)
+      },
+      error: error => console.log(error)
+    });
   }
 }
