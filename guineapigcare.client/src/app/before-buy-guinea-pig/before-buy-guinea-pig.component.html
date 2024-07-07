@@ -1,24 +1,24 @@
-<div id="container">
+<div id="main-container">
   <div class="title">{{ information.Title }}</div>
-  <div id="description">{{ information.Description }}</div>
-  <div id="left-container">
-    <div id="benefits-container" class="sub-container">
+  <div id="description" class="description">{{ information.description }}</div>
+  <div id="sub-container">
+    <div id="benefits-container">
       <div class="title">Korzyści posiadania świnki morskiej:</div>
-      <ul id="benefits" *ngFor="let benefit of information.Benefits">
+      <ul id="benefits" *ngFor="let benefit of information.benefits">
         <li>{{ benefit }}</li>
       </ul>
     </div>
-    <div id="dangers-container" class="sub-container">
+    <div id="dangers-container">
       <div class="title">Poważne zagrożenia dla świnki morskiej:</div>
-      <ul id="dangers" *ngFor="let danger of information.Dangers">
+      <ul id="dangers" *ngFor="let danger of information.dangers">
         <li>{{ danger }}</li>
       </ul>
     </div>
-    <div id="responsibilities-container" class="sub-container">
+    <div id="responsibilities-container">
       <div class="title">Obowiązki opiekuna świnki morskiej:</div>
       <ul
         id="responsibilities"
-        *ngFor="let responsibilities of information.Responsibilities"
+        *ngFor="let responsibilities of information.responsibilities"
       >
         <li>{{ responsibilities }}</li>
       </ul>

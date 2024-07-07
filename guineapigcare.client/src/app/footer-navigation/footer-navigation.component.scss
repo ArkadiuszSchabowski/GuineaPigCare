@@ -27,7 +27,7 @@
   background-size: cover;
   margin-top: 20px;
 }
-#sound{
+#sound-icon{
   display: flex;
   margin-top: 15px;
   justify-content: center;
@@ -37,30 +37,57 @@
   background-color: white;
 }
 #cloud{
-    width: 50%;
-    min-width: 200px;
-    min-height: 150px;
-    height: 100px;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    margin-right: 100px;
-    margin-left: auto;
-    margin-top: 10px;
-    padding: 10px;
-    display: flex;
-    border-radius: 40px;
-    border: 1px solid black;
-    color: white;
-    background-color: silver;
-    font-size: 20px;
-  }
+  width: 300px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 50px;
+  border: 1px solid black;
+  background-color: white;
+}
+#point1, #point2, #point3{
+  border: 1px solid black;
+  margin-top: 10px;
+  border-radius: 50px;
+  color: black;
+  background-color: white;
+}
+#point1{
+  margin-left: 60px;
+  width: 10px;
+  height: 10px;
+}
+#point2{
+  margin-left: 65px;
+  width: 12px;
+  height: 12px;
+}
+#point3{
+  margin-left: 70px;
+  width: 14px;
+  height: 14px;
+}
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   #photoGuineaPig {
-    margin: auto 120px 0 auto;
+    margin: 20px 120px 0 auto;
   }
-  #sound{
+  #cloud, #point1, #point2, #point3{
+    margin-left: auto;
+  }
+  #cloud{
+    margin-right: 120px;
+  }
+  #point1{
+    margin-right: 190px;
+  }
+  #point2{
+    margin-right: 185px;
+  }
+  #point3{
+    margin-right: 180px;
+  }
+
+  #sound-icon{
     margin-right: 180px;
     margin-left: auto;
   }
@@ -71,9 +98,24 @@
     padding-left: 100px;
   }
   #photoGuineaPig {
-    margin: auto 150px 0 auto;
+    margin: 20px 150px 0 auto;
   }
-  #sound{
+  #cloud, #point1, #point2, #point3{
+    margin-left: auto;
+  }
+  #cloud{
+    margin-right: 120px;
+  }
+  #point1{
+    margin-right: 210px;
+  }
+  #point2{
+    margin-right: 205px;
+  }
+  #point3{
+    margin-right: 200px;
+  }
+  #sound-icon{
     margin-right: 200px;
     margin-left: auto;
   }

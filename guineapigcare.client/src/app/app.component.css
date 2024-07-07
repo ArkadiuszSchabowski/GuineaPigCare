@@ -3,7 +3,6 @@
   flex-direction: column;
   height: auto;
   width: 100vw;
-  background-image: url(../assets/images/lightBackground.png);
 }
 app-navbar {
   display: flex;

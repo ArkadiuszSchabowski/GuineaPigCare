@@ -6,7 +6,7 @@
       <!-- //TODO -->
 
 
-      <div id="product" *ngFor="let product in products">
+      <ul id="product" *ngFor="let product of products">
         <div class="product-left">
           <div id="product-name">{{ product.name }}</div>
           <div id="product-imageUrl">{{ product.imageUrl }}</div>
@@ -14,7 +14,7 @@
         <div class="product-right">
           <div id="product-description">{{ product.description }}</div>
         </div>
-      </div>
+      </ul>
     </div>
   </div>
 </div>
