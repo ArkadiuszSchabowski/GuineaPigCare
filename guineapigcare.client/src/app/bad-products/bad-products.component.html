@@ -1,20 +1,16 @@
 <div id="container">
   <div id="left-container">
-    <div class="title">Produkty całkowicie zabronione dla świnki morskiej:</div>
+    <div id="title">Produkty całkowicie zabronione dla świnki morskiej:</div>
     <div id="product-container">
-
-      <!-- //TODO -->
-
-
-      <div id="product" *ngFor="let product in products">
-        <div class="product-left">
+      <ul id="product" *ngFor="let product of products">
+        <div class="container-product-left">
+          <div id="product-imageUrl" class="red-x"><img src="{{ product.imageUrl }}"></div>
           <div id="product-name">{{ product.name }}</div>
-          <div id="product-imageUrl">{{ product.imageUrl }}</div>
         </div>
-        <div class="product-right">
+        <div id="container-product-right">
           <div id="product-description">{{ product.description }}</div>
         </div>
-      </div>
+      </ul>
     </div>
   </div>
 </div>

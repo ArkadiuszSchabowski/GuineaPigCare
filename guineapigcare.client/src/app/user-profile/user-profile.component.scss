@@ -1,9 +1,27 @@
 @use '@angular/material' as mat;
 @use 'src/custom-theme' as theme;
+#profile-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 250px;
+}
 
 button{
-    margin-top: 20px;
-    width: 200px;
+    width: 250px;
+    margin: 20px 20px 0 20px;
+    padding: 20px;
+    font-size: 16px;
     color: white !important;
+    border-radius: 10px;
     background-color: mat.get-color-from-palette(theme.$guineapigcare_client-primary);
+}
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+
+}
+@media screen and (min-width: 1200px) {
+    #profile-container{
+        flex-direction: row;
+        }
 }

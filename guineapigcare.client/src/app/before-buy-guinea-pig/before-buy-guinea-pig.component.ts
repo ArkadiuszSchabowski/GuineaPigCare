@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { GuineapigService } from '../_service/guineapig.service';
-import { GuineaPigInformationDto } from '../_models/guinea-pig-information-dto';
 
 @Component({
   selector: 'app-before-buy-guinea-pig',
@@ -10,7 +9,7 @@ import { GuineaPigInformationDto } from '../_models/guinea-pig-information-dto';
 
 export class BeforeBuyGuineaPigComponent implements OnInit{
 
-  information: GuineaPigInformationDto =  new GuineaPigInformationDto();
+  information: any;
   cloudText: string = "Zapewnij mi proszę odpowiednie warunki do rozwoju!"
 
   constructor(private service: GuineapigService) {

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { GuineapigService } from '../_service/guineapig.service';
-import { ProductDto } from '../_models/product-dto';
 
 @Component({
   selector: 'app-bad-products',
@@ -9,10 +8,10 @@ import { ProductDto } from '../_models/product-dto';
 })
 export class BadProductsComponent implements OnInit{
 
-  products: ProductDto= new ProductDto;
+  products: any;
   cloudText: string = "Proszę pamiętaj, by nigdy nie dawać mi tych produktów! Niektóre z nich są nawet śmiertelnie szkodliwe!"
 
-  constructor(private service: GuineapigService){
+  constructor(private guineaPigService: GuineapigService){
     
   }
   ngOnInit(): void {
@@ -21,11 +20,11 @@ export class BadProductsComponent implements OnInit{
   }
 
   setCloudText(){
-    this.service.setCloudText(this.cloudText)
+    this.guineaPigService.setCloudText(this.cloudText)
   }
 
   getBadProductsInformation(){
-    this.service.getBadProducts().subscribe({
+    this.guineaPigService.getBadProducts().subscribe({
       next: response => {
         this.products = response,
         console.log(this.products)
