@@ -1,6 +1,6 @@
 <div id="navbar-container">
   <mat-toolbar
-    [ngClass]="{ 'light-theme': currentValue, 'dark-theme': !currentValue }"
+    [ngClass]="{ 'light-theme': currentTheme, 'dark-theme': !currentTheme }"
   >
     <mat-toolbar-row>
       <button mat-button [matMenuTriggerFor]="menu" id="hamburger-menu-button">
@@ -13,7 +13,7 @@
           <button mat-menu-item routerLink="login">Logowanie</button>
           <button mat-menu-item routerLink="register">Rejestracja</button>
           <button mat-menu-item routerLink="info">Dla kogo świnka?</button>
-          <button mat-menu-item routerLink="good-products">Dieta Twojego pupila</button>
+          <button mat-menu-item routerLink="good-products">Codzienna dieta</button>
           <button mat-menu-item routerLink="bad-products">Produkty zabronione</button>
         </mat-menu>
       <button mat-button routerLink="" class="menu-button">Strona główna</button>

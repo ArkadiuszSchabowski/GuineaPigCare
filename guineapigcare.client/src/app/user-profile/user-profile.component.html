@@ -1,6 +1,26 @@
-<div id="container">
-    <button mat-flat-button [ngClass]="{'light-theme': currentValue, 'dark-theme': !currentValue}">Mój profil</button>
-    <button mat-flat-button [ngClass]="{'light-theme': currentValue, 'dark-theme': !currentValue}">Edytuj profil</button>
-    <button mat-flat-button [ngClass]="{'light-theme': currentValue, 'dark-theme': !currentValue}">Moje świnki</button>
-    <button mat-flat-button [ngClass]="{'light-theme': currentValue, 'dark-theme': !currentValue}">Zarządzanie świnkami</button>
+<div id="profile-container">
+  <button
+    mat-flat-button
+    [ngClass]="{ 'light-theme': currentTheme, 'dark-theme': !currentTheme }"
+  >
+    Mój profil
+  </button>
+  <button
+    mat-flat-button
+    [ngClass]="{ 'light-theme': currentTheme, 'dark-theme': !currentTheme }"
+  >
+    Edytuj profil
+  </button>
+  <button
+    mat-flat-button
+    [ngClass]="{ 'light-theme': currentTheme, 'dark-theme': !currentTheme }"
+  >
+    Moje świnki
+  </button>
+  <button
+    mat-flat-button
+    [ngClass]="{ 'light-theme': currentTheme, 'dark-theme': !currentTheme }"
+  >
+    Zarządzanie świnkami
+  </button>
 </div>

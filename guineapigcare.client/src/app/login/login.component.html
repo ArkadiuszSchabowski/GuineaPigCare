@@ -1,35 +1,50 @@
 <div id="container">
   <div id="left-container">
     <form>
-    <mat-card appearance="outlined" [ngClass]="{'light-theme': currentValue, 'dark-theme': !currentValue}">
-      <mat-card-content>
-        <label>Formularz logowania</label>
-        <mat-form-field>
-          <mat-label [ngClass]="{'light-theme-icon': currentValue, 'dark-theme-icon': !currentValue}">Podaj swój e-mail:</mat-label>
-          <input matInput />
-        </mat-form-field>
+      <mat-card
+        appearance="outlined"
+        [ngClass]="{ 'light-theme': currentTheme, 'dark-theme': !currentTheme }"
+      >
+        <mat-card-content>
+          <label>Formularz logowania</label>
+          <mat-form-field>
+            <mat-label
+              [ngClass]="{
+                'light-theme-icon': currentTheme,
+                'dark-theme-icon': !currentTheme
+              }"
+              >Podaj swój e-mail:</mat-label
+            >
+            <input matInput />
+          </mat-form-field>
 
-        <mat-form-field>
-          <mat-label [ngClass]="{'light-theme-icon': currentValue, 'dark-theme-icon': !currentValue}">Podaje swoje hasło:</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" />
-          <button
-            mat-icon-button
-            matSuffix
-            (click)="clickEvent($event)"
-            [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hide"
-          >
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-        </mat-form-field>
-      </mat-card-content>
-    </mat-card>
-  </form>
-  </div>
-  <div id="piggyCloudContainer">
-    <div id="cloud">Zaloguj się, by zobaczyć jak się rozwijam!</div>
-    <div id="point3"></div>
-    <div id="point2"></div>
-    <div id="point1"></div>
+          <mat-form-field>
+            <mat-label
+              [ngClass]="{
+                'light-theme-icon': currentTheme,
+                'dark-theme-icon': !currentTheme
+              }"
+              >Podaje swoje hasło:</mat-label
+            >
+            <input matInput [type]="hidePassword ? 'password' : 'text'" />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="clickEvent($event)"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hidePassword"
+            >
+              <mat-icon>{{
+                hidePassword ? "visibility_off" : "visibility"
+              }}</mat-icon>
+            </button>
+          </mat-form-field>
+          <button mat-flat-button class="submit-button"             [ngClass]="{
+            'light-theme-icon': currentTheme,
+            'dark-theme-icon': !currentTheme
+          }">Zaloguj się</button>
+        </mat-card-content>
+      </mat-card>
+    </form>
   </div>
 </div>

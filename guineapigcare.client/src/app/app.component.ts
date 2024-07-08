@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ThemeService } from './_service/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +10,20 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private http: HttpClient) {}
+  currentTheme: boolean | undefined = undefined;
+
+  constructor(private http: HttpClient, private theme: ThemeService) {}
 
   ngOnInit() {
-
+    this.setTheme();
   }
-
-  title = 'guineapigcare';
-}
+  setTheme() {
+    this.theme.isLightTheme$.subscribe({
+      next: response => {
+        this.currentTheme = response,
+        console.log(this.currentTheme)
+      },
+      error: error => console.log(error)
+    })
+    }
+  }

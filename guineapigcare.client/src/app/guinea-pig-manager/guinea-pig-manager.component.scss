@@ -1,8 +1,6 @@
 #manager-container {
   display: flex;
   flex-direction: column;
-  height: 300px;
-  min-height: 1400px;
   justify-content: center;
   align-items: center;
   color: white;
@@ -13,13 +11,20 @@
 #remove-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  height: 300px;
-  min-height: 450px;
+  width: 400px;
+  height: auto;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
   margin-bottom: 5px;
+  padding: 20px;
+  border-radius: 30px;
+}
+#remove-container{
+  margin-bottom: 20px;
+}
+mat-form-field{
+  width: 300px;
 }
 form {
   display: flex;
@@ -27,19 +32,22 @@ form {
   justify-content: center;
   align-items: center;
 }
-.info {
-  display: flex;
-  font-size: 20px;
+label{
+  font-size: 24px;
   margin-bottom: 20px;
-  justify-content: center;
-  align-items: center;
+}
+
+.submit-button{
+  width: 200px;
+  padding: 20px;
+  font-size: 20px;
+  background-color: white;
 }
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   #add-container,
   #update-container,
   #remove-container {
-    width: 94%;
-    margin: 1%;
+    width: 600px;
   }
 }
 @media screen and (min-width: 1200px) {
@@ -52,6 +60,7 @@ form {
   #update-container,
   #remove-container {
     width: 30vw;
+    min-height: 450px;
   }
   #update-container {
     margin-left: 1%;

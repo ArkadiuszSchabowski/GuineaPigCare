@@ -1,10 +1,35 @@
 ﻿using GuineaPigCare.Server.Interfaces;
 using GuineaPigCare.Server.Models;
+using Microsoft.Identity.Client;
 
 namespace GuineaPigCare.Server.Service
 {
     public class GuineaPigService : IGuineaPigService
     {
+        public List<ProductDto> GetBadProductsInformation()
+        {
+            List<ProductDto> badProducts = new List<ProductDto>(){
+                         new ProductDto()
+        {
+        Name = "Cebula",
+        Description = "Cebula jest szkodliwa dla świnek morskich i nie powinna być podawana w ich diecie. Zawiera substancje chemiczne, które mogą powodować uszkodzenie czerwonych krwinek oraz prowadzić do anemii. Spożycie cebuli może także drażnić przewód pokarmowy i prowadzić do problemów zdrowotnych, co stanowi poważne zagrożenie dla zdrowia świnek morskich.",
+        ImageUrl = "/assets/images/onion.jpg"
+         },
+            new ProductDto()
+            {
+                Name = "Czosnek",
+                Description = "Czosnek jest szkodliwy dla świnek morskich i dlatego jest całkowicie zakazany w ich diecie. Jego ostre właściwości mogą powodować drażnienie przewodu pokarmowego oraz zakłócenia w naturalnym trawieniu. Spożycie czosnku może prowadzić do poważnych problemów zdrowotnych, a nawet śmierci świnek morskich.",
+                ImageUrl = "/assets/images/garlic.jpg"
+            },
+            new ProductDto()
+            {
+                Name = "Mokra trawa",
+                Description = "Mokra trawa nie jest odpowiednia dla świnek morskich ze względu na wysokie ryzyko wystąpienia problemów zdrowotnych. Spożycie mokrej trawy może prowadzić do zaburzeń trawiennych oraz poważnych problemów żołądkowych, co jest szczególnie niebezpieczne dla delikatnego układu pokarmowego świnek morskich.",
+                ImageUrl = "/assets/images/wet_grass.jpg"
+            } };
+            return badProducts;
+        }
+
         public GuineaPigInformationDto GetInformationGuineaPig()
         {
             var information = new GuineaPigInformationDto();
@@ -16,6 +41,7 @@ namespace GuineaPigCare.Server.Service
             List<string> responsibilities = new List<string>()
             {
                 "Codzienne karmienie i świeża woda",
+                "Dostęp do siana, na którym świnka ściera zęby",
                 "Regularne sprzątanie klatki",
                 "Zapewnienie odpowiedniej opieki weterynaryjnej",
                 "Codzienne chwile uwagi i interakcji",

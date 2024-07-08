@@ -1,10 +1,16 @@
 <div id="container">
-    <div id="left-container">
+  <div id="left-container">
+    <div id="title">Produkty całkowicie zabronione dla świnki morskiej:</div>
+    <div id="product-container">
+      <ul id="product" *ngFor="let product of products">
+        <div class="container-product-left">
+          <div id="product-imageUrl" class="red-x"><img src="{{ product.imageUrl }}"></div>
+          <div id="product-name">{{ product.name }}</div>
+        </div>
+        <div id="container-product-right">
+          <div id="product-description">{{ product.description }}</div>
+        </div>
+      </ul>
     </div>
-    <div id="piggyCloudContainer">
-        <div id="cloud">Proszę pamiętaj, by nigdy nie dawać mi tych produktów! Niektóre z nich są nawet śmiertelnie szkodliwe!</div>
-        <div id="point3"></div>
-        <div id="point2"></div>
-        <div id="point1"></div>
-      </div>
+  </div>
 </div>
