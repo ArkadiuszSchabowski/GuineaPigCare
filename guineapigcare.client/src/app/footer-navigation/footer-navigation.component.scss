@@ -8,6 +8,8 @@
   height: 100%;
   justify-content: center;
   align-items: center;
+  margin-top: auto;
+  margin-bottom: 0;
 }
 #bar {
   display: flex;
@@ -19,13 +21,12 @@
 
 #photoGuineaPig {
   display: flex;
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   background-image: url(../../assets/images/guineapig.webp);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  margin-top: 20px;
 }
 #sound-icon{
   display: flex;
@@ -37,7 +38,13 @@
   background-color: white;
 }
 #cloud{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   width: 300px;
+  height: auto;
+  min-height: 50px;
   text-align: center;
   padding: 10px;
   border-radius: 50px;
@@ -46,7 +53,7 @@
 }
 #point1, #point2, #point3{
   border: 1px solid black;
-  margin-top: 10px;
+  margin-top: 2px;
   border-radius: 50px;
   color: black;
   background-color: white;
@@ -69,26 +76,26 @@
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   #photoGuineaPig {
-    margin: 20px 120px 0 auto;
+    margin: 2px 120px 0 auto;
   }
   #cloud, #point1, #point2, #point3{
     margin-left: auto;
   }
   #cloud{
-    margin-right: 120px;
+    margin-right: 80px;
   }
   #point1{
-    margin-right: 190px;
+    margin-right: 150px;
   }
   #point2{
-    margin-right: 185px;
+    margin-right: 145px;
   }
   #point3{
-    margin-right: 180px;
+    margin-right: 140px;
   }
 
   #sound-icon{
-    margin-right: 180px;
+    margin-right: 132px;
     margin-left: auto;
   }
 }
@@ -98,25 +105,25 @@
     padding-left: 100px;
   }
   #photoGuineaPig {
-    margin: 20px 150px 0 auto;
+    margin: 2px 150px 0 auto;
   }
   #cloud, #point1, #point2, #point3{
     margin-left: auto;
   }
   #cloud{
-    margin-right: 120px;
+    margin-right: 90px;
   }
   #point1{
-    margin-right: 210px;
+    margin-right: 180px;
   }
   #point2{
-    margin-right: 205px;
+    margin-right: 175px;
   }
   #point3{
-    margin-right: 200px;
+    margin-right: 170px;
   }
   #sound-icon{
-    margin-right: 200px;
+    margin-right: 160px;
     margin-left: auto;
   }
   #photoContainer{

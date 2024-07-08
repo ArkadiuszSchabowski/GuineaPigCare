@@ -55,6 +55,16 @@
               <mat-icon>{{ hide2 ? "visibility_off" : "visibility" }}</mat-icon>
             </button>
           </mat-form-field>
+          <button
+            mat-flat-button
+            class="submit-button"
+            [ngClass]="{
+              'light-theme-icon': currentTheme,
+              'dark-theme-icon': !currentTheme
+            }"
+          >
+            Zarejestruj się
+          </button>
         </mat-card-content>
       </mat-card>
     </form>

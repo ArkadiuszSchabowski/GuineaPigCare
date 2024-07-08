@@ -13,18 +13,28 @@
   #dangers-container,
   #responsibilities-container {
     margin-right: 20px;
-    padding: 10px;
+    padding: 20px;
   }
 }
 #responsibilities-container{
   margin-bottom: 20px;
 }
+.title-description{
+  width: 90%;
+  margin-top: 20px;
+  margin-left: 40px;
+  font-size: 22px;
+  font-weight: bold;
+}
 .title {
-  font-size: 30px;
-  font-size: bold;
+  margin-bottom: 10px;
+  font-size: 22px;
+  font-weight: bold;
 }
 .description{
-  margin: 20px;
+  margin-top: 20px;
+  margin-left: 40px;
+  margin-bottom: 10px;
 }
 ul {
   padding-left: 20px;
