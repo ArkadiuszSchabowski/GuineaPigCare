@@ -27,5 +27,11 @@ namespace GuineaPigCare.Server.Controllers
             List<ProductDto> products = _service.GetBadProductsInformation();
             return Ok(products);
         }
+        [HttpGet("good-products")]
+        public ActionResult GetGoodProductsForGuineaPig()
+        {
+            List<ProductDto> products = _service.GetGoodProductsInformation();
+            return Ok(products);
+        }
     }
 }

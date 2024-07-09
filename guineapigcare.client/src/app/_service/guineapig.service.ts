@@ -26,4 +26,7 @@ export class GuineapigService {
   getBadProducts(): Observable<ProductDto>{
     return this.http.get<ProductDto>(environment.apiUrl + "guineapig/bad-products");
   };
+  getGoodProducts(): Observable<ProductDto>{
+    return this.http.get<ProductDto>(environment.apiUrl + "guineapig/good-products");
+  };
 }

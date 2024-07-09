@@ -1,3 +1,16 @@
 <div id="container">
-  <div id="left-container"></div>
+  <div id="left-container">
+    <div id="title">Ulubione produkty dla świnki morskiej:</div>
+    <div id="product-container">
+      <ul id="product" *ngFor="let product of products">
+        <div class="container-product-left">
+          <div id="product-imageUrl"><img src="{{ product.imageUrl }}"></div>
+          <div id="product-name">{{ product.name }}</div>
+        </div>
+        <div id="container-product-right">
+          <div id="product-description">{{ product.description }}</div>
+        </div>
+      </ul>
+    </div>
+  </div>
 </div>

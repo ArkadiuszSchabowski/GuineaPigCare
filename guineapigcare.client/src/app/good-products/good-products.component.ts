@@ -9,18 +9,27 @@ import { GuineapigService } from '../_service/guineapig.service';
 export class GoodProductsComponent implements OnInit{
 
   cloudText: string = "Co za pyszności! Pamiętaj o porze karmienia!"
+  products: any;
 
   constructor(private guineaPigService: GuineapigService){
-
+    
   }
   ngOnInit(): void {
-
+    this.getBadProductsInformation();
     this.setCloudText();
-
-  }
-  
-  setCloudText() {
-    this.guineaPigService.setCloudText(this.cloudText);
   }
 
+  setCloudText(){
+    this.guineaPigService.setCloudText(this.cloudText)
+  }
+
+  getBadProductsInformation(){
+    this.guineaPigService.getGoodProducts().subscribe({
+      next: response => {
+        this.products = response,
+        console.log(this.products)
+      },
+      error: error => console.log(error)
+    })
+  };
 }
