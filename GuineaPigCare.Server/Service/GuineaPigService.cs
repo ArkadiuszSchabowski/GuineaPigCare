@@ -81,6 +81,12 @@ namespace GuineaPigCare.Server.Service
             Name = "Natka pietruszki",
             Description = "Natka pietruszki jest bogata w witaminę C i inne składniki odżywcze. Jest bezpieczna dla świnek morskich i może być dodatkiem do ich codziennej diety.",
             ImageUrl = "/assets/images/parsley.jpg"
+        },
+        new ProductDto()
+        {
+            Name = "Trawa - sucha",
+            Description = "Trawa sucha jest istotnym elementem diety świnek morskich z kilku kluczowych powodów. Po pierwsze, jest ona bogatym źródłem błonnika, który wspiera zdrowie ich układu trawiennego poprzez regulację pracy jelit. Dodatkowo, trawa sucha odzwierciedla naturalną dietę świnek morskich, które w naturze spożywają różnorodne rośliny i trawy. Żucie trawy suchej nie tylko dostarcza im odpowiedniej ilości błonnika, ale również pomaga w ścieraniu zębów, co jest istotne dla zdrowia jamy ustnej tych zwierząt. Trawa zawiera również niezbędne witaminy i minerały, takie jak witamina C, która jest kluczowa dla świnek morskich, ponieważ nie mogą jej samodzielnie syntetyzować. Wreszcie, trawa sucha jest bezpiecznym źródłem pożywienia, o ile jest czysta i wolna od zanieczyszczeń. Dlatego regularne dostarczanie trawy suchej jest zalecane jako element zdrowej i zrównoważonej diety dla świnek morskich.",
+            ImageUrl = "/assets/images/grass.jpg"
         }
     };
 
@@ -110,7 +116,7 @@ namespace GuineaPigCare.Server.Service
                 },
                 new ProductDto()
                 {
-                    Name = "Mokra trawa",
+                    Name = "Trawa - mokra",
                     Description = "Mokra trawa nie jest odpowiednia dla świnek morskich ze względu na wysokie ryzyko wystąpienia problemów zdrowotnych. Spożycie mokrej trawy może prowadzić do zaburzeń trawiennych oraz poważnych problemów żołądkowych, co jest szczególnie niebezpieczne dla delikatnego układu pokarmowego świnek morskich.",
                     ImageUrl = "/assets/images/wet_grass.jpg"
                 },

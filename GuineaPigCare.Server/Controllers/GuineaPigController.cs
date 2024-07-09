@@ -9,29 +9,33 @@ namespace GuineaPigCare.Server.Controllers
     [ApiController]
     public class GuineaPigController : ControllerBase
     {
-        private readonly IGuineaPigService _service;
+        private readonly IGuineaPigService _guineaPigService;
+        private readonly ISortService _sortService;
 
-        public GuineaPigController(IGuineaPigService service)
+        public GuineaPigController(IGuineaPigService service, ISortService sortService)
         {
-            _service = service;
+            _guineaPigService = service;
+            _sortService = sortService;
         }
         [HttpGet("info")]
         public ActionResult GetInformationGuineaPig()
         {
-            GuineaPigInformationDto information = _service.GetInformationGuineaPig();
+            GuineaPigInformationDto information = _guineaPigService.GetInformationGuineaPig();
             return Ok(information);
         }
         [HttpGet("bad-products")]
-        public ActionResult GetBadProductsForGuineaPig()
+        public ActionResult GetBadProductsForGuineaPig([FromQuery] PaginationDto paginationDto)
         {
-            List<ProductDto> products = _service.GetBadProductsInformation();
-            return Ok(products);
+            List<ProductDto> products = _guineaPigService.GetBadProductsInformation();
+            List<ProductDto> sortProducts = _sortService.SortByName(products, paginationDto);
+            return Ok(sortProducts);
         }
         [HttpGet("good-products")]
-        public ActionResult GetGoodProductsForGuineaPig()
+        public ActionResult GetGoodProductsForGuineaPig([FromQuery] PaginationDto paginationDto)
         {
-            List<ProductDto> products = _service.GetGoodProductsInformation();
-            return Ok(products);
+            List<ProductDto> products = _guineaPigService.GetGoodProductsInformation();
+            List<ProductDto> sortProducts = _sortService.SortByName(products, paginationDto);
+            return Ok(sortProducts);
         }
     }
 }
