@@ -24,6 +24,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatMenuModule} from '@angular/material/menu';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { GuineaPigManagerComponent } from './guinea-pig-manager/guinea-pig-manager.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { GuineaPigManagerComponent } from './guinea-pig-manager/guinea-pig-manag
      MatInputModule,
      MatFormFieldModule,
      MatMenuModule,
-     HttpClientModule
+     HttpClientModule,
+     MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

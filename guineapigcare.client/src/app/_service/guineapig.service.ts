@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../_environments/environment_dev';
 import { GuineaPigInformationDto } from '../_models/guinea-pig-information-dto';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ProductDto } from '../_models/product-dto';
+import { PaginationDto } from '../_models/pagination-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -21,12 +22,20 @@ export class GuineapigService {
     }
 
   getInformationGuineaPigs(): Observable<GuineaPigInformationDto> {
-    return this.http.get<GuineaPigInformationDto>(environment.apiUrl + 'guineapig/info');
+    return this.http.get<GuineaPigInformationDto>(environment.apiUrl + 'guineapig/info', );
   };
-  getBadProducts(): Observable<ProductDto>{
-    return this.http.get<ProductDto>(environment.apiUrl + "guineapig/bad-products");
+
+  getBadProducts(paginationDto: PaginationDto): Observable<ProductDto>{
+    let params = new HttpParams()
+    .set('PageNumber', paginationDto.PageNumber.toString())
+    .set('PageSize', paginationDto.PageSize.toString());
+    return this.http.get<ProductDto>(environment.apiUrl + "guineapig/bad-products", {params})
   };
-  getGoodProducts(): Observable<ProductDto>{
-    return this.http.get<ProductDto>(environment.apiUrl + "guineapig/good-products");
+
+  getGoodProducts(paginationDto: PaginationDto): Observable<ProductDto>{
+    let params = new HttpParams()
+    .set('PageNumber', paginationDto.PageNumber.toString())
+    .set('PageSize', paginationDto.PageSize.toString());
+    return this.http.get<ProductDto>(environment.apiUrl + "guineapig/good-products", {params})
   };
 }
