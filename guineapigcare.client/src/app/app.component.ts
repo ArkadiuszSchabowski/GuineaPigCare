@@ -20,10 +20,9 @@ export class AppComponent implements OnInit {
   setTheme() {
     this.theme.isLightTheme$.subscribe({
       next: response => {
-        this.currentTheme = response,
-        console.log(this.currentTheme)
+        this.currentTheme = response;
       },
-      error: error => console.log(error)
+      error: error => error
     })
     }
   }

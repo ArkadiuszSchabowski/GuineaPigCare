@@ -4,7 +4,7 @@
     <div id="product-container">
       <ul id="product" *ngFor="let product of products">
         <div class="container-product-left">
-          <div id="product-imageUrl"><img src="{{ product.imageUrl }}"></div>
+          <div id="product-imageUrl"><img [ngClass]="{'light-theme-img-green-border': currentTheme, 'dark-theme-img-green-border': !currentTheme}" src="{{ product.imageUrl }} "></div>
           <div id="product-name">{{ product.name }}</div>
         </div>
         <div id="container-product-right">
@@ -13,7 +13,7 @@
       </ul>
     </div>
   </div>
-  <mat-paginator [length]="100"
+  <mat-paginator [ngClass]="{'light-theme-img-green-border': currentTheme, 'dark-theme-img-green-border': !currentTheme}" [length]="100"
               [pageSize]="10"
               [pageSizeOptions]="[5, 10, 25, 100]"
               aria-label="Select page"

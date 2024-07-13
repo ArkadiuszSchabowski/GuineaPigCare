@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GuineapigService } from '../_service/guineapig.service';
 import { PaginationDto } from '../_models/pagination-dto';
 import { PageEvent } from '@angular/material/paginator';
+import { ThemeService } from '../_service/theme.service';
 
 @Component({
   selector: 'app-good-products',
@@ -10,16 +11,30 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class GoodProductsComponent implements OnInit{
 
+  currentTheme: boolean | undefined = undefined;
   cloudText: string = "Co za pyszności! Pamiętaj o porze karmienia!"
   products: any;
   pagination: PaginationDto = new PaginationDto();
 
-  constructor(private guineaPigService: GuineapigService){
+  constructor(private guineaPigService: GuineapigService, private themeService: ThemeService){
     
   }
+
+
   ngOnInit(): void {
     this.getGoodProductsInformation();
     this.setCloudText();
+    this.setTheme();
+  }
+
+  setTheme() {
+    this.themeService.isLightTheme$.subscribe({
+      next: response => {
+        this.currentTheme = response;
+        console.log(response)
+      },
+      error: error => console.log(error)
+    })
   }
 
   setCloudText(){

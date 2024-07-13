@@ -1,5 +1,5 @@
 export class GuineaPigInformationDto{
-    Title: string = "";
+    title: string = "";
     Description: string = "";
     Responsibilities: string[] = [];
     Benefits: string[] = [];

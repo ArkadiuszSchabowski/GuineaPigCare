@@ -6,12 +6,15 @@
   margin: 0;
   padding: 0;
 }
+
 body{
   overflow-x: hidden;
 }
+
 mat-label{
   color: mat.get-color-from-palette(theme.$guineapigcare_client-primary) !important;
 }
+
 #container {
   display: flex;
   flex-direction: column;
@@ -39,14 +42,14 @@ mat-label{
   z-index: 1;
 }
 .dark-theme-background{
-  background-color: grey !important;
+  background-color: black !important;
   z-index: 5;
 }
 .light-theme-font-color{
-  color: black;
+  color: black !important;
 }
 .dark-theme-font-color{
-  color: white;
+  color: white !important;
 }
 .light-theme-cloud{
   background-color: white;
@@ -54,6 +57,25 @@ mat-label{
 .dark-theme-cloud{
   color: black;
   background-color:lavender;
+}
+.light-theme-img-green-border{
+  border: 5px solid green;
+  border-radius: 35px;
+}
+.dark-theme-img-green-border{
+  border: 5px solid rgb(7, 226, 7);
+  border-radius: 35px;
+}
+.light-theme-img-red-border{
+  border: 5px solid red;
+  border-radius: 35px;
+}
+.dark-theme-img-red-border{
+  border: 5px solid orangered;
+  border-radius: 35px;
+}
+mat-paginator{
+  font-weight:  bold !important;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {

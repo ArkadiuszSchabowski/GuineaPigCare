@@ -24,7 +24,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatMenuModule} from '@angular/material/menu';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { GuineaPigManagerComponent } from './guinea-pig-manager/guinea-pig-manager.component';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
+import { PolishPaginatorIntl } from './_internationalization/polish-paginator-intl';
 
 @NgModule({
   declarations: [
@@ -54,10 +55,11 @@ import {MatPaginatorModule} from '@angular/material/paginator';
      MatInputModule,
      MatFormFieldModule,
      MatMenuModule,
-     HttpClientModule,
      MatPaginatorModule
   ],
-  providers: [],
+  providers: [
+    {provide: MatPaginatorIntl, useClass: PolishPaginatorIntl}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
