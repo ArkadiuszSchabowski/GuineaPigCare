@@ -1,7 +1,7 @@
 export class GuineaPigInformationDto{
     title: string = "";
-    Description: string = "";
-    Responsibilities: string[] = [];
-    Benefits: string[] = [];
-    Dangers: string[] = [];
+    description: string = "";
+    responsibilities: string[] = [];
+    benefits: string[] = [];
+    dangers: string[] = [];
 }

@@ -27,14 +27,14 @@ namespace GuineaPigCare.Server.Controllers
         public ActionResult GetBadProductsForGuineaPig([FromQuery] PaginationDto paginationDto)
         {
             List<ProductDto> products = _guineaPigService.GetBadProductsInformation();
-            List<ProductDto> sortProducts = _sortService.SortByName(products, paginationDto);
+            ProductResult sortProducts = _sortService.SortByName(products, paginationDto);
             return Ok(sortProducts);
         }
         [HttpGet("good-products")]
         public ActionResult GetGoodProductsForGuineaPig([FromQuery] PaginationDto paginationDto)
         {
             List<ProductDto> products = _guineaPigService.GetGoodProductsInformation();
-            List<ProductDto> sortProducts = _sortService.SortByName(products, paginationDto);
+            ProductResult sortProducts = _sortService.SortByName(products, paginationDto);
             return Ok(sortProducts);
         }
     }

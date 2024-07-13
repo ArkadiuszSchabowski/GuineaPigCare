@@ -4,6 +4,7 @@ import { PaginationDto } from '../_models/pagination-dto';
 import { PageEvent } from '@angular/material/paginator';
 import { ProductDto } from '../_models/product-dto';
 import { ThemeService } from '../_service/theme.service';
+import { ProductResult } from '../_models/product-result';
 
 @Component({
   selector: 'app-bad-products',
@@ -13,7 +14,8 @@ import { ThemeService } from '../_service/theme.service';
 export class BadProductsComponent implements OnInit{
 
   currentTheme: boolean | undefined = undefined;
-  products: any;
+  products: ProductDto[] = [];
+  counter: number | undefined = undefined;
   cloudText: string = "Proszę pamiętaj, by nigdy nie dawać mi tych produktów! Niektóre z nich są nawet śmiertelnie szkodliwe!"
   pagination: PaginationDto = new PaginationDto();
 
@@ -33,8 +35,9 @@ export class BadProductsComponent implements OnInit{
   getBadProductsInformation(paginationDto: PaginationDto){
 
     this.guineaPigService.getBadProducts(paginationDto).subscribe({
-      next: (response: ProductDto) => {
-        this.products = response;
+      next: (response: ProductResult) => {
+        this.products = response.products;
+        this.counter = response.counter;
       },
       error: error => console.log(error)
     })
@@ -46,7 +49,7 @@ export class BadProductsComponent implements OnInit{
     this.pagination.PageNumber = event.pageIndex + 1;
 
     this.guineaPigService.getBadProducts(this.pagination).subscribe({
-      next: response => this.products = response,
+      next: response => this.products = response.products,
       error: error => error
     })
   }

@@ -8,7 +8,7 @@ namespace GuineaPigCare.Server.Service
     {
         public List<ProductDto> GetGoodProductsInformation()
         {
-            List<ProductDto> goodProducts = new List<ProductDto>()
+            List<ProductDto> products = new List<ProductDto>()
     {
         new ProductDto()
         {
@@ -90,12 +90,12 @@ namespace GuineaPigCare.Server.Service
         }
     };
 
-            return goodProducts;
+            return products;
         }
 
         public List<ProductDto> GetBadProductsInformation()
         {
-            List<ProductDto> badProducts = new List<ProductDto>(){
+            List<ProductDto> products = new List<ProductDto>(){
                 new ProductDto()
                 {
                     Name = "Czosnek",
@@ -169,7 +169,8 @@ namespace GuineaPigCare.Server.Service
                     ImageUrl = "/assets/images/rodent_treat_sticks.jpg"
                 }
             };
-            return badProducts;
+
+            return products;
         }
 
 

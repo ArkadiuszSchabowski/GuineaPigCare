@@ -1,5 +1,5 @@
 export class ProductDto{
-    Name: string = ""
-    Description: string = ""
-    ImageUrl: string = ""
+    name: string = ""
+    description: string = ""
+    imageUrl: string = ""
 };

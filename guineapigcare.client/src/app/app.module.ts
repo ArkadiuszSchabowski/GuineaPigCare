@@ -26,6 +26,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { GuineaPigManagerComponent } from './guinea-pig-manager/guinea-pig-manager.component';
 import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
 import { PolishPaginatorIntl } from './_internationalization/polish-paginator-intl';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { PolishPaginatorIntl } from './_internationalization/polish-paginator-in
      MatInputModule,
      MatFormFieldModule,
      MatMenuModule,
-     MatPaginatorModule
+     MatPaginatorModule,
+     MatSelectModule
   ],
   providers: [
     {provide: MatPaginatorIntl, useClass: PolishPaginatorIntl}

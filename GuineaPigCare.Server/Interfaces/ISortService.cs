@@ -4,6 +4,6 @@ namespace GuineaPigCare.Server.Interfaces
 {
     public interface ISortService
     {
-        List<ProductDto> SortByName(List<ProductDto> products, PaginationDto paginationDto);
+        ProductResult SortByName(List<ProductDto> products, PaginationDto paginationDto);
     }
 }
