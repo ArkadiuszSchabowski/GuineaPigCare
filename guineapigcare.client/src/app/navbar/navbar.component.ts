@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemeService } from '../_service/theme.service';
+import { AccountService } from '../_service/account.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,7 @@ export class NavbarComponent implements OnInit {
 
   currentTheme: boolean | undefined = undefined;
 
-  constructor(private theme: ThemeService) {}
+  constructor(private theme: ThemeService, public accountService: AccountService) {}
 
   ngOnInit(): void {
 
@@ -30,5 +31,8 @@ export class NavbarComponent implements OnInit {
   changeTheme(): void {
     this.currentTheme = this.theme.themeSubject.value;
     this.theme.themeSubject.next(!this.currentTheme);
+  }
+  logout(){
+    this.accountService.logout();
   }
 }

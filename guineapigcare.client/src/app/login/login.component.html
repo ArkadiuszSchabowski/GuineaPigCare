@@ -1,6 +1,6 @@
 <div id="container">
   <div id="left-container">
-    <form>
+    <form #ngForm="ngForm" (ngSubmit)="login()">
       <mat-card
         appearance="outlined"
         [ngClass]="{ 'light-theme': currentTheme, 'dark-theme': !currentTheme }"
@@ -15,7 +15,11 @@
               }"
               >Podaj swój e-mail:</mat-label
             >
-            <input matInput />
+            <input
+             matInput 
+             name="email"
+             [(ngModel)]="model.email"
+             />
           </mat-form-field>
 
           <mat-form-field>
@@ -26,7 +30,11 @@
               }"
               >Podaje swoje hasło:</mat-label
             >
-            <input matInput [type]="hidePassword ? 'password' : 'text'" />
+            <input 
+            matInput 
+            name="password"
+            [(ngModel)]="model.password"
+            [type]="hidePassword ? 'password' : 'text'" />
             <button
               mat-icon-button
               matSuffix
@@ -39,10 +47,16 @@
               }}</mat-icon>
             </button>
           </mat-form-field>
-          <button mat-flat-button class="submit-button"             [ngClass]="{
-            'light-theme-icon': currentTheme,
-            'dark-theme-icon': !currentTheme
-          }">Zaloguj się</button>
+          <button type="submit"
+            mat-flat-button
+            class="submit-button"
+            [ngClass]="{
+              'light-theme-icon': currentTheme,
+              'dark-theme-icon': !currentTheme
+            }"
+          >
+            Zaloguj się
+          </button>
         </mat-card-content>
       </mat-card>
     </form>

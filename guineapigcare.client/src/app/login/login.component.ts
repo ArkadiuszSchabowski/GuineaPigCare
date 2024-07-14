@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { ThemeService } from '../_service/theme.service';
 import { GuineapigService } from '../_service/guineapig.service';
+import { LoginUserDto } from '../_models/login-user-dto';
+import { AccountService } from '../_service/account.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +16,9 @@ export class LoginComponent implements OnInit{
   currentTheme: boolean | undefined = undefined;
   hidePassword = true;
   cloudText: string = "Hej, na co czekasz? Zaloguj się! Chrum chrum!"
+  model: LoginUserDto = new LoginUserDto();
 
-  constructor(private theme: ThemeService, private guineaPigService: GuineapigService, private cd: ChangeDetectorRef){
+  constructor(private theme: ThemeService, private guineaPigService: GuineapigService, private cd: ChangeDetectorRef, private accountService: AccountService, private router: Router){
 
   }
 
@@ -42,5 +46,14 @@ export class LoginComponent implements OnInit{
       },
       error: error => console.log(error)
     });
+  }
+  login(){
+    this.accountService.login(this.model).subscribe({
+      next: response => {
+        console.log(response)
+        this.router.navigateByUrl("/");
+      },
+      error: error => console.log(error)  
+    })
   }
 }

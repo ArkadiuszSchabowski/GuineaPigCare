@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
-using GuineaPigCare.Server.Database;
 using GuineaPigCare.Server.Interfaces;
 using GuineaPigCare.Server.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GuineaPigCare.Server.Controllers
@@ -22,7 +20,7 @@ namespace GuineaPigCare.Server.Controllers
         {
             _accountService.RegisterUser(registerUserDto);
 
-            return Ok($"Pomyślnie zarejestrowano użytkownika.");
+            return Ok(new { message = "Pomyślnie zarejestrowano użytkownika." });
         }
 
         [HttpPost("login")]
@@ -30,7 +28,7 @@ namespace GuineaPigCare.Server.Controllers
         {
             string token = _accountService.GenerateJWT(loginUserDto);
 
-            return Ok(token);
+            return Ok(new {message = token});
         }
 
     }
