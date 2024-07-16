@@ -1,0 +1,15 @@
+<div id="profile-container">
+    <div id="profile-title">Profil Świnki morskiej</div>
+    <div id="profile-content-container">
+      <div id="profile-content-navigation">
+        <button mat-button routerLink="/guinea-pig/profile">Przeglądaj profil swojej świnki</button>
+        <button mat-button routerLink="/guinea-pig/add-profile">Dodaj profil swojej świnki</button>
+        <button mat-button routerLink="/guinea-pig/update-profile">Aktualizuj profil swojej świnki</button>
+        <button mat-button routerLink="/guinea-pig/cleaning-calendar">Kalendarz czystości</button>
+        <button mat-button routerLink="/guinea-pig/remove-profile">Usuń profil świnki</button>
+      </div>
+      <div id="profile-content-body">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>

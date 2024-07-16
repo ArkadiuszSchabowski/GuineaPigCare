@@ -16,6 +16,8 @@ import { GuineaPigCleaningCalendarComponent } from './components-when-login/guin
 import { UserEditProfileComponent } from './components-when-login/user-edit-profile/user-edit-profile.component';
 import { UserRemoveProfileComponent } from './components-when-login/user-remove-profile/user-remove-profile.component';
 import { UserChangePasswordComponent } from './components-when-login/user-change-password/user-change-password.component';
+import { GuineaPigLayoutComponent } from './components-when-login/guinea-pig-layout/guinea-pig-layout.component';
+import { UserLayoutComponent } from './components-when-login/user-layout/user-layout.component';
 
 const routes: Routes = [
   {path: "", component: MainPageComponent},
@@ -24,15 +26,27 @@ const routes: Routes = [
   {path: "good-products", component: GoodProductsComponent},
   {path: "bad-products", component: BadProductsComponent},
   {path: "info", component: BeforeBuyGuineaPigComponent},
-  {path: "profile/user-profile", component: UserProfileComponent},
-  {path: "profile/edit-profile", component: UserEditProfileComponent},
-  {path: "profile/remove-profile", component: UserRemoveProfileComponent},
-  {path: "profile/user-change-password", component: UserChangePasswordComponent},
-  {path: "profile/guinea-pig-profile", component: GuineaPigProfileComponent},
-  {path: "profile/guinea-pig-add-profile", component: GuineaPigAddProfileComponent},
-  {path: "profile/guinea-pig-update-profile", component: GuineaPigUpdateProfileComponent},
-  {path: "profile/guinea-pig-remove-profile", component: GuineaPigRemoveProfileComponent},
-  {path: "profile/guinea-pig-cleaning-calendar", component: GuineaPigCleaningCalendarComponent},
+  {
+    path: "user",
+    component: UserLayoutComponent,
+    children: [
+      {path: "profile", component: UserProfileComponent},
+      {path: "edit-profile", component: UserEditProfileComponent},
+      {path: "remove-profile", component: UserRemoveProfileComponent},
+      {path: "user-change-password", component: UserChangePasswordComponent},
+    ]
+  },
+  {
+  path: "guinea-pig",
+    component: GuineaPigLayoutComponent,
+    children: [
+      { path: 'profile', component: GuineaPigProfileComponent },
+      { path: 'add-profile', component: GuineaPigAddProfileComponent },
+      { path: 'update-profile', component: GuineaPigUpdateProfileComponent },
+      { path: 'cleaning-calendar', component: GuineaPigCleaningCalendarComponent },
+      { path: 'remove-profile', component: GuineaPigRemoveProfileComponent },
+    ]
+  },
   {path: "**", component: MainPageComponent}
 ];
 

@@ -38,6 +38,8 @@ import { GuineaPigAddProfileComponent } from './components-when-login/guinea-pig
 import { GuineaPigUpdateProfileComponent } from './components-when-login/guinea-pig-update-profile/guinea-pig-update-profile.component';
 import { GuineaPigRemoveProfileComponent } from './components-when-login/guinea-pig-remove-profile/guinea-pig-remove-profile.component';
 import { GuineaPigCleaningCalendarComponent } from './components-when-login/guinea-pig-cleaning-calendar/guinea-pig-cleaning-calendar.component';
+import { UserLayoutComponent } from './components-when-login/user-layout/user-layout.component';
+import { GuineaPigLayoutComponent } from './components-when-login/guinea-pig-layout/guinea-pig-layout.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { GuineaPigCleaningCalendarComponent } from './components-when-login/guin
     GuineaPigAddProfileComponent,
     GuineaPigUpdateProfileComponent,
     GuineaPigRemoveProfileComponent,
-    GuineaPigCleaningCalendarComponent
+    GuineaPigCleaningCalendarComponent,
+    UserLayoutComponent,
+    GuineaPigLayoutComponent
   ],
   imports: [
     BrowserModule,

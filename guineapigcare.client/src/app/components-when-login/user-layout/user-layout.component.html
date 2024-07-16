@@ -1,0 +1,14 @@
+<div id="profile-container">
+    <div id="profile-title">Profil Użytkownika</div>
+    <div id="profile-content-container">
+        <div id="profile-content-navigation">
+            <button mat-button routerLink="/user/profile">Informacje profilowe</button>
+            <button mat-button routerLink="/user/edit-profile">Edytuj profil</button>
+            <button mat-button routerLink="/user/user-change-password">Zmień hasło</button>
+            <button mat-button routerLink="/user/remove-profile">Usuń profil użytkownika</button>
+        </div>
+        <div id="profile-content-body">
+          <router-outlet></router-outlet>
+        </div>
+    </div>
+  </div>
