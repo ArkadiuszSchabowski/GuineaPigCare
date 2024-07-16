@@ -19,20 +19,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.setTheme();
-    this.setCloudText();
+    throw new Error('Method not implemented.');
   }
 
-  setCloudText() {
-    this.guineaPigService.setCloudText(this.text);
-  }
-
-  setTheme() {
-    this.theme.isLightTheme$.subscribe({
-      next: (response) => {
-        this.currentTheme = response;
-      },
-      error: (error) => console.log(error),
-    });
-  }
 }

@@ -77,7 +77,8 @@ import { GuineaPigCleaningCalendarComponent } from './components-when-login/guin
      MatFormFieldModule,
      MatMenuModule,
      MatPaginatorModule,
-     MatSelectModule
+     MatSelectModule,
+     MatSidenavModule
   ],
   providers: [
     {provide: MatPaginatorIntl, useClass: PolishPaginatorIntl}
