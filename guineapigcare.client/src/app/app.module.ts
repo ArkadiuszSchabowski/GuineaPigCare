@@ -23,10 +23,12 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatMenuModule} from '@angular/material/menu';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { GuineaPigManagerComponent } from './guinea-pig-manager/guinea-pig-manager.component';
 import {MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
 import { PolishPaginatorIntl } from './_internationalization/polish-paginator-intl';
 import {MatSelectModule} from '@angular/material/select';
+import { UserComponent } from './user/user.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +42,7 @@ import {MatSelectModule} from '@angular/material/select';
     NavbarComponent,
     FooterNavigationComponent,
     UserProfileComponent,
-    GuineaPigManagerComponent,
+    UserComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,8 @@ import {MatSelectModule} from '@angular/material/select';
      MatFormFieldModule,
      MatMenuModule,
      MatPaginatorModule,
-     MatSelectModule
+     MatSelectModule,
+     MatSidenavModule
   ],
   providers: [
     {provide: MatPaginatorIntl, useClass: PolishPaginatorIntl}
