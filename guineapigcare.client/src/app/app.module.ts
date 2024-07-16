@@ -81,7 +81,8 @@ import { GuineaPigLayoutComponent } from './components-when-login/guinea-pig-lay
      MatFormFieldModule,
      MatMenuModule,
      MatPaginatorModule,
-     MatSelectModule
+     MatSelectModule,
+     MatSidenavModule
   ],
   providers: [
     {provide: MatPaginatorIntl, useClass: PolishPaginatorIntl}
