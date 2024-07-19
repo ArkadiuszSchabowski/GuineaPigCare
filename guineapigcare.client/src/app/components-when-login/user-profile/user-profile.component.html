@@ -1,1 +1,32 @@
-<div id="user">user works</div>
+<div id="user-information-container">
+    <form>
+        <div [(ngModel)]="model" id="table" [ngClass]="{'light-theme': this.currentTheme, 'dark-theme': !this.currentTheme}">
+            <table>
+                <tr>
+                    <td class="table-property-name">Adres e-mail:</td>
+                    <td class="table-property">{{model?.email}}</td>
+                </tr>
+                <tr>
+                    <td class="table-property-name">Imię:</td>
+                    <td class="table-property">{{model?.name}}</td>
+                </tr>
+                <tr>
+                    <td class="table-property-name">Nazwisko:</td>
+                    <td class="table-property">{{model?.surname}}</td>
+                </tr>
+                <tr>
+                    <td class="table-property-name">Data urodzenia:</td>
+                    <td class="table-property">{{model?.dateOfBirth}}</td>
+                </tr>
+                <tr>
+                    <td class="table-property-name">Miasto:</td>
+                    <td class="table-property">{{model?.city}}</td>
+                </tr>
+                <tr>
+                    <td class="table-property-name">Kod pocztowy:</td>
+                    <td class="table-property">{{model?.postalCode}}</td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>

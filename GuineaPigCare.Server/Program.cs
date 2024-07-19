@@ -42,6 +42,7 @@ builder.Services.AddDbContext<MyDbContext>(options => options.UseSqlServer(build
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IGuineaPigService, GuineaPigService>();
 builder.Services.AddScoped<ISortService, SortService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);

@@ -6,7 +6,6 @@ import { PolishPaginatorIntl } from './_internationalization/polish-paginator-in
 import { AppComponent } from './app.component';
 
 import { UserProfileComponent } from './components-when-login/user-profile/user-profile.component';
-import { GuineaPigManagerComponent } from './components-when-login/guinea-pig-manager/guinea-pig-manager.component';
 
 import { BadProductsComponent } from './components-when-logout/bad-products/bad-products.component';
 import { BeforeBuyGuineaPigComponent } from './components-when-logout/before-buy-guinea-pig/before-buy-guinea-pig.component';
@@ -53,7 +52,6 @@ import { GuineaPigLayoutComponent } from './components-when-login/guinea-pig-lay
     NavbarComponent,
     FooterNavigationComponent,
     UserProfileComponent,
-    GuineaPigManagerComponent,
     UserProfileComponent,
     GuineaPigProfileComponent,
     UserChangePasswordComponent,
@@ -82,7 +80,6 @@ import { GuineaPigLayoutComponent } from './components-when-login/guinea-pig-lay
      MatMenuModule,
      MatPaginatorModule,
      MatSelectModule,
-     MatSidenavModule
   ],
   providers: [
     {provide: MatPaginatorIntl, useClass: PolishPaginatorIntl}

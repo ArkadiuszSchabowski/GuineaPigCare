@@ -9,7 +9,7 @@ namespace GuineaPigCare.Server
         public GuineaPigCareMappingProfile()
         {
             CreateMap<RegisterUserDto, User>();
-
+            CreateMap<User, UserDto>();
         }
     }
 }

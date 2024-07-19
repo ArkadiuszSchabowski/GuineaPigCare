@@ -16,6 +16,10 @@ namespace GuineaPigCare.Server.Middleware
 				context.Response.StatusCode = 400;
 				await context.Response.WriteAsync(e.Message);
 			}
+			catch (NotFoundException e){
+                context.Response.StatusCode = 404;
+                await context.Response.WriteAsync(e.Message);
+            }
 			catch(ConflictException e)
 			{
 				context.Response.StatusCode = 409;
