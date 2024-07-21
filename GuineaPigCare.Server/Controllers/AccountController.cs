@@ -30,6 +30,11 @@ namespace GuineaPigCare.Server.Controllers
 
             return Ok(new {message = token});
         }
+        [HttpPost("change-password")]
+        public ActionResult ChangePassword([FromBody] ChangePasswordDto dto)
+        {
+            _accountService.ChangePassword(dto);
+        }
 
     }
 }

@@ -5,8 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { PolishPaginatorIntl } from './_internationalization/polish-paginator-intl';
 import { AppComponent } from './app.component';
 
-import { UserProfileComponent } from './components-when-login/user-profile/user-profile.component';
-
 import { BadProductsComponent } from './components-when-logout/bad-products/bad-products.component';
 import { BeforeBuyGuineaPigComponent } from './components-when-logout/before-buy-guinea-pig/before-buy-guinea-pig.component';
 import { FooterNavigationComponent } from './components-when-logout/footer-navigation/footer-navigation.component';
@@ -29,16 +27,16 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { GuineaPigProfileComponent } from './components-when-login/guinea-pig-profile/guinea-pig-profile.component';
-import { UserChangePasswordComponent } from './components-when-login/user-change-password/user-change-password.component';
-import { UserEditProfileComponent } from './components-when-login/user-edit-profile/user-edit-profile.component';
-import { UserRemoveProfileComponent } from './components-when-login/user-remove-profile/user-remove-profile.component';
-import { GuineaPigAddProfileComponent } from './components-when-login/guinea-pig-add-profile/guinea-pig-add-profile.component';
-import { GuineaPigUpdateProfileComponent } from './components-when-login/guinea-pig-update-profile/guinea-pig-update-profile.component';
-import { GuineaPigRemoveProfileComponent } from './components-when-login/guinea-pig-remove-profile/guinea-pig-remove-profile.component';
-import { GuineaPigCleaningCalendarComponent } from './components-when-login/guinea-pig-cleaning-calendar/guinea-pig-cleaning-calendar.component';
-import { UserLayoutComponent } from './components-when-login/user-layout/user-layout.component';
-import { GuineaPigLayoutComponent } from './components-when-login/guinea-pig-layout/guinea-pig-layout.component';
+import { GuineaPigLayoutComponent } from './components-when-login/guinea-pig/_guinea-pig-layout/guinea-pig-layout.component';
+import { GuineaPigAddProfileComponent } from './components-when-login/guinea-pig/guinea-pig-add-profile/guinea-pig-add-profile.component';
+import { GuineaPigCleaningCalendarComponent } from './components-when-login/guinea-pig/guinea-pig-cleaning-calendar/guinea-pig-cleaning-calendar.component';
+import { GuineaPigProfileComponent } from './components-when-login/guinea-pig/guinea-pig-profile/guinea-pig-profile.component';
+import { GuineaPigRemoveProfileComponent } from './components-when-login/guinea-pig/guinea-pig-remove-profile/guinea-pig-remove-profile.component';
+import { GuineaPigUpdateProfileComponent } from './components-when-login/guinea-pig/guinea-pig-update-profile/guinea-pig-update-profile.component';
+import { UserLayoutComponent } from './components-when-login/user/_user-layout/user-layout.component';
+import { UserChangePasswordComponent } from './components-when-login/user/user-change-password/user-change-password.component';
+import { UserEditProfileComponent } from './components-when-login/user/user-edit-profile/user-edit-profile.component';
+import { UserProfileComponent } from './components-when-login/user/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -51,12 +49,10 @@ import { GuineaPigLayoutComponent } from './components-when-login/guinea-pig-lay
     BadProductsComponent,
     NavbarComponent,
     FooterNavigationComponent,
-    UserProfileComponent,
-    UserProfileComponent,
     GuineaPigProfileComponent,
+    UserProfileComponent,
     UserChangePasswordComponent,
     UserEditProfileComponent,
-    UserRemoveProfileComponent,
     GuineaPigAddProfileComponent,
     GuineaPigUpdateProfileComponent,
     GuineaPigRemoveProfileComponent,
