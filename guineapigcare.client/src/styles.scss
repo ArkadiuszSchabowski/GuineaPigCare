@@ -14,6 +14,16 @@ body{
 mat-label{
   color: mat.get-color-from-palette(theme.$guineapigcare_client-primary) !important;
 }
+mat-card{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 300px;
+  min-width: 300px;
+  border-radius: 30px !important;
+  padding: 20px !important;
+}
 
 #container {
   display: flex;
@@ -23,6 +33,10 @@ mat-label{
   width: 100%;
   min-height: 200px;
   padding: 10px 50px 20px 50px;
+}
+.mat-card-label{
+    font-size: 24px !important;
+    color: white !important;
 }
 
 .light-theme {
@@ -73,6 +87,13 @@ mat-label{
 .dark-theme-img-red-border{
   border: 5px solid orangered;
   border-radius: 35px;
+}
+.submit-button{
+  min-width: 150px;
+  min-height: 50px;
+  padding: 20px;
+  font-size: 20px;
+  margin-bottom: 20px !important;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {

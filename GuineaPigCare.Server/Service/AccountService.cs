@@ -27,6 +27,32 @@ namespace GuineaPigCare.Server.Service
             _authenticationSettings = authenticationSettings;
         }
 
+        public void ChangePassword(ChangePasswordDto dto)
+        {
+            var user = _context.Users.FirstOrDefault(x => x.Email == dto.Email);
+
+            if (user == null) {
+                throw new NotFoundException("Taki użytkownik nie istnieje");
+            }
+
+            var result = _hasher.VerifyHashedPassword(user, user.Password, dto.CurrentPassword);
+
+            if(result == PasswordVerificationResult.Failed)
+            {
+                throw new BadRequestException("Wprowadzono niepoprawne hasło");
+            }
+
+            if(dto.NewPassword != dto.RepeatNewPassword)
+            {
+                throw new BadRequestException("Wprowadzone hasła nie są zgodne");
+            }
+
+            user.Password = _hasher.HashPassword(user, dto.NewPassword);
+
+            _context.Users.Update(user);
+            _context.SaveChanges();
+        }
+
         public string GenerateJWT(LoginUserDto loginUserDto)
         {
             var user = _context.Users.FirstOrDefault(x => x.Email == loginUserDto.Email);
@@ -86,5 +112,6 @@ namespace GuineaPigCare.Server.Service
             _context.Users.Add(newUser);
             _context.SaveChanges();
         }
+
     }
 }

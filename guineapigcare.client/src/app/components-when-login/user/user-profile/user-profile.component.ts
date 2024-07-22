@@ -29,14 +29,11 @@ export class UserProfileComponent implements OnInit {
 
   getEmailFromToken() {
       var token: any = localStorage.getItem('token');
-      console.log('Token:', token);
   
       var decodedToken: any = jwtDecode(token);
-      console.log('Dekodowany token:', decodedToken);
   
 
         this.email = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
-        console.log('Adres e-mail:', this.email);
   
         this.getUserInformation(this.email);
     } 
@@ -45,7 +42,6 @@ export class UserProfileComponent implements OnInit {
     this.userService.getUserInformation(email).subscribe({
       next: response => {
         this.model = response;
-        console.log(this.model);
       },
       error: error => console.log(error)
     })

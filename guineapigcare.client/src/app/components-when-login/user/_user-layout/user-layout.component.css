@@ -5,6 +5,11 @@
   width: 100%;
   height: 100%;
 }
+#profile-content-container{
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
 #profile-title {
   text-align: center;
   font-size: 24px;
@@ -12,6 +17,8 @@
 }
 #profile-content-body {
   display: flex;
+  width: 100%;
+  height: 100%;
   justify-content: center;
 }
 button{
@@ -36,6 +43,7 @@ button{
     justify-content: left;
     width: 70%;
     height: 100%;
+    background-color: green;
   }
   button{
     width: 150px;

@@ -4,11 +4,14 @@ import { RegisterUserDto } from '../_models/register-user-dto';
 import { environment } from '../_environments/environment_prod';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { LoginUserDto } from '../_models/login-user-dto';
+import { ChangePasswordDto } from '../_models/change-password-dto';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AccountService {
+
+  baseUrl = environment.apiUrl;
 
   currentUserSource = new BehaviorSubject<string | null>(null);
   currentUser$ = this.currentUserSource.asObservable();
@@ -26,12 +29,12 @@ export class AccountService {
 
   registerUser(registerUserDto: RegisterUserDto): Observable<RegisterUserDto> {
     return this.http.post<RegisterUserDto>(
-      environment.apiUrl + 'account/register',
+      this.baseUrl + 'account/register',
       registerUserDto
     );
   }
   login(loginUserDto: LoginUserDto){
-    return this.http.post<any>(environment.apiUrl + 'account/login', loginUserDto).pipe(
+    return this.http.post<any>(this.baseUrl + 'account/login', loginUserDto).pipe(
       map((response) => {
         if(response.message){
           this.token = response.message;
@@ -47,5 +50,8 @@ export class AccountService {
   logout(){
     localStorage.removeItem('token');
     this.currentUserSource.next(null);
+  }
+  changePassword(changePasswordDto: ChangePasswordDto){
+    return this.http.post<ChangePasswordDto>(this.baseUrl + "user/change-password", {changePasswordDto})
   }
 }

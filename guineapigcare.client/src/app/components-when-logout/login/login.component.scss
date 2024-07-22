@@ -3,13 +3,9 @@
 
 mat-card{
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
   height: 300px;
   width: 350px;
   margin-top: 20px;
-  border-radius: 30px;
 }
 mat-card-content{
   display: flex;
@@ -25,10 +21,6 @@ mat-form-field{
 #left-container{
     justify-content: center;
     align-items: center;
-  }
-  label{
-    font-size: 24px;
-    margin-bottom: 20px;
   }
   .submit-button{
     width: 150px;

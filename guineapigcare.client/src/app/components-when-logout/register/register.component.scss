@@ -9,12 +9,8 @@ mat-card{
   height: 375px;
   width: 350px;
   margin-top: 20px;
-  border-radius: 30px;
 }
-label{
-  font-size: 24px;
-  margin-bottom: 20px;
-}
+
 mat-card-content{
   display: flex;
   flex-direction: column;
@@ -26,12 +22,7 @@ mat-card-content{
 mat-form-field{
   width: 250px;
 }
-.submit-button{
-  width: 200px;
-  padding: 20px;
-  font-size: 20px;
-  background-color: white;
-}
+
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   mat-form-field{
     width: 300px;
