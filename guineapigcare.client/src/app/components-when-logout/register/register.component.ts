@@ -1,75 +1,60 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ThemeService } from '../../_service/theme.service';
-import { GuineapigService } from '../../_service/guineapig.service';
+import { GuineaPigService } from '../../_service/guinea-pig.service';
 import { AccountService } from '../../_service/account.service';
 import { RegisterUserDto } from '../../_models/register-user-dto';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BaseComponent } from 'src/app/_shared/base.component';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent extends BaseComponent implements OnInit {
   hide: boolean = true;
   hide2: boolean = true;
   currentTheme: boolean | undefined = undefined;
-  cloudText: string = 'Stwórz konto i odblokuj wszystkie funkcje!';
+  override cloudText: string = 'Stwórz konto i odblokuj wszystkie funkcje!';
   model: RegisterUserDto = new RegisterUserDto();
-
-  @ViewChild('ngForm') ngForm!: NgForm;
 
   constructor(
     public theme: ThemeService,
-    private cd: ChangeDetectorRef,
-    private guineaPigService: GuineapigService,
+    guineaPigService: GuineaPigService,
     public accountService: AccountService,
     private router: Router
-  ) {}
-  ngOnInit(): void {
-    this.setTheme();
-    this.setCloudText();
+  ) {
+    super(guineaPigService);
   }
-  setCloudText() {
-    this.guineaPigService.setCloudText(this.cloudText);
+  override ngOnInit(): void {
+    super.ngOnInit();
+    this.setTheme();
   }
 
   setTheme() {
     this.theme.isLightTheme$.subscribe({
       next: (response) => {
         this.currentTheme = response;
-        this.cd.markForCheck();
       },
       error: (error) => console.log(error),
     });
   }
 
-  clickEvent(event: MouseEvent) {
-    this.hide = !this.hide;
-    event.stopPropagation();
-  }
-  clickEvent2(event: MouseEvent) {
-    this.hide2 = !this.hide2;
-    event.stopPropagation();
-  }
   registerUser() {
     this.accountService.registerUser(this.model).subscribe({
       next: (response) => {
         console.log(response);
-        this.resetForm();
-        this.router.navigateByUrl("/login");
+        this.router.navigateByUrl('/login');
       },
       error: (error) => {
         console.log(error);
-        this.resetForm();
-      }
+      },
     });
   }
-  resetForm() {
-    this.model = new RegisterUserDto();
-    if (this.ngForm) {
-      this.ngForm.resetForm();
-    }
+  hidePassword() {
+    this.hide = !this.hide;
+  }
+  hideRepeatPassword() {
+    this.hide2 = !this.hide2;
   }
 }

@@ -1,23 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { GuineapigService } from '../../_service/guineapig.service';
+import { GuineaPigService } from '../../_service/guinea-pig.service';
 import { ThemeService } from '../../_service/theme.service';
+import { BaseComponent } from 'src/app/_shared/base.component';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss']
 })
-export class MainPageComponent implements OnInit{
+export class MainPageComponent extends BaseComponent implements OnInit{
   
-  text: string = "Cześć! Zaprzyjaźnimy się?"
+  override cloudText: string = "Cześć! Zaprzyjaźnimy się?"
   currentTheme: boolean | undefined = undefined;
 
-  constructor(private guineaPigService: GuineapigService, private theme: ThemeService){
-
+  constructor(guineaPigService: GuineaPigService, private theme: ThemeService){
+    super(guineaPigService);
   }
 
-  ngOnInit(): void {
-    this.setCloudText();
+  override ngOnInit(): void {
+    super.ngOnInit();
     this.setBackground();
   }
   setBackground() {
@@ -25,8 +26,5 @@ export class MainPageComponent implements OnInit{
       next: response => this.currentTheme = response,
       error: error => console.log(error)
     })
-  }
-  setCloudText(){
-    this.guineaPigService.setCloudText(this.text);
   }
 }

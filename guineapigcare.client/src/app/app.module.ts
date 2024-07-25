@@ -7,11 +7,9 @@ import { AppComponent } from './app.component';
 
 import { BadProductsComponent } from './components-when-logout/bad-products/bad-products.component';
 import { BeforeBuyGuineaPigComponent } from './components-when-logout/before-buy-guinea-pig/before-buy-guinea-pig.component';
-import { FooterNavigationComponent } from './components-when-logout/footer-navigation/footer-navigation.component';
 import { GoodProductsComponent } from './components-when-logout/good-products/good-products.component';
 import { LoginComponent } from './components-when-logout/login/login.component';
 import { MainPageComponent } from './components-when-logout/main-page/main-page.component';
-import { NavbarComponent } from './components-when-logout/navbar/navbar.component';
 import { RegisterComponent } from './components-when-logout/register/register.component';
 
 
@@ -37,6 +35,9 @@ import { UserLayoutComponent } from './components-when-login/user/_user-layout/u
 import { UserChangePasswordComponent } from './components-when-login/user/user-change-password/user-change-password.component';
 import { UserEditProfileComponent } from './components-when-login/user/user-edit-profile/user-edit-profile.component';
 import { UserProfileComponent } from './components-when-login/user/user-profile/user-profile.component';
+import { NavbarComponent } from './components-common/navbar/navbar.component';
+import { FooterNavigationComponent } from './components-common/footer-navigation/footer-navigation.component';
+import { GuineaPigManager } from './components-_helpers/guinea-pig-manager/guinea-pig-manager.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { UserProfileComponent } from './components-when-login/user/user-profile/
     GuineaPigRemoveProfileComponent,
     GuineaPigCleaningCalendarComponent,
     UserLayoutComponent,
-    GuineaPigLayoutComponent
+    GuineaPigLayoutComponent,
+    GuineaPigManager,
   ],
   imports: [
     BrowserModule,

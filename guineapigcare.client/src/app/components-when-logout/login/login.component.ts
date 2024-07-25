@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { ThemeService } from '../../_service/theme.service';
-import { GuineapigService } from '../../_service/guineapig.service';
 import { LoginUserDto } from '../../_models/login-user-dto';
 import { AccountService } from '../../_service/account.service';
 import { Router } from '@angular/router';
+import { GuineaPigService } from 'src/app/_service/guinea-pig.service';
+import { BaseComponent } from 'src/app/_shared/base.component';
 
 @Component({
   selector: 'app-login',
@@ -11,25 +12,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent extends BaseComponent implements OnInit{
+
+  //TODO - change type property to button on form, change name click event or remove this method.
 
   currentTheme: boolean | undefined = undefined;
   hidePassword = true;
-  cloudText: string = "Hej, na co czekasz? Zaloguj się! Chrum chrum!"
+  override cloudText: string = "Hej, na co czekasz? Zaloguj się! Chrum chrum!"
   model: LoginUserDto = new LoginUserDto();
 
-  constructor(private theme: ThemeService, private guineaPigService: GuineapigService, private cd: ChangeDetectorRef, private accountService: AccountService, private router: Router){
-
+  constructor(private theme: ThemeService, guineaPigService: GuineaPigService, private cd: ChangeDetectorRef, private accountService: AccountService, private router: Router){
+    super(guineaPigService);
   }
 
-  ngOnInit(): void {
-
+  override ngOnInit(): void {
+    super.ngOnInit();
     this.setTheme();
-    this.setCloudText();
-
-  }
-  setCloudText() {
-    this.guineaPigService.setCloudText(this.cloudText);
   }
 
   clickEvent(event: MouseEvent) {

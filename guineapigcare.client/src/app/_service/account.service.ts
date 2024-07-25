@@ -28,11 +28,9 @@ export class AccountService {
   }
 
   registerUser(registerUserDto: RegisterUserDto): Observable<RegisterUserDto> {
-    return this.http.post<RegisterUserDto>(
-      this.baseUrl + 'account/register',
-      registerUserDto
-    );
+    return this.http.post<RegisterUserDto>(this.baseUrl + 'account/register',registerUserDto);
   }
+  
   login(loginUserDto: LoginUserDto){
     return this.http.post<any>(this.baseUrl + 'account/login', loginUserDto).pipe(
       map((response) => {
@@ -52,6 +50,6 @@ export class AccountService {
     this.currentUserSource.next(null);
   }
   changePassword(changePasswordDto: ChangePasswordDto){
-    return this.http.post<ChangePasswordDto>(this.baseUrl + "user/change-password", {changePasswordDto})
+    return this.http.post<ChangePasswordDto>(this.baseUrl + "account/change-password", changePasswordDto)
   }
 }

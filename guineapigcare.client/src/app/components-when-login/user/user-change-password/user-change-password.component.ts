@@ -3,20 +3,29 @@ import { ChangePasswordDto } from 'src/app/_models/change-password-dto';
 import { AccountService } from 'src/app/_service/account.service';
 import { jwtDecode } from 'jwt-decode';
 import { ThemeService } from 'src/app/_service/theme.service';
+import { BaseComponent } from 'src/app/_shared/base.component';
+import { GuineaPigService } from 'src/app/_service/guinea-pig.service';
 
 @Component({
   selector: 'app-user-change-password',
   templateUrl: './user-change-password.component.html',
   styleUrls: ['./user-change-password.component.css'],
 })
-export class UserChangePasswordComponent implements OnInit{
+export class UserChangePasswordComponent extends BaseComponent implements OnInit{
+
+  override cloudText: string = "Super, że dbasz o swoje bezpieczeństwo!"
+
   model: ChangePasswordDto = new ChangePasswordDto();
   token: any;
   email: string = "";
   currentTheme: boolean | undefined = undefined;
+  hidePassword: boolean = true;
 
-  constructor(private accountService: AccountService, private theme: ThemeService) {}
-  ngOnInit(): void {
+  constructor(private accountService: AccountService, private theme: ThemeService, guineaPigService: GuineaPigService) {
+    super(guineaPigService);
+  }
+  override ngOnInit(): void {
+    super.ngOnInit();
     this.getToken();
     this.setTheme();
   }
@@ -49,5 +58,9 @@ export class UserChangePasswordComponent implements OnInit{
       },
       error: error => console.log(error)
     });
+  }
+  clickEvent(event: MouseEvent) {
+    this.hidePassword =!this.hidePassword
+    event.stopPropagation();
   }
 }

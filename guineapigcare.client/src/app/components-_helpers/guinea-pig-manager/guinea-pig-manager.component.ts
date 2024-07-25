@@ -4,13 +4,15 @@ import { ThemeService } from 'src/app/_service/theme.service';
 import { BaseComponent } from 'src/app/_shared/base.component';
 
 @Component({
-  selector: 'app-guinea-pig-add-profile',
-  templateUrl: './guinea-pig-add-profile.component.html',
-  styleUrls: ['./guinea-pig-add-profile.component.css']
+  selector: 'app-guinea-pig-manager',
+  templateUrl: './guinea-pig-manager.component.html',
+  styleUrls: ['./guinea-pig-manager.component.scss']
 })
-export class GuineaPigAddProfileComponent extends BaseComponent implements OnInit {
+export class GuineaPigManager extends BaseComponent implements OnInit{
+
+  override cloudText: string = "Komponent pomocniczy";
+
   currentTheme: boolean | undefined = undefined;
-  override cloudText: string = "Dodajesz nową przyjaciela? Super!";
 
   constructor(private theme: ThemeService, guineaPigService: GuineaPigService) {
     super(guineaPigService);
@@ -20,10 +22,12 @@ export class GuineaPigAddProfileComponent extends BaseComponent implements OnIni
     super.ngOnInit();
     this.setTheme();
   }
-  
+
   setTheme() {
     this.theme.isLightTheme$.subscribe({
-      next: (response) => (this.currentTheme = response),
+      next: (response) => {
+        this.currentTheme = response;
+      },
       error: (error) => console.log(error),
     });
   }

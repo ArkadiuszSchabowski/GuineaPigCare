@@ -10,7 +10,7 @@ import { ProductResult } from '../_models/product-result';
 @Injectable({
   providedIn: 'root',
 })
-export class GuineapigService {
+export class GuineaPigService {
 
   textSubject = new BehaviorSubject<string>("");
   isTextSubject$ = this.textSubject.asObservable();

@@ -32,9 +32,10 @@
               [type]="hide ? 'password' : 'text'"
             />
             <button
+            type="button"
               mat-icon-button
               matSuffix
-              (click)="clickEvent($event)"
+              (click)="hidePassword()"
               [attr.aria-label]="'Hide password'"
               [attr.aria-pressed]="hide"
             >
@@ -56,9 +57,10 @@
               [type]="hide2 ? 'password' : 'text'"
             />
             <button
+            type="button"
               mat-icon-button
               matSuffix
-              (click)="clickEvent2($event)"
+              (click)="hideRepeatPassword()"
               [attr.aria-label]="'Hide password'"
               [attr.aria-pressed]="hide2"
             >

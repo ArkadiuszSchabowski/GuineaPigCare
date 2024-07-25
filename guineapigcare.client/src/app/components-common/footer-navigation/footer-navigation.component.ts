@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ThemeService } from '../../_service/theme.service';
-import { GuineapigService } from '../../_service/guineapig.service';
+import { GuineaPigService } from '../../_service/guinea-pig.service';
 
 @Component({
   selector: 'app-footer-navigation',
@@ -12,7 +12,7 @@ export class FooterNavigationComponent implements OnInit{
   currentTheme: boolean | undefined = undefined;
   componentText: string ="";
 
-  constructor(private theme: ThemeService, private guineaPigService: GuineapigService) {
+  constructor(private theme: ThemeService, private guineaPigService: GuineaPigService) {
 
   }
   ngOnInit(): void {

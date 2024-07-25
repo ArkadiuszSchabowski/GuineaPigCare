@@ -1,29 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { GuineapigService } from '../../_service/guineapig.service';
-import { GuineaPigInformationDto } from '../../_models/guinea-pig-information-dto';
+import { GuineaPigService } from '../../_service/guinea-pig.service';
+import { BaseComponent } from 'src/app/_shared/base.component';
 
 @Component({
   selector: 'app-before-buy-guinea-pig',
   templateUrl: './before-buy-guinea-pig.component.html',
   styleUrls: ['./before-buy-guinea-pig.component.scss'],
 })
-export class BeforeBuyGuineaPigComponent implements OnInit {
+export class BeforeBuyGuineaPigComponent extends BaseComponent implements OnInit {
   information: any;
-  cloudText: string = 'Zapewnij mi proszę odpowiednie warunki do rozwoju!';
+  override cloudText: string = 'Zapewnij mi proszę odpowiednie warunki do rozwoju!';
 
-  constructor(private service: GuineapigService) {}
+  constructor(guineaPigService: GuineaPigService) {
+    super(guineaPigService);
+  }
 
-  ngOnInit(): void {
-    this.setCloudText();
+  override ngOnInit(): void {
+    super.ngOnInit();
     this.getInformationGuineaPigs();
   }
 
-  setCloudText() {
-    this.service.setCloudText(this.cloudText);
-  }
-
   getInformationGuineaPigs() {
-    this.service.getInformationGuineaPigs().subscribe({
+    this.guineaPigService.getInformationGuineaPigs().subscribe({
       next: (response) => {
         this.information = response;
         console.log(this.information);
