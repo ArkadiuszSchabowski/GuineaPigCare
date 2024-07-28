@@ -5,6 +5,7 @@ import { jwtDecode } from 'jwt-decode';
 import { ThemeService } from 'src/app/_service/theme.service';
 import { BaseComponent } from 'src/app/_shared/base.component';
 import { GuineaPigService } from 'src/app/_service/guinea-pig.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-user-change-password',
@@ -19,7 +20,10 @@ export class UserChangePasswordComponent extends BaseComponent implements OnInit
   token: any;
   email: string = "";
   currentTheme: boolean | undefined = undefined;
-  hidePassword: boolean = true;
+
+  hidePassword1: boolean = true;
+  hidePassword2: boolean = true;
+  hidePassword3: boolean = true;
 
   constructor(private accountService: AccountService, private theme: ThemeService, guineaPigService: GuineaPigService) {
     super(guineaPigService);
@@ -52,15 +56,24 @@ export class UserChangePasswordComponent extends BaseComponent implements OnInit
 
     model.email = this.email;
     console.log(model);
-    this.accountService.changePassword(this.model).subscribe({
+    this.accountService.changePassword(this.model).pipe(
+      finalize(() => {
+        this.resetForm();
+      })
+    )
+    .subscribe({
       next: response => {
         console.log(response)
       },
       error: error => console.log(error)
     });
   }
-  clickEvent(event: MouseEvent) {
-    this.hidePassword =!this.hidePassword
-    event.stopPropagation();
+  resetForm() {
+    this.model.currentPassword = "",
+    this.model.newPassword = "",
+    this.model.repeatNewPassword = ""
+  }
+  changePasswordVisibility(field: 'hidePassword1' | 'hidePassword2' | 'hidePassword3') {
+    this[field] = !this[field]
   }
 }
