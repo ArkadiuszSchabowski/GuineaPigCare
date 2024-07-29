@@ -36,7 +36,5 @@ namespace GuineaPigCare.Server.Controllers
             _accountService.ChangePassword(dto);
             return Ok(new {message ="Twoje hasło zostało zmienione"});
         }
-        
-
     }
 }

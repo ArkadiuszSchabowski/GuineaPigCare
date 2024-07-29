@@ -23,5 +23,11 @@ namespace GuineaPigCare.Server.Controllers
             return Ok(userDto);
 
         }
+        [HttpPut("update")]
+        public ActionResult UpdateUserInformation([FromBody] UserDto dto)
+        {
+            _service.UpdateUser(dto);
+            return Ok("Informacje zostały zaktualizowane");
+        }
     }
 }

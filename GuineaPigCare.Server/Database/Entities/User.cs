@@ -9,7 +9,7 @@
         public string? Surname { get; set; }
         public string? City { get; set; }
         public string? PostalCode { get; set; }
-        public DateOnly? YearOfBirth { get; set; }
+        public DateOnly? DateOfBirth { get; set; }
         public int RoleId { get; set; }
         public virtual Role Role { get; set; }
     }

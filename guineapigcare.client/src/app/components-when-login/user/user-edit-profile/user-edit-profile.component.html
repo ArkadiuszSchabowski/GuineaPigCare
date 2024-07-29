@@ -1,0 +1,97 @@
+<div id="edit-profile-container">
+    <form #ngForm="ngForm" (ngSubmit)="updateUser(model)">
+      <mat-card
+        [ngClass]="{ 'light-theme': currentTheme, 'dark-theme': !currentTheme }"
+      >
+      <mat-card-content>
+        <label class="mat-card-label">Edytuj dane</label>
+        <mat-form-field>
+          <mat-label
+            [ngClass]="{
+              'light-theme-icon': currentTheme,
+              'dark-theme-icon': !currentTheme
+            }"
+            >Imię:</mat-label
+          >
+          <input
+           matInput 
+           name="email"
+           [(ngModel)]="model.name"
+           />
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label
+              [ngClass]="{
+                'light-theme-icon': currentTheme,
+                'dark-theme-icon': !currentTheme
+              }"
+              >Nazwisko:</mat-label
+            >
+            <input
+             matInput 
+             name="email"
+             [(ngModel)]="model.surname"
+             />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label
+              [ngClass]="{
+                'light-theme-icon': currentTheme,
+                'dark-theme-icon': !currentTheme
+              }"
+              >Miejsce zamieszkania:</mat-label
+            >
+            <input
+             matInput 
+             name="email"
+             [(ngModel)]="model.city"
+             />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label
+              [ngClass]="{
+                'light-theme-icon': currentTheme,
+                'dark-theme-icon': !currentTheme
+              }"
+              >Kod pocztowy:</mat-label
+            >
+            <input
+             matInput 
+             name="email"
+             [(ngModel)]="model.postalCode"
+             />
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label
+              [ngClass]="{
+                'light-theme-icon': currentTheme,
+                'dark-theme-icon': !currentTheme
+              }"
+              >Data urodzenia:</mat-label
+            >
+            <input
+             matInput 
+             name="email"
+             [(ngModel)]="model.dateOfBirth"
+             />
+          </mat-form-field>
+          <button
+          type="submit"
+          mat-flat-button
+          class="submit-button"
+          [ngClass]="{
+            'light-theme-icon': currentTheme,
+            'dark-theme-icon': !currentTheme
+          }"
+        >
+          Potwierdź edycję
+        </button>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>
+  

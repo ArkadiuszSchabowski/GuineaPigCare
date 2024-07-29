@@ -29,5 +29,24 @@ namespace GuineaPigCare.Server.Service
             UserDto userDto = _mapper.Map<UserDto>(user);
             return userDto;
         }
+
+        public void UpdateUser(UserDto dto)
+        {
+            User? user = _context.Users.FirstOrDefault(x => x.Email == dto.Email);
+
+            if (user == null)
+            {
+                throw new NotFoundException("Nie znaleziono użytkownika o podanym adresie e-mail");
+            }
+
+            user.Name = dto.Name;
+            user.Surname = dto.Surname;
+            user.City = dto.City;
+            user.PostalCode = dto.PostalCode;
+            user.DateOfBirth = dto.DateOfBirth;
+
+            _context.Update(user);
+            _context.SaveChanges();
+        }
     }
 }
