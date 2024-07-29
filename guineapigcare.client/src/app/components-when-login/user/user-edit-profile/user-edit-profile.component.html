@@ -1,15 +1,15 @@
 <div id="edit-profile-container">
     <form #ngForm="ngForm" (ngSubmit)="updateUser(model)">
       <mat-card
-        [ngClass]="{ 'light-theme': currentTheme, 'dark-theme': !currentTheme }"
+        [ngClass]="{ 'light-theme': themeHelper.currentTheme, 'dark-theme': !themeHelper.currentTheme}"
       >
       <mat-card-content>
         <label class="mat-card-label">Edytuj dane</label>
         <mat-form-field>
           <mat-label
             [ngClass]="{
-              'light-theme-icon': currentTheme,
-              'dark-theme-icon': !currentTheme
+              'light-theme-icon': themeHelper.currentTheme,
+              'dark-theme-icon': !themeHelper.currentTheme
             }"
             >Imię:</mat-label
           >
@@ -23,8 +23,8 @@
         <mat-form-field>
             <mat-label
               [ngClass]="{
-                'light-theme-icon': currentTheme,
-                'dark-theme-icon': !currentTheme
+                'light-theme-icon': themeHelper.currentTheme,
+                'dark-theme-icon': !themeHelper.currentTheme
               }"
               >Nazwisko:</mat-label
             >
@@ -38,8 +38,8 @@
           <mat-form-field>
             <mat-label
               [ngClass]="{
-                'light-theme-icon': currentTheme,
-                'dark-theme-icon': !currentTheme
+                'light-theme-icon': themeHelper.currentTheme,
+                'dark-theme-icon': !themeHelper.currentTheme
               }"
               >Miejsce zamieszkania:</mat-label
             >
@@ -53,8 +53,8 @@
           <mat-form-field>
             <mat-label
               [ngClass]="{
-                'light-theme-icon': currentTheme,
-                'dark-theme-icon': !currentTheme
+                'light-theme-icon': themeHelper.currentTheme,
+                'dark-theme-icon': !themeHelper.currentTheme
               }"
               >Kod pocztowy:</mat-label
             >
@@ -68,8 +68,8 @@
           <mat-form-field>
             <mat-label
               [ngClass]="{
-                'light-theme-icon': currentTheme,
-                'dark-theme-icon': !currentTheme
+                'light-theme-icon': themeHelper.currentTheme,
+                'dark-theme-icon': !themeHelper.currentTheme
               }"
               >Data urodzenia:</mat-label
             >
@@ -84,8 +84,8 @@
           mat-flat-button
           class="submit-button"
           [ngClass]="{
-            'light-theme-icon': currentTheme,
-            'dark-theme-icon': !currentTheme
+            'light-theme-icon': themeHelper.currentTheme,
+            'dark-theme-icon': !themeHelper.currentTheme
           }"
         >
           Potwierdź edycję

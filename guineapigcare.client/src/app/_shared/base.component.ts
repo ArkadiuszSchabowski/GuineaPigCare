@@ -14,6 +14,6 @@ export abstract class BaseComponent implements OnInit {
   }
 
   setCloudText(cloudText: string): void {
-    this.guineaPigService.setCloudText(cloudText); // Użycie przekazanego argumentu cloudText
+    this.guineaPigService.setCloudText(cloudText);
   }
 }
