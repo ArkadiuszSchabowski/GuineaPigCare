@@ -3,15 +3,15 @@
     <form #ngForm="ngForm" (ngSubmit)="registerUser()">
       <mat-card
         appearance="outlined"
-        [ngClass]="{ 'light-theme': currentTheme, 'dark-theme': !currentTheme }"
+        [ngClass]="{ 'light-theme': themeHelper.currentTheme, 'dark-theme': !themeHelper.currentTheme }"
       >
         <mat-card-content>
           <label class="mat-card-label">Formularz rejestracji</label>
           <mat-form-field>
             <mat-label
               [ngClass]="{
-                'light-theme-icon': currentTheme,
-                'dark-theme-icon': !currentTheme
+                'light-theme-icon': themeHelper.currentTheme,
+                'dark-theme-icon': !themeHelper.currentTheme
               }"
               >Podaj swój e-mail:</mat-label
             >
@@ -20,8 +20,8 @@
           <mat-form-field>
             <mat-label
               [ngClass]="{
-                'light-theme-icon': currentTheme,
-                'dark-theme-icon': !currentTheme
+                'light-theme-icon': themeHelper.currentTheme,
+                'dark-theme-icon': !themeHelper.currentTheme
               }"
               >Podaj swoje hasło:</mat-label
             >
@@ -45,8 +45,8 @@
           <mat-form-field>
             <mat-label
               [ngClass]="{
-                'light-theme-icon': currentTheme,
-                'dark-theme-icon': !currentTheme
+                'light-theme-icon': themeHelper.currentTheme,
+                'dark-theme-icon': !themeHelper.currentTheme
               }"
               >Powtórz hasło:</mat-label
             >
@@ -72,8 +72,8 @@
             mat-flat-button
             class="submit-button"
             [ngClass]="{
-              'light-theme-icon': currentTheme,
-              'dark-theme-icon': !currentTheme
+              'light-theme-icon': themeHelper.currentTheme,
+              'dark-theme-icon': !themeHelper.currentTheme
             }"
           >
             Zarejestruj się

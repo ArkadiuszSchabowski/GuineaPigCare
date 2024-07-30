@@ -1,10 +1,10 @@
 import { Component, OnInit} from '@angular/core';
-import { ThemeService } from '../../_service/theme.service';
 import { GuineaPigService } from '../../_service/guinea-pig.service';
 import { AccountService } from '../../_service/account.service';
 import { RegisterUserDto } from '../../_models/register-user-dto';
 import { Router } from '@angular/router';
 import { BaseComponent } from 'src/app/_shared/base.component';
+import { ThemeHelper } from 'src/app/_service/themeHelper.service';
 
 @Component({
   selector: 'app-register',
@@ -14,12 +14,11 @@ import { BaseComponent } from 'src/app/_shared/base.component';
 export class RegisterComponent extends BaseComponent implements OnInit {
   hide: boolean = true;
   hide2: boolean = true;
-  currentTheme: boolean | undefined = undefined;
   override cloudText: string = 'Stwórz konto i odblokuj wszystkie funkcje!';
   model: RegisterUserDto = new RegisterUserDto();
 
   constructor(
-    public theme: ThemeService,
+    public themeHelper: ThemeHelper,
     guineaPigService: GuineaPigService,
     public accountService: AccountService,
     private router: Router
@@ -28,16 +27,7 @@ export class RegisterComponent extends BaseComponent implements OnInit {
   }
   override ngOnInit(): void {
     super.ngOnInit();
-    this.setTheme();
-  }
-
-  setTheme() {
-    this.theme.isLightTheme$.subscribe({
-      next: (response) => {
-        this.currentTheme = response;
-      },
-      error: (error) => console.log(error),
-    });
+    this.themeHelper.setTheme();
   }
 
   registerUser() {

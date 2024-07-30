@@ -3,9 +3,9 @@ import { GuineaPigService } from '../../_service/guinea-pig.service';
 import { PaginationDto } from '../../_models/pagination-dto';
 import { PageEvent } from '@angular/material/paginator';
 import { ProductDto } from '../../_models/product-dto';
-import { ThemeService } from '../../_service/theme.service';
 import { ProductResult } from '../../_models/product-result';
 import { BaseComponent } from 'src/app/_shared/base.component';
+import { ThemeHelper } from 'src/app/_service/themeHelper.service';
 
 @Component({
   selector: 'app-bad-products',
@@ -14,19 +14,18 @@ import { BaseComponent } from 'src/app/_shared/base.component';
 })
 export class BadProductsComponent extends BaseComponent implements OnInit{
 
-  currentTheme: boolean | undefined = undefined;
   products: ProductDto[] = [];
   counter: number | undefined = undefined;
   override cloudText: string = "Proszę pamiętaj, by nigdy nie dawać mi tych produktów! Niektóre z nich są nawet śmiertelnie szkodliwe!"
   pagination: PaginationDto = new PaginationDto();
 
-  constructor(guineaPigService: GuineaPigService, private themeService: ThemeService){
+  constructor(guineaPigService: GuineaPigService, public themeHelper: ThemeHelper){
     super(guineaPigService);
   }
   override ngOnInit(): void {
     super.ngOnInit();
     this.getBadProductsInformation(this.pagination);
-    this.setTheme();
+    this.themeHelper.setTheme();
   }
 
   getBadProductsInformation(paginationDto: PaginationDto){
@@ -48,15 +47,6 @@ export class BadProductsComponent extends BaseComponent implements OnInit{
     this.guineaPigService.getBadProducts(this.pagination).subscribe({
       next: response => this.products = response.products,
       error: error => error
-    })
-  }
-  setTheme() {
-    this.themeService.isLightTheme$.subscribe({
-      next: response => {
-        this.currentTheme = response;
-        console.log(response)
-      },
-      error: error => console.log(error)
     })
   }
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PaginationDto } from '../../_models/pagination-dto';
 import { PageEvent } from '@angular/material/paginator';
-import { ThemeService } from '../../_service/theme.service';
 import { ProductDto } from '../../_models/product-dto';
 import { GuineaPigService } from 'src/app/_service/guinea-pig.service';
 import { BaseComponent } from 'src/app/_shared/base.component';
+import { ThemeHelper } from 'src/app/_service/themeHelper.service';
 
 @Component({
   selector: 'app-good-products',
@@ -13,13 +13,12 @@ import { BaseComponent } from 'src/app/_shared/base.component';
 })
 export class GoodProductsComponent extends BaseComponent implements OnInit{
 
-  currentTheme: boolean | undefined = undefined;
   override cloudText: string = "Co za pyszności! Pamiętaj o porze karmienia!"
   products: ProductDto[] = [];
   counter: number | undefined= undefined;
   pagination: PaginationDto = new PaginationDto();
 
-  constructor(guineaPigService: GuineaPigService, private themeService: ThemeService){
+  constructor(guineaPigService: GuineaPigService, public themeHelper: ThemeHelper){
     super(guineaPigService);
   }
 
@@ -27,17 +26,7 @@ export class GoodProductsComponent extends BaseComponent implements OnInit{
   override ngOnInit(): void {
     super.ngOnInit();
     this.getGoodProductsInformation();
-    this.setTheme();
-  }
-
-  setTheme() {
-    this.themeService.isLightTheme$.subscribe({
-      next: response => {
-        this.currentTheme = response;
-        console.log(response)
-      },
-      error: error => console.log(error)
-    })
+    this.themeHelper.setTheme();
   }
 
   getGoodProductsInformation(){
