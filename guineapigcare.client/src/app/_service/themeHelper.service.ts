@@ -17,7 +17,6 @@ export class ThemeHelper{
     this.theme.isLightTheme$.subscribe({
       next: (response) => {
         this.currentTheme = response
-        console.log(this.currentTheme)
       },
       error: (error) => console.log(error),
     });

@@ -15,13 +15,8 @@
               }"
               >Podaj swój e-mail:</mat-label
             >
-            <input
-             matInput 
-             name="email"
-             [(ngModel)]="model.email"
-             />
+            <input matInput name="email" [(ngModel)]="model.email" />
           </mat-form-field>
-
           <mat-form-field>
             <mat-label
               [ngClass]="{
@@ -30,24 +25,25 @@
               }"
               >Podaj swoje hasło:</mat-label
             >
-            <input 
-            matInput 
-            name="password"
-            [(ngModel)]="model.password"
-            [type]="hidePassword ? 'password' : 'text'" />
+            <input
+              name="password"
+              [(ngModel)]="model.password"
+              matInput
+              [type]="hide ? 'password' : 'text'"
+            />
             <button
+            type="button"
               mat-icon-button
               matSuffix
-              (click)="clickEvent($event)"
+              (click)="hidePassword()"
               [attr.aria-label]="'Hide password'"
-              [attr.aria-pressed]="hidePassword"
+              [attr.aria-pressed]="hide"
             >
-              <mat-icon>{{
-                hidePassword ? "visibility_off" : "visibility"
-              }}</mat-icon>
+              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
             </button>
           </mat-form-field>
-          <button type="submit"
+          <button
+            type="submit"
             mat-flat-button
             class="submit-button"
             [ngClass]="{

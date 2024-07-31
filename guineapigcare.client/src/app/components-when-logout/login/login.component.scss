@@ -1,46 +1,41 @@
-@use '@angular/material' as mat;
-@use 'src/custom-theme' as theme;
-
+#left-container{
+  justify-content: center;
+  align-items: center;
+}
 mat-card{
   display: flex;
   height: 300px;
+  width: 300px;
+  height: 375px;
   width: 350px;
   margin-top: 20px;
 }
+
 mat-card-content{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  font-size: 16px;
   color: white;
+  font-size: 16px;
 }
 mat-form-field{
   width: 250px;
 }
-#left-container{
-    justify-content: center;
-    align-items: center;
+
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  mat-form-field{
+    width: 300px;
   }
-  .submit-button{
-    width: 150px;
-    padding: 20px;
-    font-size: 20px;
-    background-color: white;
+  mat-card{
+    width: 450px;
   }
-  @media screen and (min-width: 768px) and (max-width: 1199px) {
-    mat-form-field{
-      width: 300px;
-    }
-    mat-card{
-      width: 400px;
-    }
+}
+@media screen and (min-width: 1200px) {
+  mat-form-field{
+    width: 350px;
   }
-  @media screen and (min-width: 1200px) {
-    mat-form-field{
-      width: 350px;
-    }
-    mat-card{
-      width: 600px;
-    }
+  mat-card{
+    width: 600px;
   }
+}

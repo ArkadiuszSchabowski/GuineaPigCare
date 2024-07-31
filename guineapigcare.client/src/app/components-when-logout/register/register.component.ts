@@ -5,6 +5,7 @@ import { RegisterUserDto } from '../../_models/register-user-dto';
 import { Router } from '@angular/router';
 import { BaseComponent } from 'src/app/_shared/base.component';
 import { ThemeHelper } from 'src/app/_service/themeHelper.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -18,8 +19,8 @@ export class RegisterComponent extends BaseComponent implements OnInit {
   model: RegisterUserDto = new RegisterUserDto();
 
   constructor(
-    public themeHelper: ThemeHelper,
     guineaPigService: GuineaPigService,
+    public themeHelper: ThemeHelper,
     public accountService: AccountService,
     private router: Router
   ) {
@@ -31,9 +32,14 @@ export class RegisterComponent extends BaseComponent implements OnInit {
   }
 
   registerUser() {
-    this.accountService.registerUser(this.model).subscribe({
+    this.accountService.registerUser(this.model)
+    .pipe(
+      finalize(() => {
+        this.model = new RegisterUserDto();
+      })
+    ) 
+    .subscribe({
       next: (response) => {
-        console.log(response);
         this.router.navigateByUrl('/login');
       },
       error: (error) => {
