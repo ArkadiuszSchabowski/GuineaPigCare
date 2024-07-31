@@ -13,7 +13,9 @@ import { BaseComponent } from 'src/app/_shared/base.component';
 })
 export class UserProfileComponent extends BaseComponent implements OnInit {
 
+  override backgroundUrl: string = "assets/images/user/profile.jpg"
   override cloudText: string = "Witaj na swoim profilu!"
+
   email: string = '';
   model: UserDto | undefined= undefined;
   currentTheme: boolean | undefined = undefined;

@@ -6,11 +6,12 @@ import { BaseComponent } from 'src/app/_shared/base.component';
 @Component({
   selector: 'app-guinea-pig-manager',
   templateUrl: './guinea-pig-manager.component.html',
-  styleUrls: ['./guinea-pig-manager.component.scss']
+  styleUrls: ['./guinea-pig-manager.component.scss'],
 })
-export class GuineaPigManager extends BaseComponent implements OnInit{
-
-  override cloudText: string = "Komponent pomocniczy";
+export class GuineaPigManager extends BaseComponent implements OnInit {
+  
+  override cloudText: string = 'Komponent pomocniczy';
+  override backgroundUrl: string = 'assets/images/guineaPigBackground.jpg';
 
   currentTheme: boolean | undefined = undefined;
 

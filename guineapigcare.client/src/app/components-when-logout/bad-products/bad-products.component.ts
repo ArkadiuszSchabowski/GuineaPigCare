@@ -14,9 +14,11 @@ import { ThemeHelper } from 'src/app/_service/themeHelper.service';
 })
 export class BadProductsComponent extends BaseComponent implements OnInit{
 
+  override backgroundUrl: string = "assets/images/backgrounds/no-login/badProducts.jpg"
+  override cloudText: string = "Proszę pamiętaj, by nigdy nie dawać mi tych produktów! Niektóre z nich są nawet śmiertelnie szkodliwe!"
+
   products: ProductDto[] = [];
   counter: number | undefined = undefined;
-  override cloudText: string = "Proszę pamiętaj, by nigdy nie dawać mi tych produktów! Niektóre z nich są nawet śmiertelnie szkodliwe!"
   pagination: PaginationDto = new PaginationDto();
 
   constructor(guineaPigService: GuineaPigService, public themeHelper: ThemeHelper){

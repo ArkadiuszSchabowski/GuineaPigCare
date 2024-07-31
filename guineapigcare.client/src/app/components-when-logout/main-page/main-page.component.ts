@@ -9,7 +9,8 @@ import { BaseComponent } from 'src/app/_shared/base.component';
   styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent extends BaseComponent implements OnInit{
-  
+
+  override backgroundUrl: string ="assets/images/backgrounds/no-login/mainPage.jpg"
   override cloudText: string = "Cześć! Zaprzyjaźnimy się?"
   currentTheme: boolean | undefined = undefined;
 
@@ -19,12 +20,5 @@ export class MainPageComponent extends BaseComponent implements OnInit{
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this.setBackground();
-  }
-  setBackground() {
-    this.theme.isLightTheme$.subscribe({
-      next: response => this.currentTheme = response,
-      error: error => console.log(error)
-    })
   }
 }

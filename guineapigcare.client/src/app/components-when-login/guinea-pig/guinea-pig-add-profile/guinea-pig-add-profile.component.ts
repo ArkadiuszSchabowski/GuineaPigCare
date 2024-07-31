@@ -9,8 +9,11 @@ import { BaseComponent } from 'src/app/_shared/base.component';
   styleUrls: ['./guinea-pig-add-profile.component.css']
 })
 export class GuineaPigAddProfileComponent extends BaseComponent implements OnInit {
-  currentTheme: boolean | undefined = undefined;
+
+  override backgroundUrl: string = "assets/images/guinea-pig/addProfile.jpg"
   override cloudText: string = "Dodajesz nową przyjaciela? Super!";
+  
+  currentTheme: boolean | undefined = undefined;
 
   constructor(private theme: ThemeService, guineaPigService: GuineaPigService) {
     super(guineaPigService);

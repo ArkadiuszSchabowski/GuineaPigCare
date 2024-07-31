@@ -13,7 +13,9 @@ import { ThemeHelper } from 'src/app/_service/themeHelper.service';
 })
 export class GoodProductsComponent extends BaseComponent implements OnInit{
 
+  override backgroundUrl: string = "assets/images/backgrounds/no-login/goodProducts.jpg"
   override cloudText: string = "Co za pyszności! Pamiętaj o porze karmienia!"
+
   products: ProductDto[] = [];
   counter: number | undefined= undefined;
   pagination: PaginationDto = new PaginationDto();

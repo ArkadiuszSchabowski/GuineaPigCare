@@ -13,9 +13,12 @@ import { finalize } from 'rxjs';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent extends BaseComponent implements OnInit {
+
+  override backgroundUrl: string = "assets/images/backgrounds/no-login/register.jpg"
+  override cloudText: string = "Stwórz konto i odblokuj wszystkie funkcje!";
+
   hide: boolean = true;
   hide2: boolean = true;
-  override cloudText: string = 'Stwórz konto i odblokuj wszystkie funkcje!';
   model: RegisterUserDto = new RegisterUserDto();
 
   constructor(

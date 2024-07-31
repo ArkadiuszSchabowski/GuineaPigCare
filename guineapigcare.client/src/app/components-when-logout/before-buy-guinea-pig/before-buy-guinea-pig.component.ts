@@ -8,8 +8,10 @@ import { BaseComponent } from 'src/app/_shared/base.component';
   styleUrls: ['./before-buy-guinea-pig.component.scss'],
 })
 export class BeforeBuyGuineaPigComponent extends BaseComponent implements OnInit {
-  information: any;
+
+  override backgroundUrl: string = "assets/images/backgrounds/no-login/beforeBuyGuineaPig.jpg"
   override cloudText: string = 'Zapewnij mi proszę odpowiednie warunki do rozwoju!';
+  information: any;
 
   constructor(guineaPigService: GuineaPigService) {
     super(guineaPigService);

@@ -14,6 +14,7 @@ import { finalize } from 'rxjs';
 })
 export class UserChangePasswordComponent extends BaseComponent implements OnInit{
 
+  override backgroundUrl: string = "assets/images/user/changePassword.jpg"
   override cloudText: string = "Super, że dbasz o swoje bezpieczeństwo!"
 
   model: ChangePasswordDto = new ChangePasswordDto();

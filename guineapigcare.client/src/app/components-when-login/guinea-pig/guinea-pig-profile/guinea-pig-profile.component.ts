@@ -11,6 +11,7 @@ import { BaseComponent } from 'src/app/_shared/base.component';
 })
 export class GuineaPigProfileComponent extends BaseComponent implements OnInit {
 
+  override backgroundUrl: string = "assets/images/guinea-pig/profile.jpg"
   override cloudText: string = "Cieszę się, że sprawdzasz co u mnie!"
 
   currentTheme: boolean | undefined = undefined;

@@ -11,7 +11,9 @@ import { BaseComponent } from 'src/app/_shared/base.component';
 })
 export class UserEditProfileComponent extends BaseComponent implements OnInit {
 
+  override backgroundUrl: string = "assets/images/user/editProfile.jpg"
   override cloudText: string = "Edytuj swoje informacje i bądź zawsze na bieżąco!";
+  
   model: UpdateUserDto = new UpdateUserDto();
 
   constructor(guineaPigService: GuineaPigService, public themeHelper: ThemeHelper) {

@@ -13,8 +13,11 @@ import { finalize } from 'rxjs';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent extends BaseComponent implements OnInit {
-  hide: boolean = true;
+
+  override backgroundUrl: string = "assets/images/backgrounds/no-login/login.jpg"
   override cloudText: string = 'Stwórz konto i odblokuj wszystkie funkcje!';
+
+  hide: boolean = true;
   model: LoginUserDto = new LoginUserDto();
 
   constructor(
