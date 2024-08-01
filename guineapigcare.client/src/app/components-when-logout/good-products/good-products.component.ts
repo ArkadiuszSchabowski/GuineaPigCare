@@ -13,7 +13,7 @@ import { ThemeHelper } from 'src/app/_service/themeHelper.service';
 })
 export class GoodProductsComponent extends BaseComponent implements OnInit{
 
-  override backgroundUrl: string = "assets/images/backgrounds/no-login/goodProducts.jpg"
+  backgroundUrl: string = "assets/images/backgrounds/no-login/goodProducts.jpg"
   override cloudText: string = "Co za pyszności! Pamiętaj o porze karmienia!"
 
   products: ProductDto[] = [];
@@ -29,6 +29,7 @@ export class GoodProductsComponent extends BaseComponent implements OnInit{
     super.ngOnInit();
     this.getGoodProductsInformation();
     this.themeHelper.setTheme();
+    this.themeHelper.setBackground(this.backgroundUrl);
   }
 
   getGoodProductsInformation(){

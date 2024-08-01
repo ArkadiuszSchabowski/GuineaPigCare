@@ -11,7 +11,6 @@ import { BaseComponent } from 'src/app/_shared/base.component';
 export class GuineaPigManager extends BaseComponent implements OnInit {
   
   override cloudText: string = 'Komponent pomocniczy';
-  override backgroundUrl: string = 'assets/images/guineaPigBackground.jpg';
 
   currentTheme: boolean | undefined = undefined;
 

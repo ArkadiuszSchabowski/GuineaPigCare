@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ChangePasswordDto } from 'src/app/_models/change-password-dto';
 import { AccountService } from 'src/app/_service/account.service';
 import { jwtDecode } from 'jwt-decode';
-import { ThemeService } from 'src/app/_service/theme.service';
 import { BaseComponent } from 'src/app/_shared/base.component';
 import { GuineaPigService } from 'src/app/_service/guinea-pig.service';
 import { finalize } from 'rxjs';
+import { ThemeHelper } from 'src/app/_service/themeHelper.service';
 
 @Component({
   selector: 'app-user-change-password',
@@ -14,35 +14,24 @@ import { finalize } from 'rxjs';
 })
 export class UserChangePasswordComponent extends BaseComponent implements OnInit{
 
-  override backgroundUrl: string = "assets/images/user/changePassword.jpg"
   override cloudText: string = "Super, że dbasz o swoje bezpieczeństwo!"
 
   model: ChangePasswordDto = new ChangePasswordDto();
   token: any;
   email: string = "";
-  currentTheme: boolean | undefined = undefined;
 
   hidePassword1: boolean = true;
   hidePassword2: boolean = true;
   hidePassword3: boolean = true;
 
-  constructor(private accountService: AccountService, private theme: ThemeService, guineaPigService: GuineaPigService) {
+  constructor(private accountService: AccountService, guineaPigService: GuineaPigService, public themeHelper: ThemeHelper) {
     super(guineaPigService);
   }
   override ngOnInit(): void {
     super.ngOnInit();
     this.getToken();
-    this.setTheme();
   }
-  setTheme(){
-    this.theme.isLightTheme$.subscribe({
-      next: response => {
-        this.currentTheme = response,
-        console.log("login " + this.currentTheme)
-      },
-      error: error => console.log(error)
-    });
-  }
+
   getToken() {
     this.token = localStorage.getItem('token');
 

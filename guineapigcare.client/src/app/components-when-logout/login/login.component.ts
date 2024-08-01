@@ -14,7 +14,7 @@ import { finalize } from 'rxjs';
 })
 export class LoginComponent extends BaseComponent implements OnInit {
 
-  override backgroundUrl: string = "assets/images/backgrounds/no-login/login.jpg"
+  backgroundUrl: string = "assets/images/backgrounds/no-login/login.jpg"
   override cloudText: string = 'Stwórz konto i odblokuj wszystkie funkcje!';
 
   hide: boolean = true;
@@ -31,6 +31,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
   override ngOnInit(): void {
     super.ngOnInit();
     this.themeHelper.setTheme();
+    this.themeHelper.setBackground(this.backgroundUrl);
   }
 
   login(){

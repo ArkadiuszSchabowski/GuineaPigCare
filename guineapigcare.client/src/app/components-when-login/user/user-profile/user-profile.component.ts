@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {jwtDecode} from 'jwt-decode';
 import { UserDto } from 'src/app/_models/user-dto';
 import { GuineaPigService } from 'src/app/_service/guinea-pig.service';
-import { ThemeService } from 'src/app/_service/theme.service';
+import { ThemeHelper } from 'src/app/_service/themeHelper.service';
 import { UserService } from 'src/app/_service/user.service';
 import { BaseComponent } from 'src/app/_shared/base.component';
 
@@ -13,27 +13,18 @@ import { BaseComponent } from 'src/app/_shared/base.component';
 })
 export class UserProfileComponent extends BaseComponent implements OnInit {
 
-  override backgroundUrl: string = "assets/images/user/profile.jpg"
   override cloudText: string = "Witaj na swoim profilu!"
 
   email: string = '';
   model: UserDto | undefined= undefined;
-  currentTheme: boolean | undefined = undefined;
 
-  constructor(public userService: UserService, private theme: ThemeService, guineaPigService: GuineaPigService) {
+  constructor(public userService: UserService, guineaPigService: GuineaPigService, public themeHelper: ThemeHelper) {
     super(guineaPigService);
   }
 
   override ngOnInit(): void {
     super.ngOnInit();
     this.getEmailFromToken();
-    this.setTheme();
-  }
-  setTheme() {
-    this.theme.isLightTheme$.subscribe({
-      next: response => this.currentTheme = response,
-      error: error => console.log(error)
-    })
   }
 
   getEmailFromToken() {

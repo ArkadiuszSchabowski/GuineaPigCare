@@ -21,4 +21,12 @@ export class ThemeHelper{
       error: (error) => console.log(error),
     });
   }
+  setBackground(url: string){
+    document.body.style.backgroundImage = `url(${url})`;
+    document.body.style.backgroundSize = "cover";
+    document.body.style.width ="100%";
+    document.body.style.height = "auto";
+    document.body.style.display="flex";
+    document.body.style.position = "center";
+  }
 }

@@ -1,6 +1,11 @@
 <div id="user-information-container">
-    <form>
-        <div [(ngModel)]="model" id="table" [ngClass]="{'light-theme': this.currentTheme, 'dark-theme': !this.currentTheme}">
+    <form #ngForm="ngForm">
+        <mat-card
+        appearance="outlined"
+        [ngClass]="{ 'light-theme': themeHelper.currentTheme, 'dark-theme': !themeHelper.currentTheme }"
+      >
+        <mat-card-content>
+        <div [(ngModel)]="model" id="table" [ngClass]="{ 'light-theme': themeHelper.currentTheme, 'dark-theme': !themeHelper.currentTheme }">
             <table>
                 <tr>
                     <td class="table-property-name">Adres e-mail:</td>
@@ -28,5 +33,7 @@
                 </tr>
             </table>
         </div>
+        </mat-card-content>
+        </mat-card>
     </form>
 </div>

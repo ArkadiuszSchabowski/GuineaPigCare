@@ -14,7 +14,7 @@ import { ThemeHelper } from 'src/app/_service/themeHelper.service';
 })
 export class BadProductsComponent extends BaseComponent implements OnInit{
 
-  override backgroundUrl: string = "assets/images/backgrounds/no-login/badProducts.jpg"
+  backgroundUrl: string = "assets/images/backgrounds/no-login/badProducts.jpg"
   override cloudText: string = "Proszę pamiętaj, by nigdy nie dawać mi tych produktów! Niektóre z nich są nawet śmiertelnie szkodliwe!"
 
   products: ProductDto[] = [];
@@ -28,6 +28,7 @@ export class BadProductsComponent extends BaseComponent implements OnInit{
     super.ngOnInit();
     this.getBadProductsInformation(this.pagination);
     this.themeHelper.setTheme();
+    this.themeHelper.setBackground(this.backgroundUrl);
   }
 
   getBadProductsInformation(paginationDto: PaginationDto){

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GuineaPigService } from '../../_service/guinea-pig.service';
-import { ThemeService } from '../../_service/theme.service';
 import { BaseComponent } from 'src/app/_shared/base.component';
+import { ThemeHelper } from 'src/app/_service/themeHelper.service';
 
 @Component({
   selector: 'app-main-page',
@@ -10,15 +10,16 @@ import { BaseComponent } from 'src/app/_shared/base.component';
 })
 export class MainPageComponent extends BaseComponent implements OnInit{
 
-  override backgroundUrl: string ="assets/images/backgrounds/no-login/mainPage.jpg"
+  backgroundUrl: string ="assets/images/backgrounds/no-login/mainPage.jpg"
   override cloudText: string = "Cześć! Zaprzyjaźnimy się?"
   currentTheme: boolean | undefined = undefined;
 
-  constructor(guineaPigService: GuineaPigService, private theme: ThemeService){
+  constructor(guineaPigService: GuineaPigService, private themeHelper: ThemeHelper){
     super(guineaPigService);
   }
 
   override ngOnInit(): void {
     super.ngOnInit();
+    this.themeHelper.setBackground(this.backgroundUrl);
   }
 }

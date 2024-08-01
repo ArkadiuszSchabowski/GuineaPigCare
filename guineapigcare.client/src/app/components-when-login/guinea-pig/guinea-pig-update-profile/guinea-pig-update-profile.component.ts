@@ -9,7 +9,6 @@ import { BaseComponent } from 'src/app/_shared/base.component';
 })
 export class GuineaPigUpdateProfileComponent extends BaseComponent implements OnInit{
 
-  override backgroundUrl: string = "assets/images/guinea-pig/updateProfile.jpg"
   override cloudText: string = "Aktualizacji nigdy za wiele!";
 
   constructor(guineaPigService: GuineaPigService){

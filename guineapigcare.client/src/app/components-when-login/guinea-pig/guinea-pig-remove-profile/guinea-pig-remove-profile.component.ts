@@ -9,7 +9,6 @@ import { BaseComponent } from 'src/app/_shared/base.component';
 })
 export class GuineaPigRemoveProfileComponent extends BaseComponent implements OnInit{
 
-  override backgroundUrl: string = "assets/images/guinea-pig/removeProfile.jpg"
   override cloudText: string = "Pamiętaj, że tej akcji nie można cofnąć!"
 
   constructor(guineaPigService: GuineaPigService){
