@@ -1,10 +1,5 @@
 <div id="user-information-container">
     <form #ngForm="ngForm">
-        <mat-card
-        appearance="outlined"
-        [ngClass]="{ 'light-theme': themeHelper.currentTheme, 'dark-theme': !themeHelper.currentTheme }"
-      >
-        <mat-card-content>
         <div [(ngModel)]="model" id="table" [ngClass]="{ 'light-theme': themeHelper.currentTheme, 'dark-theme': !themeHelper.currentTheme }">
             <table>
                 <tr>
@@ -33,7 +28,5 @@
                 </tr>
             </table>
         </div>
-        </mat-card-content>
-        </mat-card>
     </form>
 </div>

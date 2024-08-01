@@ -18,6 +18,9 @@
   font-weight: bold;
   margin-top: 20px;
   margin-bottom: 20px;
+  color: white !important;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 #profile-content-body {
   display: flex;

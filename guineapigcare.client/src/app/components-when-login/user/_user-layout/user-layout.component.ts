@@ -12,5 +12,6 @@ export class UserLayoutComponent {
   constructor(public themeHelper: ThemeHelper) {}
   ngOnInit(): void {
     this.themeHelper.setBackground(this.backgroundUrl);
+    this.themeHelper.setTheme();
   }
 }

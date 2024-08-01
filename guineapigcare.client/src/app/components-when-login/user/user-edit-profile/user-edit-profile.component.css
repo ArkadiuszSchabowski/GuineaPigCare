@@ -23,4 +23,5 @@ mat-card-content{
 label{
     margin-top: 20px;
     margin-bottom: 20px !important;
+    color: white !important;
 }
