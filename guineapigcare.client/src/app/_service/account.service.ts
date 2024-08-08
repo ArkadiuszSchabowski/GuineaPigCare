@@ -17,6 +17,12 @@ export class AccountService {
   currentUser$ = this.currentUserSource.asObservable();
   token: string | null= "";
 
+  firstStepSource = new BehaviorSubject<boolean>(false);
+  firstStep$ = this.firstStepSource.asObservable();
+
+  secondStepSource = new BehaviorSubject<boolean>(false);
+  secondStep$ = this.secondStepSource.asObservable();
+
   constructor(public http: HttpClient) {
     this.setUser();
   }

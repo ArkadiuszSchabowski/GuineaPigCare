@@ -5,7 +5,7 @@
 namespace GuineaPigCare.Server.Migrations
 {
     /// <inheritdoc />
-    public partial class UpdateUserEntity_AllFieldsRequiered : Migration
+    public partial class UpdateUser : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

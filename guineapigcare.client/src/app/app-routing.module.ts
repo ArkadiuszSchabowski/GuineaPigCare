@@ -18,6 +18,7 @@ import { UserChangePasswordComponent } from './components-when-login/user/user-c
 import { UserEditProfileComponent } from './components-when-login/user/user-edit-profile/user-edit-profile.component';
 import { UserProfileComponent } from './components-when-login/user/user-profile/user-profile.component';
 import { UserRemoveProfileComponent } from './components-when-login/user/user-remove-profile/user-remove-profile.component';
+import { StepperComponent } from './components-_helpers/stepper/stepper.component';
 
 const routes: Routes = [
   {path: "", component: MainPageComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: "good-products", component: GoodProductsComponent},
   {path: "bad-products", component: BadProductsComponent},
   {path: "info", component: BeforeBuyGuineaPigComponent},
+  {path: "stepper", component: StepperComponent},
   {
     path: "user",
     component: UserLayoutComponent,
