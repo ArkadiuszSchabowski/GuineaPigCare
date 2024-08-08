@@ -76,7 +76,7 @@
           <button
             mat-flat-button
             color="primary"
-            (click)="firstStepCompleted(stepper);"
+            (click)="checkEmailAndPassword(stepper);"
             class="submit-button"
             [ngClass]="{
               'light-theme-icon': themeHelper.currentTheme,
@@ -180,14 +180,14 @@
               'dark-theme-icon': !themeHelper.currentTheme
             }"
             color="primary"
-            (click)="secondStepCompleted(stepper);">
+            (click)="checkPersonalInformation(stepper);">
             Dalej</button>
         </mat-card-content>
       </mat-card>
     </form>
   </mat-step>
 
-  <mat-step [editable]="false" [completed]="isThirdStepCompleted">
+  <mat-step [editable]="false">
     <ng-template matStepLabel>Krok trzeci - potwierdzenie</ng-template>
     <form #ngForm="ngForm">
       <mat-card id="mat-card-confirm-register"

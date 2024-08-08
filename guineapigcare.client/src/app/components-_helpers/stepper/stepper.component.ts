@@ -19,9 +19,10 @@ export class StepperComponent extends BaseComponent implements OnInit {
   hide2: boolean = true;
   model: RegisterUserDto = new RegisterUserDto();
 
+  isCorrectEmail: boolean = false;
+  isCorrectPassword: boolean = false;
   isFirstStepCompleted: boolean = false;
   isSecondStepCompleted: boolean = false;
-  isThirdStepCompleted: boolean = false;
 
   constructor(
     guineaPigService: GuineaPigService,
@@ -35,33 +36,54 @@ export class StepperComponent extends BaseComponent implements OnInit {
     super.ngOnInit();
     this.themeHelper.setTheme();
     this.themeHelper.setBackground(this.backgroundUrl);
-
-    this.accountService.firstStep$.subscribe({
-      next: response => this.isFirstStepCompleted = response
-    });
-
-    this.accountService.secondStep$.subscribe({
-      next: response => this.isSecondStepCompleted = response
-    });
-    
   }
 
-  firstStepCompleted(stepper: MatStepper){
-    this.accountService.firstStepSource.next(true);
-    console.log(this.model);
+  checkEmailAndPassword(stepper: MatStepper) {
+
+    this.isFirstStepCompleted = true;
+
+    this.isCorrectEmail = this.validateEmail();
+    this.isCorrectPassword = this.validatePassword();
+
+    if(!this.isCorrectEmail || !this.isCorrectPassword){
+      this.model = new RegisterUserDto();
+    }
+
+    if (this.isCorrectEmail && this.isCorrectPassword) {
+      this.cdr.detectChanges();
+      stepper.next();
+    }
+  }
+
+  validateEmail() {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(this.model.email)) {
+      console.log('Podaj poprawny adres e-mail');
+      return false;
+    }
+    return true;
+  }
+
+  validatePassword() {
+    if (this.model.password !== this.model.repeatPassword) {
+      console.log('Podane hasła muszą być jednakowe');
+      return false;
+    }
+    if (this.model.password.length < 5) {
+      console.log('Hasło musi składać się z conajmniej 5 znaków');
+      return false;
+    }
+
+    return true;
+  }
+
+  checkPersonalInformation(stepper: MatStepper) {
+    this.isSecondStepCompleted = true;
     this.cdr.detectChanges();
     stepper.next();
-
   }
-  secondStepCompleted(stepper: MatStepper){
-    this.accountService.secondStepSource.next(true);
+  registerUser() {
     console.log(this.model);
-    this.cdr.detectChanges();
-    stepper.next();
-  }
-  registerUser(){
-this.isThirdStepCompleted = true;
-console.log(this.model);
   }
 
   hidePassword() {
