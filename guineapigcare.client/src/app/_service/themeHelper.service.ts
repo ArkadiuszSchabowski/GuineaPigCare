@@ -23,10 +23,10 @@ export class ThemeHelper{
   }
   setBackground(url: string){
     document.body.style.backgroundImage = `url(${url})`;
+    document.body.style.minHeight = "100%";
     document.body.style.backgroundSize = "cover";
-    document.body.style.width ="100%";
-    document.body.style.height = "auto";
-    document.body.style.display="flex";
-    document.body.style.position = "center";
-  }
+    document.body.style.backgroundRepeat = "no-repeat";
+    document.body.style.backgroundAttachment = "fixed";
+    document.body.style.backgroundPosition = "center";
+}
 }
