@@ -25,6 +25,7 @@
     "@angular/router": "^16.2.0",
     "jest-editor-support": "*",
     "jwt-decode": "^4.0.0",
+    "ngx-toastr": "^19.0.0",
     "run-script-os": "*",
     "rxjs": "~7.8.0",
     "sass": "^1.77.6",

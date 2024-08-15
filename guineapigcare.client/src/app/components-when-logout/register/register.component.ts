@@ -32,6 +32,7 @@ export class RegisterComponent extends BaseComponent implements OnInit {
   override ngOnInit(): void {
     super.ngOnInit();
     this.themeHelper.setTheme();
+    this.themeHelper.setBackground(this.backgroundUrl);
   }
 
   registerUser() {
