@@ -51,9 +51,8 @@ img {
 }
 .my-custom-paginator {
   /* Resetuj stylowanie z custom-theme.scss */
-  background-color: initial !important; /* Przywraca domyślny kolor tła */
-  color: initial !important; /* Przywraca domyślny kolor tekstu */
-  /* Dodaj dodatkowe style lub resetuj inne właściwości */
+  background-color: initial !important;
+  color: initial !important;
 }
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   #product-description {
