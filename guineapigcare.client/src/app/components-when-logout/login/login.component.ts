@@ -15,7 +15,7 @@ import { finalize } from 'rxjs';
 export class LoginComponent extends BaseComponent implements OnInit {
 
   backgroundUrl: string = "assets/images/backgrounds/no-login/login.jpg"
-  override cloudText: string = 'Stwórz konto i odblokuj wszystkie funkcje!';
+  override cloudText: string = 'Mam nadzieję, że masz już konto!';
 
   hide: boolean = true;
   model: LoginUserDto = new LoginUserDto();
