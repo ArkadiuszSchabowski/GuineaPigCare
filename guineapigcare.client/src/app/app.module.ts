@@ -40,6 +40,7 @@ import { FooterNavigationComponent } from './components-common/footer-navigation
 import { GuineaPigManager } from './components-_helpers/guinea-pig-manager/guinea-pig-manager.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { StepperComponent } from './components-_helpers/stepper/stepper.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { StepperComponent } from './components-_helpers/stepper/stepper.componen
      MatMenuModule,
      MatPaginatorModule,
      MatSelectModule,
-     MatStepperModule
+     MatStepperModule,
+     ToastrModule.forRoot({ positionClass: 'toast-bottom-right' })
   ],
   providers: [
     {provide: MatPaginatorIntl, useClass: PolishPaginatorIntl}

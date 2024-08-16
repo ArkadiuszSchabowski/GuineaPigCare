@@ -6,6 +6,8 @@ import { BaseComponent } from 'src/app/_shared/base.component';
 import { ThemeHelper } from 'src/app/_service/themeHelper.service';
 import { LoginUserDto } from 'src/app/_models/login-user-dto';
 import { finalize } from 'rxjs';
+import { ValidateService } from 'src/app/_service/validate.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -14,17 +16,22 @@ import { finalize } from 'rxjs';
 })
 export class LoginComponent extends BaseComponent implements OnInit {
 
-  backgroundUrl: string = "assets/images/backgrounds/no-login/login.jpg"
   override cloudText: string = 'Mam nadzieję, że masz już konto!';
+  
+  backgroundUrl: string = "assets/images/backgrounds/no-login/login.jpg"
+  isCorrectEmail: boolean = false;
+  isCorrectPassword: boolean = false;
 
-  hide: boolean = true;
+  hidePassword: boolean = true;
   model: LoginUserDto = new LoginUserDto();
 
   constructor(
     guineaPigService: GuineaPigService,
     public themeHelper: ThemeHelper,
     public accountService: AccountService,
-    private router: Router
+    private router: Router,
+    private validateService: ValidateService,
+    private toastr: ToastrService
   ) {
     super(guineaPigService);
   }
@@ -32,6 +39,24 @@ export class LoginComponent extends BaseComponent implements OnInit {
     super.ngOnInit();
     this.themeHelper.setTheme();
     this.themeHelper.setBackground(this.backgroundUrl);
+  }
+  validateModel(){
+    this.validateLogin();
+    if(this.isCorrectEmail){
+      this.validatePassword();
+    }
+    if(this.isCorrectEmail && this.isCorrectPassword){
+      this.login();
+    }
+  }
+  validateLogin(){
+    this.isCorrectEmail = this.validateService.validateEmail(this.model.email);
+  }
+  validatePassword(){
+    this.isCorrectPassword = this.validateService.validatePasswordLogin(this.model.password);
+    if(!this.isCorrectPassword){
+      this.model.password = "";
+    }
   }
 
   login(){
@@ -42,14 +67,14 @@ export class LoginComponent extends BaseComponent implements OnInit {
       })
     )
     .subscribe({
-      next: response => {
+      next: () => {
         this.router.navigateByUrl("/");
       },
-      error: error => console.log(error)
+      error: error => this.toastr.error(error.error)
     })
   };
 
-  hidePassword() {
-    this.hide = !this.hide;
+  changePasswordVisibility() {
+    this.hidePassword = !this.hidePassword;
   };
 }

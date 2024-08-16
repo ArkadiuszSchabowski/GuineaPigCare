@@ -45,7 +45,7 @@ export class StepperComponent extends BaseComponent implements OnInit {
     this.isFirstStepCompleted = true;
 
     this.isCorrectEmail = this.validateService.validateEmail(this.model.email);
-    this.isCorrectPassword = this.validateService.validatePassword(this.model);
+    this.isCorrectPassword = this.validateService.validatePasswordRegister(this.model);
 
     if(!this.isCorrectEmail || !this.isCorrectPassword){
       this.model = new RegisterUserDto();

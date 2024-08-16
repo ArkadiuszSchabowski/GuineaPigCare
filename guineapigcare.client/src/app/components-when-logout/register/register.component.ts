@@ -43,7 +43,7 @@ export class RegisterComponent extends BaseComponent implements OnInit {
       })
     ) 
     .subscribe({
-      next: (response) => {
+      next: () => {
         this.router.navigateByUrl('/login');
       },
       error: (error) => {

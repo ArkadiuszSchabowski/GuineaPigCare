@@ -1,22 +1,24 @@
 import { Injectable } from '@angular/core';
 import { RegisterUserDto } from '../_models/register-user-dto';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ValidateService {
-  constructor() {}
+  constructor(private toastr: ToastrService) {}
 
   validateEmail(email: string): boolean {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
       console.log('Podaj poprawny adres e-mail');
+      this.toastr.error('Podaj poprawny adres e-mail')
       return false;
     }
     return true;
   }
 
-  validatePassword(model: RegisterUserDto): boolean {
+  validatePasswordRegister(model: RegisterUserDto): boolean {
     if (model.password.length < 5) {
       console.log('Hasło musi składać się z conajmniej 5 znaków');
       return false;
@@ -25,10 +27,17 @@ export class ValidateService {
       console.log('Podane hasła muszą być jednakowe');
       return false;
     }
-
     return true;
   }
-  validateName(name: string): boolean {
+  validatePasswordLogin(password: string): boolean {
+    if (password.length < 5) {
+      this.toastr.error('Hasło musi składać się z conajmniej 5 znaków');
+      return false;
+    }
+    return true;
+  }
+
+  validateNameRegister(name: string): boolean {
     if (name.length < 3 || name.length > 25) {
       console.log('Dlugość imienia musi mieścić się w zakresie 3-25!');
       return false;
@@ -39,7 +48,7 @@ export class ValidateService {
     }
     return true;
   }
-  validateSurname(surname: string): boolean {
+  validateSurnameRegister(surname: string): boolean {
     if (surname.length < 3 || surname.length > 25) {
       console.log('Dlugość nazwiska musi mieścić się w zakresie 3-25!');
       return false;
@@ -50,7 +59,7 @@ export class ValidateService {
     }
     return true;
   }
-  validateCity(city: string): boolean {
+  validateCityRegister(city: string): boolean {
     if (city.length < 3 || city.length > 25) {
       console.log('Dlugość nazwy miasta musi mieścić się w zakresie 3-25!');
       return false;
@@ -61,7 +70,7 @@ export class ValidateService {
     }
     return true;
   }
-  validatePostalCode(postalCode: string): boolean {
+  validatePostalCodeRegister(postalCode: string): boolean {
     const isValidPostalCode = /^\d{2}-\d{3}$/.test(postalCode);
 
     if (!isValidPostalCode) {
@@ -71,7 +80,7 @@ export class ValidateService {
     return true;
   }
 
-  validateDateOfBirth(dateOfBirth: string): boolean {
+  validateDateOfBirthRegister(dateOfBirth: string): boolean {
     const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
 
     if (!dateRegex.test(dateOfBirth)) {

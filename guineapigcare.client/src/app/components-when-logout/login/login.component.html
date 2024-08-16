@@ -1,6 +1,6 @@
 <div id="container">
   <div id="left-container">
-    <form #ngForm="ngForm" (ngSubmit)="login()">
+    <form #ngForm="ngForm" (ngSubmit)="validateModel()">
       <mat-card
         appearance="outlined"
         [ngClass]="{ 'light-theme': themeHelper.currentTheme, 'dark-theme': !themeHelper.currentTheme }"
@@ -13,7 +13,7 @@
                 'light-theme-icon': themeHelper.currentTheme,
                 'dark-theme-icon': !themeHelper.currentTheme
               }"
-              >Podaj swój e-mail:</mat-label
+              >Podaj swój e-mail</mat-label
             >
             <input matInput name="email" [(ngModel)]="model.email" />
           </mat-form-field>
@@ -23,23 +23,23 @@
                 'light-theme-icon': themeHelper.currentTheme,
                 'dark-theme-icon': !themeHelper.currentTheme
               }"
-              >Podaj swoje hasło:</mat-label
+              >Podaj swoje hasło</mat-label
             >
             <input
               name="password"
               [(ngModel)]="model.password"
               matInput
-              [type]="hide ? 'password' : 'text'"
+              [type]="hidePassword ? 'password' : 'text'"
             />
             <button
             type="button"
               mat-icon-button
               matSuffix
-              (click)="hidePassword()"
+              (click)="changePasswordVisibility()"
               [attr.aria-label]="'Hide password'"
-              [attr.aria-pressed]="hide"
+              [attr.aria-pressed]="hidePassword"
             >
-              <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+              <mat-icon>{{ hidePassword ? "visibility_off" : "visibility" }}</mat-icon>
             </button>
           </mat-form-field>
           <button
