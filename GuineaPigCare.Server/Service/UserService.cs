@@ -42,8 +42,6 @@ namespace GuineaPigCare.Server.Service
             user.Name = dto.Name;
             user.Surname = dto.Surname;
             user.City = dto.City;
-            user.PostalCode = dto.PostalCode;
-            user.DateOfBirth = dto.DateOfBirth;
 
             _context.Update(user);
             _context.SaveChanges();

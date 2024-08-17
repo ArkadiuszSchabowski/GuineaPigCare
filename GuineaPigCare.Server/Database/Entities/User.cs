@@ -19,10 +19,7 @@ namespace GuineaPigCare.Server.Database.Entities
         public string Surname { get; set; }
         [Required]
         public string City { get; set; }
-        [Required]
-        public string PostalCode { get; set; }
-        [Required]
-        public DateOnly DateOfBirth { get; set; }
+
         [Required]
         public int RoleId { get; set; }
         public virtual Role Role { get; set; }
