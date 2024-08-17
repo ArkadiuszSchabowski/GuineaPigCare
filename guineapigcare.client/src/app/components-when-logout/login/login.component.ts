@@ -70,7 +70,11 @@ export class LoginComponent extends BaseComponent implements OnInit {
       next: () => {
         this.router.navigateByUrl("/");
       },
-      error: error => this.toastr.error(error.error)
+      error: error => {
+        if(error.status !== 0){
+          this.toastr.error(error.error)
+        }
+      }
     })
   };
 

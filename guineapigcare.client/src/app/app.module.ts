@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -41,6 +41,7 @@ import { GuineaPigManager } from './components-_helpers/guinea-pig-manager/guine
 import {MatStepperModule} from '@angular/material/stepper';
 import { StepperComponent } from './components-_helpers/stepper/stepper.component';
 import { ToastrModule } from 'ngx-toastr';
+import { ErrorInterceptor } from './_inteceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { ToastrModule } from 'ngx-toastr';
      ToastrModule.forRoot({ positionClass: 'toast-bottom-right' })
   ],
   providers: [
-    {provide: MatPaginatorIntl, useClass: PolishPaginatorIntl}
+    {provide: MatPaginatorIntl, useClass: PolishPaginatorIntl},
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true } 
   ],
   bootstrap: [AppComponent]
 })
