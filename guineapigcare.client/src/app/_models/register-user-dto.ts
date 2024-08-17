@@ -3,8 +3,6 @@ export class RegisterUserDto{
     password: string = "";
     repeatPassword: string = "";
     name: string = "";
-    dateOfBirth: Date | undefined = undefined;
     surname: string = "";
     city: string = "";
-    postalCode: string = "";
 };

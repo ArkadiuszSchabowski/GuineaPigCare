@@ -39,7 +39,6 @@ import { NavbarComponent } from './components-common/navbar/navbar.component';
 import { FooterNavigationComponent } from './components-common/footer-navigation/footer-navigation.component';
 import { GuineaPigManager } from './components-_helpers/guinea-pig-manager/guinea-pig-manager.component';
 import {MatStepperModule} from '@angular/material/stepper';
-import { StepperComponent } from './components-_helpers/stepper/stepper.component';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorInterceptor } from './_inteceptors/error.interceptor';
 
@@ -65,7 +64,6 @@ import { ErrorInterceptor } from './_inteceptors/error.interceptor';
     UserLayoutComponent,
     GuineaPigLayoutComponent,
     GuineaPigManager,
-    StepperComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,7 +86,7 @@ import { ErrorInterceptor } from './_inteceptors/error.interceptor';
   ],
   providers: [
     {provide: MatPaginatorIntl, useClass: PolishPaginatorIntl},
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true } 
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

@@ -6,13 +6,29 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root',
 })
 export class ValidateService {
+
+  isCorrectName: boolean = false;
+  isCorrectSurname: boolean = false;
+  isCorrectCity: boolean = false;
+
   constructor(private toastr: ToastrService) {}
 
+  validatePersonalInformationRegister(model: RegisterUserDto): boolean{
+
+    this.isCorrectName = this.validateNameRegister(model.name);
+    this.isCorrectSurname = this.validateSurnameRegister(model.surname);
+    this.isCorrectCity = this.validateCityRegister(model.city);
+    
+    if(this.isCorrectName && this.isCorrectSurname && this.isCorrectCity){
+      return true;
+    }
+    return false;
+  }
   validateEmail(email: string): boolean {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
       console.log('Podaj poprawny adres e-mail');
-      this.toastr.error('Podaj poprawny adres e-mail')
+      this.toastr.error('Podaj poprawny adres e-mail');
       return false;
     }
     return true;
@@ -21,10 +37,12 @@ export class ValidateService {
   validatePasswordRegister(model: RegisterUserDto): boolean {
     if (model.password.length < 5) {
       console.log('Hasło musi składać się z conajmniej 5 znaków');
+      this.toastr.error('Hasło musi składać się z conajmniej 5 znaków');
       return false;
-    }
-    if (model.password !== model.repeatPassword) {
+
+    } else if (model.password !== model.repeatPassword) {
       console.log('Podane hasła muszą być jednakowe');
+      this.toastr.error('Podane hasła muszą być jednakowe');
       return false;
     }
     return true;
@@ -40,10 +58,12 @@ export class ValidateService {
   validateNameRegister(name: string): boolean {
     if (name.length < 3 || name.length > 25) {
       console.log('Dlugość imienia musi mieścić się w zakresie 3-25!');
+      this.toastr.error("Dlugość imienia musi mieścić się w zakresie 3-25!");
       return false;
     }
-    if (/\d/.test(name)) {
+    else if (/\d/.test(name)) {
       console.log('Imię nie może zawierać cyfr');
+      this.toastr.error("Imię nie może zawierać cyfr")
       return false;
     }
     return true;
@@ -51,6 +71,7 @@ export class ValidateService {
   validateSurnameRegister(surname: string): boolean {
     if (surname.length < 3 || surname.length > 25) {
       console.log('Dlugość nazwiska musi mieścić się w zakresie 3-25!');
+      this.toastr.error("Długość nazwiska musi mieścić się w zakresie 3-25!")
       return false;
     }
     if (/\d/.test(surname)) {
@@ -62,31 +83,12 @@ export class ValidateService {
   validateCityRegister(city: string): boolean {
     if (city.length < 3 || city.length > 25) {
       console.log('Dlugość nazwy miasta musi mieścić się w zakresie 3-25!');
+      this.toastr.error("Długość nazwy miasta musi mieścić się w zakresie 3-25!");
       return false;
     }
-    if (/\d/.test(city)) {
+    else if (/\d/.test(city)) {
       console.log('Nazwa miasta nie może zawierać cyfr');
-      return false;
-    }
-    return true;
-  }
-  validatePostalCodeRegister(postalCode: string): boolean {
-    const isValidPostalCode = /^\d{2}-\d{3}$/.test(postalCode);
-
-    if (!isValidPostalCode) {
-      console.log('Kod pocztowy jest nieprawidłowy');
-      return false;
-    }
-    return true;
-  }
-
-  validateDateOfBirthRegister(dateOfBirth: string): boolean {
-    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-
-    if (!dateRegex.test(dateOfBirth)) {
-      console.log(
-        'Data urodzenia nie jest w prawidłowym formacie (yyyy-MM-dd).'
-      );
+      this.toastr.error("Nazwa miasta nie może zawierać cyfr")
       return false;
     }
     return true;
