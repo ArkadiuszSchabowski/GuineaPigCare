@@ -6,20 +6,18 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root',
 })
 export class ValidateService {
-
   isCorrectName: boolean = false;
   isCorrectSurname: boolean = false;
   isCorrectCity: boolean = false;
 
   constructor(private toastr: ToastrService) {}
 
-  validatePersonalInformationRegister(model: RegisterUserDto): boolean{
+  validatePersonalInformation(model: any): boolean {
+    this.isCorrectName = this.validateName(model.name);
+    this.isCorrectSurname = this.validateSurname(model.surname);
+    this.isCorrectCity = this.validateCity(model.city);
 
-    this.isCorrectName = this.validateNameRegister(model.name);
-    this.isCorrectSurname = this.validateSurnameRegister(model.surname);
-    this.isCorrectCity = this.validateCityRegister(model.city);
-    
-    if(this.isCorrectName && this.isCorrectSurname && this.isCorrectCity){
+    if (this.isCorrectName && this.isCorrectSurname && this.isCorrectCity) {
       return true;
     }
     return false;
@@ -39,7 +37,6 @@ export class ValidateService {
       console.log('Hasło musi składać się z conajmniej 5 znaków');
       this.toastr.error('Hasło musi składać się z conajmniej 5 znaków');
       return false;
-
     } else if (model.password !== model.repeatPassword) {
       console.log('Podane hasła muszą być jednakowe');
       this.toastr.error('Podane hasła muszą być jednakowe');
@@ -55,23 +52,22 @@ export class ValidateService {
     return true;
   }
 
-  validateNameRegister(name: string): boolean {
+  validateName(name: string): boolean {
     if (name.length < 3 || name.length > 25) {
       console.log('Dlugość imienia musi mieścić się w zakresie 3-25!');
-      this.toastr.error("Dlugość imienia musi mieścić się w zakresie 3-25!");
+      this.toastr.error('Dlugość imienia musi mieścić się w zakresie 3-25!');
       return false;
-    }
-    else if (/\d/.test(name)) {
+    } else if (/\d/.test(name)) {
       console.log('Imię nie może zawierać cyfr');
-      this.toastr.error("Imię nie może zawierać cyfr")
+      this.toastr.error('Imię nie może zawierać cyfr');
       return false;
     }
     return true;
   }
-  validateSurnameRegister(surname: string): boolean {
+  validateSurname(surname: string): boolean {
     if (surname.length < 3 || surname.length > 25) {
       console.log('Dlugość nazwiska musi mieścić się w zakresie 3-25!');
-      this.toastr.error("Długość nazwiska musi mieścić się w zakresie 3-25!")
+      this.toastr.error('Długość nazwiska musi mieścić się w zakresie 3-25!');
       return false;
     }
     if (/\d/.test(surname)) {
@@ -80,15 +76,16 @@ export class ValidateService {
     }
     return true;
   }
-  validateCityRegister(city: string): boolean {
+  validateCity(city: string): boolean {
     if (city.length < 3 || city.length > 25) {
       console.log('Dlugość nazwy miasta musi mieścić się w zakresie 3-25!');
-      this.toastr.error("Długość nazwy miasta musi mieścić się w zakresie 3-25!");
+      this.toastr.error(
+        'Długość nazwy miasta musi mieścić się w zakresie 3-25!'
+      );
       return false;
-    }
-    else if (/\d/.test(city)) {
+    } else if (/\d/.test(city)) {
       console.log('Nazwa miasta nie może zawierać cyfr');
-      this.toastr.error("Nazwa miasta nie może zawierać cyfr")
+      this.toastr.error('Nazwa miasta nie może zawierać cyfr');
       return false;
     }
     return true;

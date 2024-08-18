@@ -1,10 +1,10 @@
 <div id="edit-profile-container">
-    <form #ngForm="ngForm" (ngSubmit)="updateUser(model)">
+    <form #ngForm="ngForm" (ngSubmit)="checkPersonalInformation()">
       <mat-card
         [ngClass]="{ 'light-theme': themeHelper.currentTheme, 'dark-theme': !themeHelper.currentTheme}"
       >
       <mat-card-content>
-        <label class="mat-card-label">Edytuj dane</label>
+        <label class="mat-card-label">Edytuj Profil</label>
         <mat-form-field>
           <mat-label
             [ngClass]="{
@@ -50,35 +50,6 @@
              />
           </mat-form-field>
 
-          <mat-form-field>
-            <mat-label
-              [ngClass]="{
-                'light-theme-icon': themeHelper.currentTheme,
-                'dark-theme-icon': !themeHelper.currentTheme
-              }"
-              >Kod pocztowy:</mat-label
-            >
-            <input
-             matInput 
-             name="email"
-             [(ngModel)]="model.postalCode"
-             />
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label
-              [ngClass]="{
-                'light-theme-icon': themeHelper.currentTheme,
-                'dark-theme-icon': !themeHelper.currentTheme
-              }"
-              >Data urodzenia:</mat-label
-            >
-            <input
-             matInput 
-             name="email"
-             [(ngModel)]="model.dateOfBirth"
-             />
-          </mat-form-field>
           <button
           type="submit"
           mat-flat-button

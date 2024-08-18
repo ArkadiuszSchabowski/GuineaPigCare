@@ -5,6 +5,6 @@ namespace GuineaPigCare.Server.Interfaces
     public interface IUserService
     {
         UserDto GetCurrentUser(string email);
-        void UpdateUser(UserDto dto);
+        void UpdateUser(UpdateUserDto dto);
     }
 }

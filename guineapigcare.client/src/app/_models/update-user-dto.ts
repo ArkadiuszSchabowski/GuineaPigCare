@@ -1,7 +1,6 @@
 export class UpdateUserDto{
+    email: string = "";
     name: string = "";
     surname: string = "";
     city: string = "";
-    postalCode: string = "";
-    dateOfBirth: Date | undefined = undefined;
 }

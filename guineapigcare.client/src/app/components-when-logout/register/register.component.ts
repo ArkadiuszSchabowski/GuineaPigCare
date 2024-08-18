@@ -86,11 +86,7 @@ export class RegisterComponent extends BaseComponent implements OnInit {
 
   checkPersonalInformation(stepper: MatStepper) {
     this.isPersonalInformation =
-      this.validateService.validatePersonalInformationRegister(this.model);
-
-    if (this.isPersonalInformation) {
-
-     this.registerUser()
+      this.validateService.validatePersonalInformation(this.model);
 
      if (this.isPersonalInformation) {
       this.registerUser().subscribe(success => {
@@ -100,7 +96,6 @@ export class RegisterComponent extends BaseComponent implements OnInit {
           stepper.next();
         }
       })
-    }
   }
 }
 

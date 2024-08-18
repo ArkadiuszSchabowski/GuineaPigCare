@@ -54,7 +54,7 @@ button{
   }
   #profile-content-body {
     display: flex;
-    justify-content: left;
+    justify-content: left !important;
     width: 70%;
     height: 100%;
   }

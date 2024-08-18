@@ -30,7 +30,7 @@ namespace GuineaPigCare.Server.Service
             return userDto;
         }
 
-        public void UpdateUser(UserDto dto)
+        public void UpdateUser(UpdateUserDto dto)
         {
             User? user = _context.Users.FirstOrDefault(x => x.Email == dto.Email);
 
