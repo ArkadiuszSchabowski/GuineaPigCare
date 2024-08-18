@@ -5,7 +5,6 @@ using GuineaPigCare.Server.Exceptions;
 using GuineaPigCare.Server.Interfaces;
 using GuineaPigCare.Server.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -33,19 +32,19 @@ namespace GuineaPigCare.Server.Service
             var user = _context.Users.FirstOrDefault(x => x.Email == dto.Email);
 
             if (user == null) {
-                throw new NotFoundException("Taki użytkownik nie istnieje");
+                throw new NotFoundException("Taki użytkownik nie istnieje!");
             }
 
             var result = _hasher.VerifyHashedPassword(user, user.Password, dto.CurrentPassword);
 
             if(result == PasswordVerificationResult.Failed)
             {
-                throw new BadRequestException("Wprowadzono niepoprawne hasło");
+                throw new BadRequestException("Wprowadzono niepoprawne hasło!");
             }
 
             if(dto.NewPassword != dto.RepeatNewPassword)
             {
-                throw new BadRequestException("Wprowadzone hasła nie są zgodne");
+                throw new BadRequestException("Wprowadzone hasła nie są zgodne!");
             }
 
             user.Password = _hasher.HashPassword(user, dto.NewPassword);
@@ -122,5 +121,15 @@ namespace GuineaPigCare.Server.Service
             _context.SaveChanges();
         }
 
+        public void DeleteAccount(string email)
+        {
+            var user = _context.Users.FirstOrDefault(x => x.Email == email);
+
+            if(user != null)
+            {
+            _context.Users.Remove(user);
+            _context.SaveChanges();
+            }
+        }
     }
 }

@@ -19,6 +19,8 @@ mat-card {
 mat-card-content {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 label {
   margin-top: 20px;

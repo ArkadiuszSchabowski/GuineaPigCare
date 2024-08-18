@@ -6,25 +6,35 @@ import { BaseComponent } from 'src/app/_shared/base.component';
 import { GuineaPigService } from 'src/app/_service/guinea-pig.service';
 import { finalize } from 'rxjs';
 import { ThemeHelper } from 'src/app/_service/themeHelper.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-change-password',
   templateUrl: './user-change-password.component.html',
   styleUrls: ['./user-change-password.component.css'],
 })
-export class UserChangePasswordComponent extends BaseComponent implements OnInit{
-
-  override cloudText: string = "Super, że dbasz o swoje bezpieczeństwo!"
+export class UserChangePasswordComponent
+  extends BaseComponent
+  implements OnInit
+{
+  override cloudText: string = 'Super, że dbasz o swoje bezpieczeństwo!';
 
   model: ChangePasswordDto = new ChangePasswordDto();
   token: any;
-  email: string = "";
+  email: string = '';
 
   hidePassword1: boolean = true;
   hidePassword2: boolean = true;
   hidePassword3: boolean = true;
 
-  constructor(private accountService: AccountService, guineaPigService: GuineaPigService, public themeHelper: ThemeHelper) {
+  constructor(
+    guineaPigService: GuineaPigService,
+    private accountService: AccountService,
+    public themeHelper: ThemeHelper,
+    private toastr: ToastrService,
+    private router: Router
+  ) {
     super(guineaPigService);
   }
   override ngOnInit(): void {
@@ -38,32 +48,39 @@ export class UserChangePasswordComponent extends BaseComponent implements OnInit
     var decodedToken: any = jwtDecode(this.token);
     console.log(decodedToken);
 
-    this.email = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
-    console.log(this.email)
+    this.email =
+      decodedToken[
+        'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'
+      ];
+    console.log(this.email);
   }
 
   changePassword(model: ChangePasswordDto) {
-
     model.email = this.email;
     console.log(model);
-    this.accountService.changePassword(this.model).pipe(
-      finalize(() => {
-        this.resetForm();
-      })
-    )
-    .subscribe({
-      next: response => {
-        console.log(response)
-      },
-      error: error => console.log(error)
-    });
+    this.accountService
+      .changePassword(this.model)
+      .pipe(
+        finalize(() => {
+          this.resetForm();
+        })
+      )
+      .subscribe({
+        next: () => {
+          this.toastr.success("Twoje hasło zostało zmienione!")
+          this.router.navigateByUrl("/user/profile")
+        },
+        error: (error) => this.toastr.error(error.error)
+      });
   }
   resetForm() {
-    this.model.currentPassword = "",
-    this.model.newPassword = "",
-    this.model.repeatNewPassword = ""
+    (this.model.currentPassword = ''),
+      (this.model.newPassword = ''),
+      (this.model.repeatNewPassword = '');
   }
-  changePasswordVisibility(field: 'hidePassword1' | 'hidePassword2' | 'hidePassword3') {
-    this[field] = !this[field]
+  changePasswordVisibility(
+    field: 'hidePassword1' | 'hidePassword2' | 'hidePassword3'
+  ) {
+    this[field] = !this[field];
   }
 }

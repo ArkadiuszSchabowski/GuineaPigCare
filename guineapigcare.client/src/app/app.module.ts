@@ -41,6 +41,7 @@ import { GuineaPigManager } from './components-_helpers/guinea-pig-manager/guine
 import {MatStepperModule} from '@angular/material/stepper';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorInterceptor } from './_inteceptors/error.interceptor';
+import { UserRemoveProfileComponent } from './components-when-login/user/user-remove-profile/user-remove-profile.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { ErrorInterceptor } from './_inteceptors/error.interceptor';
     UserProfileComponent,
     UserChangePasswordComponent,
     UserEditProfileComponent,
+    UserRemoveProfileComponent,
     GuineaPigAddProfileComponent,
     GuineaPigUpdateProfileComponent,
     GuineaPigRemoveProfileComponent,

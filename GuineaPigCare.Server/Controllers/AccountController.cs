@@ -15,6 +15,12 @@ namespace GuineaPigCare.Server.Controllers
         {
             _accountService = accountService;
         }
+        [HttpGet("check-email")]
+        public ActionResult CheckUserInDatabase([FromQuery] string email)
+        {
+            _accountService.CheckUserInDatabase(email);
+            return Ok(new { message = email });
+        }
         [HttpPost("register")]
         public ActionResult Register([FromBody] RegisterUserDto registerUserDto)
         {
@@ -36,11 +42,11 @@ namespace GuineaPigCare.Server.Controllers
             _accountService.ChangePassword(dto);
             return Ok(new {message ="Twoje hasło zostało zmienione"});
         }
-        [HttpGet("check-email")]
-        public ActionResult CheckUserInDatabase([FromQuery]string email)
-        {
-            _accountService.CheckUserInDatabase(email);
-            return Ok(new {message=email});
+        [HttpDelete("remove-account")]
+        public ActionResult DeleteAccount([FromQuery] string email) {
+
+            _accountService.DeleteAccount(email);
+            return Ok();
         }
     }
 }

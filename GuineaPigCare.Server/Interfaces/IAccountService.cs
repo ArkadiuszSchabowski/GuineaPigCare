@@ -8,5 +8,6 @@ namespace GuineaPigCare.Server.Interfaces
         string GenerateJWT(LoginUserDto loginUserDto);
         void RegisterUser(RegisterUserDto registerUserDto);
         void CheckUserInDatabase(string email);
+        void DeleteAccount(string email);
     }
 }
