@@ -5,6 +5,7 @@ using GuineaPigCare.Server.Exceptions;
 using GuineaPigCare.Server.Interfaces;
 using GuineaPigCare.Server.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -88,7 +89,15 @@ namespace GuineaPigCare.Server.Service
             var tokenHandler = new JwtSecurityTokenHandler();
             return tokenHandler.WriteToken(token);
         }
+        public void CheckUserInDatabase(string email)
+        {
+            var user = _context.Users.FirstOrDefault(x => x.Email == email);
 
+            if (user != null)
+            {
+                throw new ConflictException("Taki użytkownik istnieje już w bazie danych");
+            }
+        }
 
         public void RegisterUser(RegisterUserDto dto)
         {

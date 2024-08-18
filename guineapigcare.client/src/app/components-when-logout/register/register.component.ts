@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { GuineaPigService } from '../../_service/guinea-pig.service';
 import { AccountService } from '../../_service/account.service';
 import { RegisterUserDto } from '../../_models/register-user-dto';
@@ -6,6 +6,8 @@ import { BaseComponent } from 'src/app/_shared/base.component';
 import { ThemeHelper } from 'src/app/_service/themeHelper.service';
 import { ValidateService } from 'src/app/_service/validate.service';
 import { MatStepper } from '@angular/material/stepper';
+import { ToastrService } from 'ngx-toastr';
+import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -26,13 +28,17 @@ export class RegisterComponent extends BaseComponent implements OnInit {
   isCorrectEmail: boolean = false;
   isCorrectPassword: boolean = false;
   isPersonalInformation: boolean = false;
+  isSuccessRegister : boolean = false;
+
+  eMailCorrectServerSide: string | null = null;
 
   constructor(
     guineaPigService: GuineaPigService,
     public themeHelper: ThemeHelper,
     public accountService: AccountService,
     private cdr: ChangeDetectorRef,
-    private validateService: ValidateService
+    private validateService: ValidateService,
+    private toastr: ToastrService
   ) {
     super(guineaPigService);
   }
@@ -43,21 +49,34 @@ export class RegisterComponent extends BaseComponent implements OnInit {
   }
 
   checkEmailAndPassword(stepper: MatStepper) {
-    
     this.isCorrectEmail = this.validateService.validateEmail(this.model.email);
-    
-    if(this.isCorrectEmail){
-      this.isCorrectPassword = this.validateService.validatePasswordRegister(this.model);
+
+    if (this.isCorrectEmail) {
+      this.accountService.checkEmail(this.model.email).subscribe({
+        next: (response) => {
+          this.eMailCorrectServerSide = response.message;
+
+          if (this.eMailCorrectServerSide !== null) {
+            this.isCorrectPassword = this.validateService.validatePasswordRegister(this.model);
+
+            if (this.isCorrectPassword) {
+              this.isFirstStepCompleted = true;
+              this.cdr.detectChanges();
+              stepper.next();
+            }
+          }
+        },
+        error: (error) => {
+          this.model = new RegisterUserDto();
+          this.toastr.error(error.error + '!');
+        },
+      });
     }
-    
-    if(!this.isCorrectEmail){
+
+    if (!this.isCorrectEmail) {
       this.model = new RegisterUserDto();
     }
-    if(!this.isCorrectPassword){
-      this.model.password = "";
-      this.model.repeatPassword = "";
-    }
-    
+
     if (this.isCorrectEmail && this.isCorrectPassword) {
       this.isFirstStepCompleted = true;
       this.cdr.detectChanges();
@@ -66,18 +85,39 @@ export class RegisterComponent extends BaseComponent implements OnInit {
   }
 
   checkPersonalInformation(stepper: MatStepper) {
+    this.isPersonalInformation =
+      this.validateService.validatePersonalInformationRegister(this.model);
 
-    this.isPersonalInformation = this.validateService.validatePersonalInformationRegister(this.model)
+    if (this.isPersonalInformation) {
 
-    if(this.isPersonalInformation){
-      this.isSecondStepCompleted = true;
-      this.cdr.detectChanges();
-      stepper.next();
+     this.registerUser()
+
+     if (this.isPersonalInformation) {
+      this.registerUser().subscribe(success => {
+        if (success) {
+          this.isSecondStepCompleted = true;
+          this.cdr.detectChanges();
+          stepper.next();
+        }
+      })
     }
   }
-  registerUser() {
-    console.log(this.model);
+}
+
+  registerUser(): Observable<boolean> {
+    return this.accountService.registerUser(this.model).pipe(
+      map(response => {
+        console.log(response);
+        return true;
+      }),
+      catchError(error => {
+        this.toastr.error(error.error || 'Wystąpił błąd podczas rejestracji.');
+        console.log(error);
+        return of(false);
+      })
+    );
   }
+  
 
   hidePassword() {
     this.hide = !this.hide;

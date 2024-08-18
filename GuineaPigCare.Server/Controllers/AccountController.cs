@@ -36,5 +36,11 @@ namespace GuineaPigCare.Server.Controllers
             _accountService.ChangePassword(dto);
             return Ok(new {message ="Twoje hasło zostało zmienione"});
         }
+        [HttpGet("check-email")]
+        public ActionResult CheckUserInDatabase([FromQuery]string email)
+        {
+            _accountService.CheckUserInDatabase(email);
+            return Ok(new {message=email});
+        }
     }
 }

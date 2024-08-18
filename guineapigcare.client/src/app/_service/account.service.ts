@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RegisterUserDto } from '../_models/register-user-dto';
 import { environment } from '../_environments/environment_prod';
@@ -30,6 +30,11 @@ export class AccountService {
   registerUser(registerUserDto: RegisterUserDto): Observable<RegisterUserDto> {
     return this.http.post<RegisterUserDto>(this.baseUrl + 'account/register',registerUserDto);
   }
+  checkEmail(email: string): Observable<{ message: string }> {
+    let params = new HttpParams().set('email', email);
+    return this.http.get<{ message: string }>(`${this.baseUrl}account/check-email`, { params });
+  }
+  
   
   login(loginUserDto: LoginUserDto){
     return this.http.post<any>(this.baseUrl + 'account/login', loginUserDto).pipe(
