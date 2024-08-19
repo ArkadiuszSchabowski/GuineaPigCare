@@ -57,4 +57,10 @@ export class AccountService {
   changePassword(changePasswordDto: ChangePasswordDto){
     return this.http.post<ChangePasswordDto>(this.baseUrl + "account/change-password", changePasswordDto)
   }
+  removeProfile(email: string){
+
+    let params = new HttpParams().set('email', email)
+
+    return this.http.delete(this.baseUrl + "account/remove-account", {params});
+  }
 }

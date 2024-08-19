@@ -19,7 +19,6 @@ export class UserService {
     return this.http.post<UserDto>(this.baseUrl + "user", {email})
   }
   updateProfileInformation(model: UpdateUserDto){
-    
     return this.http.patch(this.baseUrl + "user/update", model)
   }
 }
