@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AddGuineaPigDto } from 'src/app/_models/add-guinea-pig-dto';
 import { GuineaPigService } from 'src/app/_service/guinea-pig.service';
+import { ThemeHelper } from 'src/app/_service/themeHelper.service';
 import { BaseComponent } from 'src/app/_shared/base.component';
 
 @Component({
@@ -9,12 +11,19 @@ import { BaseComponent } from 'src/app/_shared/base.component';
 })
 export class GuineaPigUpdateProfileComponent extends BaseComponent implements OnInit{
 
-  override cloudText: string = "Aktualizacji nigdy za wiele!";
+  override cloudText: string = "Ej! Nie lubię sprawdzać wagi :P";
 
-  constructor(guineaPigService: GuineaPigService){
+  model: AddGuineaPigDto = new AddGuineaPigDto();
+  pigs: string[] = [];
+
+  constructor(guineaPigService: GuineaPigService,
+    public themeHelper: ThemeHelper
+  ) {
     super(guineaPigService);
   }
+
   override ngOnInit(): void {
     super.ngOnInit();
   }
+  updateGuineaPigProfile() {}
 }

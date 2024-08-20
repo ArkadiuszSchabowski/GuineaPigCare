@@ -27,7 +27,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { GuineaPigLayoutComponent } from './components-when-login/guinea-pig/_guinea-pig-layout/guinea-pig-layout.component';
 import { GuineaPigAddProfileComponent } from './components-when-login/guinea-pig/guinea-pig-add-profile/guinea-pig-add-profile.component';
-import { GuineaPigCleaningCalendarComponent } from './components-when-login/guinea-pig/guinea-pig-cleaning-calendar/guinea-pig-cleaning-calendar.component';
 import { GuineaPigProfileComponent } from './components-when-login/guinea-pig/guinea-pig-profile/guinea-pig-profile.component';
 import { GuineaPigRemoveProfileComponent } from './components-when-login/guinea-pig/guinea-pig-remove-profile/guinea-pig-remove-profile.component';
 import { GuineaPigUpdateProfileComponent } from './components-when-login/guinea-pig/guinea-pig-update-profile/guinea-pig-update-profile.component';
@@ -62,7 +61,6 @@ import { UserRemoveProfileComponent } from './components-when-login/user/user-re
     GuineaPigAddProfileComponent,
     GuineaPigUpdateProfileComponent,
     GuineaPigRemoveProfileComponent,
-    GuineaPigCleaningCalendarComponent,
     UserLayoutComponent,
     GuineaPigLayoutComponent,
     GuineaPigManager,

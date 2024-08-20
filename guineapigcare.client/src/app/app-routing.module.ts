@@ -9,7 +9,6 @@ import { BadProductsComponent } from './components-when-logout/bad-products/bad-
 import { BeforeBuyGuineaPigComponent } from './components-when-logout/before-buy-guinea-pig/before-buy-guinea-pig.component';
 import { GuineaPigLayoutComponent } from './components-when-login/guinea-pig/_guinea-pig-layout/guinea-pig-layout.component';
 import { GuineaPigAddProfileComponent } from './components-when-login/guinea-pig/guinea-pig-add-profile/guinea-pig-add-profile.component';
-import { GuineaPigCleaningCalendarComponent } from './components-when-login/guinea-pig/guinea-pig-cleaning-calendar/guinea-pig-cleaning-calendar.component';
 import { GuineaPigProfileComponent } from './components-when-login/guinea-pig/guinea-pig-profile/guinea-pig-profile.component';
 import { GuineaPigRemoveProfileComponent } from './components-when-login/guinea-pig/guinea-pig-remove-profile/guinea-pig-remove-profile.component';
 import { GuineaPigUpdateProfileComponent } from './components-when-login/guinea-pig/guinea-pig-update-profile/guinea-pig-update-profile.component';
@@ -43,7 +42,6 @@ const routes: Routes = [
       { path: 'profile', component: GuineaPigProfileComponent },
       { path: 'add-profile', component: GuineaPigAddProfileComponent },
       { path: 'update-profile', component: GuineaPigUpdateProfileComponent },
-      { path: 'cleaning-calendar', component: GuineaPigCleaningCalendarComponent },
       { path: 'remove-profile', component: GuineaPigRemoveProfileComponent },
     ]
   },

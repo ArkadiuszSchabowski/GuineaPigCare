@@ -1,1 +1,36 @@
-<p>guinea-pig-remove-profile works!</p>
+<div id="guinea-pig-container">
+    <form #ngForm="ngForm" (ngSubmit)="removeGuineaPigProfile()">
+      <mat-card
+        [ngClass]="{
+          'light-theme': themeHelper.currentTheme,
+          'dark-theme': !themeHelper.currentTheme
+        }"
+      >
+        <mat-card-content>
+          <label class="mat-card-label">Usuń profil świnki</label>
+          <mat-form-field>
+            <mat-label  [ngClass]="{
+              'light-theme-icon': themeHelper.currentTheme,
+              'dark-theme-icon': !themeHelper.currentTheme
+            }">Wybierz świnkę</mat-label>
+            <mat-select>
+  
+            </mat-select>
+          </mat-form-field>
+  
+          <button
+            type="submit"
+            mat-flat-button
+            class="submit-button"
+            [ngClass]="{
+              'light-theme-icon': themeHelper.currentTheme,
+              'dark-theme-icon': !themeHelper.currentTheme
+            }"
+          >
+            OK
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </div>
+  
