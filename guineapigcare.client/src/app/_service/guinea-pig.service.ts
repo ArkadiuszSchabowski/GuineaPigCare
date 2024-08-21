@@ -45,4 +45,13 @@ export class GuineaPigService {
 
     return this.http.post(environment.apiUrl + "guineapig/add", guineaPigDto, {params})
   }
+  updateWeightGuineaPig(){
+    //TO DO
+  }
+  removeGuineaPig(email: string, guineaPigId: number){
+
+    let params = new HttpParams().set('email', email);
+
+    return this.http.delete(environment.apiUrl + guineaPigId + {params})
+  }
 }

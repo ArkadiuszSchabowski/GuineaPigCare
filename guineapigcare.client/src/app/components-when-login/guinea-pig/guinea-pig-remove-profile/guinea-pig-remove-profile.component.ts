@@ -17,6 +17,7 @@ export class GuineaPigRemoveProfileComponent extends BaseComponent implements On
   model: AddGuineaPigDto = new AddGuineaPigDto();
   pigs: string[] = [];
   email: string = "";
+  guineaPigId: number = 0;
 
   constructor(guineaPigService: GuineaPigService,
     public themeHelper: ThemeHelper,
@@ -29,6 +30,17 @@ export class GuineaPigRemoveProfileComponent extends BaseComponent implements On
     super.ngOnInit();
   }
   removeGuineaPigProfile() {
+
     this.email = this.tokenService.getEmailFromToken();
+    this.guineaPigId = this.tokenService.getGuineaPigIdFromToken();
+
+    this.guineaPigService.removeGuineaPig(this.email, this.guineaPigId).subscribe({
+      next: response => {
+        console.log(response),
+        console.log(this.email),
+        console.log(this.guineaPigId)
+      },
+      error: error => console.log(error)
+    })
   }
 }

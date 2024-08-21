@@ -21,8 +21,8 @@ namespace GuineaPigCare.Server.Controllers
         {
             UserDto userDto = _service.GetCurrentUser(email);
             return Ok(userDto);
-
         }
+
         [HttpPatch("update")]
         public ActionResult UpdateUserInformation([FromBody] UpdateUserDto dto)
         {

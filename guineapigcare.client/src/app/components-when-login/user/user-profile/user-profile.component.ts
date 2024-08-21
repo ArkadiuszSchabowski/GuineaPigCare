@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { jwtDecode } from 'jwt-decode';
 import { UserDto } from 'src/app/_models/user-dto';
 import { GuineaPigService } from 'src/app/_service/guinea-pig.service';
 import { ThemeHelper } from 'src/app/_service/themeHelper.service';
@@ -15,7 +14,7 @@ import { BaseComponent } from 'src/app/_shared/base.component';
 export class UserProfileComponent extends BaseComponent implements OnInit {
   override cloudText: string = 'Witaj na swoim profilu!';
 
-  email: string = '';
+  email: string = "";
   model: UserDto | undefined = undefined;
 
   constructor(
@@ -29,14 +28,14 @@ export class UserProfileComponent extends BaseComponent implements OnInit {
 
   override ngOnInit(): void {
     super.ngOnInit();
-    this.getUserInformation(this.email);
+    this.getUserInformation();
   }
 
-  getUserInformation(email: string) {
+  getUserInformation() {
     
     this.email = this.tokenService.getEmailFromToken();
 
-    this.userService.getUserInformation(email).subscribe({
+    this.userService.getUserInformation(this.email).subscribe({
       next: (response) => {
         this.model = response;
       },

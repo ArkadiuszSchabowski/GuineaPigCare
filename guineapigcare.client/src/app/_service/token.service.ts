@@ -6,17 +6,28 @@ import { jwtDecode } from 'jwt-decode';
 })
 export class TokenService {
 
+  email: string = "";
+
   constructor() { }
   
   getEmailFromToken(): string {
 
-    var token: any = localStorage.getItem('token');
+    let token: any = localStorage.getItem('token');
   
-      var decodedToken: any = jwtDecode(token);
+      let decodedToken: any = jwtDecode(token);
 
-      var email: string
+        this.email = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
+        console.log(decodedToken);
+        return this.email;
+  }
+  getGuineaPigIdFromToken(): number{
+    let token: any = localStorage.getItem('token');
+  
+    let decodedToken: any = jwtDecode(token);
 
-        email = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
-        return email;
+    let guineaPigId: number;
+
+    guineaPigId = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/guineaPigId']
+    return guineaPigId;
   }
 }

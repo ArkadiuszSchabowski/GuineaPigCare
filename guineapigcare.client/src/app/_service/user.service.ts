@@ -1,7 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../_environments/environment_prod';
-import { Observable } from 'rxjs';
 import { UserDto } from '../_models/user-dto';
 import { UpdateUserDto } from '../_models/update-user-dto';
 
@@ -15,9 +14,10 @@ export class UserService {
   constructor(private http: HttpClient) { 
 
   }
+  
   getUserInformation(email: string){
 
-    let params = new HttpParams().set('email', email)
+    let params = new HttpParams().set("email", email)
 
     return this.http.get<UserDto>(this.baseUrl + "user", {params})
   }

@@ -17,6 +17,18 @@ namespace GuineaPigCare.Server.Controllers
             _guineaPigService = service;
             _sortService = sortService;
         }
+        [HttpGet]
+        public ActionResult<GuineaPigDto> GetGuineaPig([FromQuery] string email, [FromBody] string name)
+        {
+            var guineaPig = _guineaPigService.GetGuineaPig(email, name);
+            return Ok(guineaPig);
+        }
+        [HttpGet("guinea-pigs")]
+        public ActionResult<List<GuineaPigDto>> GetGuineaPigs(string email)
+        {
+            List<GuineaPigDto> guineaPigs = _guineaPigService.GetGuineaPigs(email);
+            return Ok(guineaPigs);
+        }
         [HttpGet("info")]
         public ActionResult GetInformationGuineaPig()
         {
@@ -49,17 +61,12 @@ namespace GuineaPigCare.Server.Controllers
             _guineaPigService.UpdateGuineaPigWeight(id, email, weight);
             return Ok();
         }
-        [HttpGet("{id}")]
-        public ActionResult<GuineaPigDto> GetGuineaPig([FromRoute] int id, [FromQuery] string email)
+
+        [HttpDelete("{name}")]
+        public ActionResult RemoveGuineaPig([FromQuery] string email, [FromRoute] string name)
         {
-            var guineaPig = _guineaPigService.GetGuineaPig(id, email);
-            return Ok(guineaPig);
-        }
-        [HttpDelete("{id}")]
-        public ActionResult RemoveGuineaPig([FromRoute] int id, [FromQuery] string email)
-        {
-            _guineaPigService.RemoveGuineaPig(id, email);
-            return Ok();
+            _guineaPigService.RemoveGuineaPig(email, name);
+            return NoContent();
         }
     }
 }

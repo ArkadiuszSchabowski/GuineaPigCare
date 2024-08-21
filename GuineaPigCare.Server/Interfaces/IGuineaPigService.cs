@@ -9,7 +9,8 @@ namespace GuineaPigCare.Server.Interfaces
         GuineaPigInformationDto GetInformationGuineaPig();
         void AddGuineaPigToUser(string email, GuineaPigDto dto);
         void UpdateGuineaPigWeight(int id, string email, int weight);
-        GuineaPigDto GetGuineaPig(int id, string email);
-        void RemoveGuineaPig(int id, string email);
+        GuineaPigDto GetGuineaPig(string email, string name);
+        List<GuineaPigDto> GetGuineaPigs(string email);
+        void RemoveGuineaPig(string email, string name);
     }
 }
