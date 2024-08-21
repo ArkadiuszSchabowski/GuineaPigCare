@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AddGuineaPigDto } from 'src/app/_models/add-guinea-pig-dto';
 import { GuineaPigService } from 'src/app/_service/guinea-pig.service';
 import { ThemeHelper } from 'src/app/_service/themeHelper.service';
+import { TokenService } from 'src/app/_service/token.service';
 import { BaseComponent } from 'src/app/_shared/base.component';
 
 @Component({
@@ -15,9 +16,11 @@ export class GuineaPigRemoveProfileComponent extends BaseComponent implements On
 
   model: AddGuineaPigDto = new AddGuineaPigDto();
   pigs: string[] = [];
+  email: string = "";
 
   constructor(guineaPigService: GuineaPigService,
-    public themeHelper: ThemeHelper
+    public themeHelper: ThemeHelper,
+    private tokenService: TokenService
   ) {
     super(guineaPigService);
   }
@@ -25,5 +28,7 @@ export class GuineaPigRemoveProfileComponent extends BaseComponent implements On
   override ngOnInit(): void {
     super.ngOnInit();
   }
-  removeGuineaPigProfile() {}
+  removeGuineaPigProfile() {
+    this.email = this.tokenService.getEmailFromToken();
+  }
 }

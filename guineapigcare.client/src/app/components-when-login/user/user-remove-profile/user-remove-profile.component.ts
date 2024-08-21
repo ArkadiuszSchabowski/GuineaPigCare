@@ -6,6 +6,7 @@ import { UpdateUserDto } from 'src/app/_models/update-user-dto';
 import { AccountService } from 'src/app/_service/account.service';
 import { GuineaPigService } from 'src/app/_service/guinea-pig.service';
 import { ThemeHelper } from 'src/app/_service/themeHelper.service';
+import { TokenService } from 'src/app/_service/token.service';
 import { UserService } from 'src/app/_service/user.service';
 import { BaseComponent } from 'src/app/_shared/base.component';
 
@@ -26,7 +27,8 @@ export class UserRemoveProfileComponent extends BaseComponent implements OnInit{
     public userService: UserService,
     private accountService: AccountService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private tokenService: TokenService
   ) {
     super(guineaPigService);
   }
@@ -35,18 +37,8 @@ export class UserRemoveProfileComponent extends BaseComponent implements OnInit{
     super.ngOnInit();
   }
 
-  getEmailFromToken(): string {
-
-    var token: any = localStorage.getItem('token');
-  
-      var decodedToken: any = jwtDecode(token);
-  
-
-        this.email = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
-        return this.email;
-  }
   removeProfile(){
-    this.email = this.getEmailFromToken();
+    this.email = this.tokenService.getEmailFromToken();
 
     this.accountService.removeProfile(this.email).subscribe({
       next: () => 

@@ -8,6 +8,7 @@ import { finalize } from 'rxjs';
 import { ThemeHelper } from 'src/app/_service/themeHelper.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { TokenService } from 'src/app/_service/token.service';
 
 @Component({
   selector: 'app-user-change-password',
@@ -33,31 +34,21 @@ export class UserChangePasswordComponent
     private accountService: AccountService,
     public themeHelper: ThemeHelper,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private tokenService: TokenService
   ) {
     super(guineaPigService);
   }
   override ngOnInit(): void {
     super.ngOnInit();
-    this.getToken();
-  }
-
-  getToken() {
-    this.token = localStorage.getItem('token');
-
-    var decodedToken: any = jwtDecode(this.token);
-    console.log(decodedToken);
-
-    this.email =
-      decodedToken[
-        'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'
-      ];
-    console.log(this.email);
   }
 
   changePassword(model: ChangePasswordDto) {
-    model.email = this.email;
+
+    model.email = this.tokenService.getEmailFromToken();
+
     console.log(model);
+
     this.accountService
       .changePassword(this.model)
       .pipe(

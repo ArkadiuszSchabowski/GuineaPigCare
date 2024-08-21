@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AddGuineaPigDto } from 'src/app/_models/add-guinea-pig-dto';
 import { GuineaPigService } from 'src/app/_service/guinea-pig.service';
 import { ThemeHelper } from 'src/app/_service/themeHelper.service';
+import { TokenService } from 'src/app/_service/token.service';
 import { BaseComponent } from 'src/app/_shared/base.component';
 
 @Component({
@@ -22,7 +23,8 @@ export class GuineaPigAddProfileComponent
 
   constructor(guineaPigService: GuineaPigService,
     public themeHelper: ThemeHelper,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private tokenService: TokenService
   ) {
     super(guineaPigService);
   }
@@ -30,20 +32,10 @@ export class GuineaPigAddProfileComponent
   override ngOnInit(): void {
     super.ngOnInit();
   }
-  getEmailFromToken(): string {
 
-    var token: any = localStorage.getItem('token');
-  
-      var decodedToken: any = jwtDecode(token);
-
-      var email: string
-
-        email = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
-        return email;
-  }
   addGuineaPigProfile() {
 
-    this.email = this.getEmailFromToken();
+    this.email = this.tokenService.getEmailFromToken();
 
     this.guineaPigService.addGuineaPig(this.email, this.model).subscribe({
       next: () => {

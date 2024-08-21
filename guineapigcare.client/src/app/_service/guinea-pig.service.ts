@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { environment } from '../_environments/environment_dev';
 import { GuineaPigInformationDto } from '../_models/guinea-pig-information-dto';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ProductDto } from '../_models/product-dto';
 import { PaginationDto } from '../_models/pagination-dto';
 import { ProductResult } from '../_models/product-result';
 import { AddGuineaPigDto } from '../_models/add-guinea-pig-dto';

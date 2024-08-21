@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { UpdateUserDto } from 'src/app/_models/update-user-dto';
 import { GuineaPigService } from 'src/app/_service/guinea-pig.service';
 import { ThemeHelper } from 'src/app/_service/themeHelper.service';
+import { TokenService } from 'src/app/_service/token.service';
 import { UserService } from 'src/app/_service/user.service';
 import { ValidateService } from 'src/app/_service/validate.service';
 import { BaseComponent } from 'src/app/_shared/base.component';
@@ -28,7 +29,8 @@ export class UserEditProfileComponent extends BaseComponent implements OnInit {
     public userService: UserService,
     private validateService: ValidateService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private tokenService: TokenService
   ) {
     super(guineaPigService);
   }
@@ -37,19 +39,10 @@ export class UserEditProfileComponent extends BaseComponent implements OnInit {
     super.ngOnInit();
   }
 
-  getEmailFromToken(): string {
 
-    var token: any = localStorage.getItem('token');
-  
-      var decodedToken: any = jwtDecode(token);
-  
-
-        this.email = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
-        return this.email;
-  }
   checkPersonalInformation(){
 
-    this.model.email = this.getEmailFromToken();
+    this.model.email = this.tokenService.getEmailFromToken();
 
     this.isPersonalInformation = this.validateService.validatePersonalInformation(this.model);
     this.updateUser(this.model);

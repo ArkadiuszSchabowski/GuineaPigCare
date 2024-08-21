@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AddGuineaPigDto } from 'src/app/_models/add-guinea-pig-dto';
 import { GuineaPigService } from 'src/app/_service/guinea-pig.service';
 import { ThemeHelper } from 'src/app/_service/themeHelper.service';
+import { TokenService } from 'src/app/_service/token.service';
 import { BaseComponent } from 'src/app/_shared/base.component';
 
 @Component({
@@ -11,13 +12,15 @@ import { BaseComponent } from 'src/app/_shared/base.component';
 })
 export class GuineaPigUpdateProfileComponent extends BaseComponent implements OnInit{
 
-  override cloudText: string = "Ej! Nie lubię sprawdzać wagi :P";
+  override cloudText: string = "Ej! Przecież moja waga jest dobra!";
 
+  email = "";
   model: AddGuineaPigDto = new AddGuineaPigDto();
   pigs: string[] = [];
 
   constructor(guineaPigService: GuineaPigService,
-    public themeHelper: ThemeHelper
+    public themeHelper: ThemeHelper,
+    private tokenService: TokenService
   ) {
     super(guineaPigService);
   }
@@ -25,5 +28,7 @@ export class GuineaPigUpdateProfileComponent extends BaseComponent implements On
   override ngOnInit(): void {
     super.ngOnInit();
   }
-  updateGuineaPigProfile() {}
+  updateGuineaPigProfile() {
+    this.email = this.tokenService.getEmailFromToken();
+  }
 }

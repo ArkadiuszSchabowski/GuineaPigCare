@@ -16,10 +16,10 @@ namespace GuineaPigCare.Server.Controllers
             _service = service;
         }
 
-        [HttpPost]
-        public ActionResult<UserDto> GetCurrentUserData([FromBody] EmailDto email)
+        [HttpGet]
+        public ActionResult<UserDto> GetCurrentUserData([FromQuery] string email)
         {
-            UserDto userDto = _service.GetCurrentUser(email.Email);
+            UserDto userDto = _service.GetCurrentUser(email);
             return Ok(userDto);
 
         }

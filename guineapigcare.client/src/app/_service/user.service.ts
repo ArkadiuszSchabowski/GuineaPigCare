@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../_environments/environment_prod';
 import { Observable } from 'rxjs';
@@ -15,8 +15,11 @@ export class UserService {
   constructor(private http: HttpClient) { 
 
   }
-  getUserInformation(email: string) : Observable<UserDto>{
-    return this.http.post<UserDto>(this.baseUrl + "user", {email})
+  getUserInformation(email: string){
+
+    let params = new HttpParams().set('email', email)
+
+    return this.http.get<UserDto>(this.baseUrl + "user", {params})
   }
   updateProfileInformation(model: UpdateUserDto){
     return this.http.patch(this.baseUrl + "user/update", model)
