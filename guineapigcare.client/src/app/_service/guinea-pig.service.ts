@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ProductDto } from '../_models/product-dto';
 import { PaginationDto } from '../_models/pagination-dto';
 import { ProductResult } from '../_models/product-result';
+import { AddGuineaPigDto } from '../_models/add-guinea-pig-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -39,4 +40,10 @@ export class GuineaPigService {
     .set('PageSize', paginationDto.PageSize.toString());
     return this.http.get<ProductResult>(environment.apiUrl + "guineapig/good-products", {params})
   };
+  addGuineaPig(email: string, guineaPigDto: AddGuineaPigDto){
+
+    let params = new HttpParams().set('email', email);
+
+    return this.http.post(environment.apiUrl + "guineapig/add", guineaPigDto, {params})
+  }
 }
