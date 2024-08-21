@@ -37,5 +37,29 @@ namespace GuineaPigCare.Server.Controllers
             ProductResult sortProducts = _sortService.SortByName(products, paginationDto);
             return Ok(sortProducts);
         }
+        [HttpPost("add")]
+        public ActionResult AddGuineaPigToUser([FromQuery] string email, [FromBody] GuineaPigDto dto)
+        {
+            _guineaPigService.AddGuineaPigToUser(email, dto);
+            return Ok();
+        }
+        [HttpPatch("update-weight")]
+        public ActionResult UpdateGuineaPigWeight([FromRoute] int id, [FromQuery] string email, [FromBody] int weight)
+        {
+            _guineaPigService.UpdateGuineaPigWeight(id, email, weight);
+            return Ok();
+        }
+        [HttpGet("{id}")]
+        public ActionResult<GuineaPigDto> GetGuineaPig([FromRoute] int id, [FromQuery] string email)
+        {
+            var guineaPig = _guineaPigService.GetGuineaPig(id, email);
+            return Ok(guineaPig);
+        }
+        [HttpDelete("{id}")]
+        public ActionResult RemoveGuineaPig([FromRoute] int id, [FromQuery] string email)
+        {
+            _guineaPigService.RemoveGuineaPig(id, email);
+            return Ok();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using GuineaPigCare.Server.Models;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace GuineaPigCare.Server.Database.Entities
@@ -23,5 +24,6 @@ namespace GuineaPigCare.Server.Database.Entities
         [Required]
         public int RoleId { get; set; }
         public virtual Role Role { get; set; }
+        public List<GuineaPig> GuineaPig { get; set; } = new List<GuineaPig>();
     }
 }

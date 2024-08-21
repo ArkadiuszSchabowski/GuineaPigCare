@@ -7,6 +7,7 @@ namespace GuineaPigCare.Server.Database
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<GuineaPig> GuineaPigs {  get; set; }
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options)
         {
             
@@ -34,6 +35,11 @@ namespace GuineaPigCare.Server.Database
                 .HasMany(u => u.Users)
                 .WithOne(r => r.Role)
                 .HasForeignKey(r => r.RoleId);
+
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.GuineaPig)
+                .WithOne(g => g.User)
+                .HasForeignKey(g => g.UserId);              
         }
     }
 }

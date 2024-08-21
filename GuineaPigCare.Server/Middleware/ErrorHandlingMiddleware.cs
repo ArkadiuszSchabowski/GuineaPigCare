@@ -1,5 +1,4 @@
-﻿
-using GuineaPigCare.Server.Exceptions;
+﻿using GuineaPigCare.Server.Exceptions;
 
 namespace GuineaPigCare.Server.Middleware
 {
@@ -16,7 +15,17 @@ namespace GuineaPigCare.Server.Middleware
 				context.Response.StatusCode = 400;
 				await context.Response.WriteAsync(e.Message);
 			}
-			catch (NotFoundException e){
+            catch (UnauthorizedException e)
+            {
+                context.Response.StatusCode = 401;
+                await context.Response.WriteAsync(e.Message);
+            }
+            catch (ForbiddenException e)
+            {
+                context.Response.StatusCode = 403;
+                await context.Response.WriteAsync(e.Message);
+            }
+            catch (NotFoundException e){
                 context.Response.StatusCode = 404;
                 await context.Response.WriteAsync(e.Message);
             }

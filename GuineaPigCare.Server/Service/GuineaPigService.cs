@@ -1,11 +1,114 @@
-﻿using GuineaPigCare.Server.Interfaces;
+﻿using GuineaPigCare.Server.Database;
+using GuineaPigCare.Server.Database.Entities;
+using GuineaPigCare.Server.Exceptions;
+using GuineaPigCare.Server.Interfaces;
 using GuineaPigCare.Server.Models;
-using Microsoft.Identity.Client;
 
 namespace GuineaPigCare.Server.Service
 {
     public class GuineaPigService : IGuineaPigService
     {
+        private readonly MyDbContext _context;
+
+        public GuineaPigService(MyDbContext context)
+        {
+            _context = context;
+        }
+        public void RemoveGuineaPig(int id, string email)
+        {
+            var user = _context.Users.FirstOrDefault(x => x.Email == email);
+
+            if (user == null)
+            {
+                throw new NotFoundException("Taki użytkownik nie istnieje w bazie danych");
+            }
+
+            var guineaPig = _context.GuineaPigs.FirstOrDefault(x => x.Id == id);
+
+            if (guineaPig == null)
+            {
+                throw new NotFoundException("Taka świnka nie istnieje w bazie danych");
+            }
+
+            if (guineaPig.UserId != user.Id)
+            {
+                throw new ForbiddenException("Świnka morska nie należy do tego użytkownika");
+            }
+            _context.GuineaPigs.Remove(guineaPig);
+            _context.SaveChanges();
+        }
+        public GuineaPigDto GetGuineaPig(int id, string email)
+        {
+            var user = _context.Users.FirstOrDefault(x => x.Email == email);
+
+            if (user == null)
+            {
+                throw new NotFoundException("Taki użytkownik nie istnieje w bazie danych");
+            }
+
+            var guineaPig = _context.GuineaPigs.FirstOrDefault(x => x.Id == id);
+
+            if (guineaPig == null)
+            {
+                throw new NotFoundException("Taka świnka nie istnieje w bazie danych");
+            }
+
+            if (guineaPig.UserId != user.Id)
+            {
+                throw new ForbiddenException("Świnka morska nie należy do tego użytkownika");
+            }
+
+            var guineaPigDto = new GuineaPigDto();
+
+            guineaPigDto.Name = guineaPig.Name;
+            guineaPig.Weight = guineaPig.Weight;
+
+            return guineaPigDto;
+        }
+        public void UpdateGuineaPigWeight(int id, string email, int weight)
+        {
+            var user = _context.Users.FirstOrDefault(x => x.Email == email);
+
+            if (user == null)
+            {
+                throw new NotFoundException("Taki użytkownik nie istnieje w bazie danych");
+            }
+
+            var guineaPig = _context.GuineaPigs.FirstOrDefault(x => x.Id == id);
+
+            if (guineaPig == null)
+            {
+                throw new NotFoundException("Taka świnka nie istnieje w bazie danych");
+            }
+
+            if (guineaPig.UserId != user.Id)
+            {
+                throw new ForbiddenException("Świnka morska nie należy do tego użytkownika");
+            }
+            guineaPig.Weight = weight;
+
+            _context.GuineaPigs.Update(guineaPig);
+            _context.SaveChanges();
+        }
+
+        public void AddGuineaPigToUser(string email, GuineaPigDto dto)
+        {
+            var user = _context.Users.FirstOrDefault(x => x.Email == email);
+
+            if(user == null)
+            {
+                throw new NotFoundException("Taki użytkownik nie istnieje");
+            }
+
+            var newGuineaPig = new GuineaPig();
+
+            newGuineaPig.Name = dto.Name;
+            newGuineaPig.Weight = dto.Weight;
+            newGuineaPig.UserId = user.Id;
+
+            _context.GuineaPigs.Add(newGuineaPig);
+            _context.SaveChanges();
+        }
         public List<ProductDto> GetGoodProductsInformation()
         {
             List<ProductDto> products = new List<ProductDto>()

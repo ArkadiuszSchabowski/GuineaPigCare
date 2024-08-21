@@ -3,6 +3,7 @@ using GuineaPigCare.Server.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GuineaPigCare.Server.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240820230138_AddGuineaPigsToUserEntity")]
+    partial class AddGuineaPigsToUserEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,7 +46,7 @@ namespace GuineaPigCare.Server.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("GuineaPigs");
+                    b.ToTable("GetGuineaPigs");
                 });
 
             modelBuilder.Entity("GuineaPigCare.Server.Database.Entities.Role", b =>

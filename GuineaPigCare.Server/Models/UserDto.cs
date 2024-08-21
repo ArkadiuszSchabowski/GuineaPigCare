@@ -6,5 +6,6 @@
         public string? Name { get; set; }
         public string? Surname { get; set; }
         public string? City { get; set; }
+        public List<GuineaPigDto> GuineaPig { get; set; } = new List<GuineaPigDto>();
     }
 }
