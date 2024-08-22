@@ -1,5 +1,5 @@
 <div id="guinea-pig-container">
-  <form #ngForm="ngForm" (ngSubmit)="updateGuineaPigProfile()">
+  <form #ngForm="ngForm" (ngSubmit)="updateGuineaPigProfile(selectedPig)">
     <mat-card
       [ngClass]="{
         'light-theme': themeHelper.currentTheme,
@@ -13,8 +13,10 @@
             'light-theme-icon': themeHelper.currentTheme,
             'dark-theme-icon': !themeHelper.currentTheme
           }">Wybierz świnkę</mat-label>
-          <mat-select>
-
+            <mat-select [(value)]="selectedPig">
+              <mat-option *ngFor="let guineapig of guineaPigs" [value]="guineapig.name">
+                {{ guineapig.name }}
+              </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field>

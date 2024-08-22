@@ -17,7 +17,6 @@ export class TokenService {
       let decodedToken: any = jwtDecode(token);
 
         this.email = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'];
-        console.log(decodedToken);
         return this.email;
   }
   getGuineaPigIdFromToken(): number{

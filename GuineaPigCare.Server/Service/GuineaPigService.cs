@@ -15,16 +15,16 @@ namespace GuineaPigCare.Server.Service
         {
             _context = context;
         }
-        public void RemoveGuineaPig(string email, string name)
+        public void RemoveGuineaPig(RemoveGuineaPigDto dto)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Email == email);
+            var user = _context.Users.FirstOrDefault(x => x.Email == dto.Email);
 
             if (user == null)
             {
                 throw new NotFoundException("Taki użytkownik nie istnieje w bazie danych");
             }
 
-            var guineaPig = _context.GuineaPigs.FirstOrDefault(x => x.Name == name);
+            var guineaPig = _context.GuineaPigs.FirstOrDefault(x => x.Name == dto.Name);
 
             if (guineaPig == null)
             {
@@ -97,7 +97,7 @@ namespace GuineaPigCare.Server.Service
             return guineaPigs;
         }
 
-        public void UpdateGuineaPigWeight(int id, string email, int weight)
+        public void UpdateGuineaPigWeight(string email, GuineaPigDto dto)
         {
             var user = _context.Users.FirstOrDefault(x => x.Email == email);
 
@@ -106,7 +106,7 @@ namespace GuineaPigCare.Server.Service
                 throw new NotFoundException("Taki użytkownik nie istnieje w bazie danych");
             }
 
-            var guineaPig = _context.GuineaPigs.FirstOrDefault(x => x.Id == id);
+            var guineaPig = _context.GuineaPigs.FirstOrDefault(x => x.Name == dto.Name);
 
             if (guineaPig == null)
             {
@@ -117,7 +117,7 @@ namespace GuineaPigCare.Server.Service
             {
                 throw new ForbiddenException("Świnka morska nie należy do tego użytkownika");
             }
-            guineaPig.Weight = weight;
+            guineaPig.Weight = dto.Weight;
 
             _context.GuineaPigs.Update(guineaPig);
             _context.SaveChanges();
