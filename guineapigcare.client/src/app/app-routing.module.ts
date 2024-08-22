@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { MainPageComponent } from './components-when-logout/main-page/main-page.component';
 import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './components-when-logout/register/register.component';
@@ -17,16 +16,20 @@ import { UserChangePasswordComponent } from './components-when-login/user/user-c
 import { UserEditProfileComponent } from './components-when-login/user/user-edit-profile/user-edit-profile.component';
 import { UserProfileComponent } from './components-when-login/user/user-profile/user-profile.component';
 import { UserRemoveProfileComponent } from './components-when-login/user/user-remove-profile/user-remove-profile.component';
+import { authGuard, NoLoginGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
-  {path: "", component: MainPageComponent},
-  {path: "register", component: RegisterComponent},
-  {path: "login", component: LoginComponent},
+  {path: "", component: MainPageComponent,
+    runGuardsAndResolvers: "always"
+  },
+  {path: "register", component: RegisterComponent, canActivate: [NoLoginGuard]},
+  {path: "login", component: LoginComponent, canActivate: [NoLoginGuard]},
   {path: "good-products", component: GoodProductsComponent},
   {path: "bad-products", component: BadProductsComponent},
   {path: "info", component: BeforeBuyGuineaPigComponent},
   {
     path: "user",
+    canActivate: [authGuard],
     component: UserLayoutComponent,
     children: [
       {path: "profile", component: UserProfileComponent},
@@ -37,6 +40,7 @@ const routes: Routes = [
   },
   {
   path: "guinea-pig",
+  canActivate: [authGuard],
     component: GuineaPigLayoutComponent,
     children: [
       { path: 'profile', component: GuineaPigProfileComponent },
