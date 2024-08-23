@@ -4,6 +4,7 @@ using GuineaPigCare.Server.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GuineaPigCare.Server.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240823134406_AddWeightsToGuineaPigs")]
+    partial class AddWeightsToGuineaPigs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -58,7 +61,7 @@ namespace GuineaPigCare.Server.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("GuineaPigId")
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.Property<int>("Weight")
@@ -66,7 +69,7 @@ namespace GuineaPigCare.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GuineaPigId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("GuineaPigWeights");
                 });
@@ -158,7 +161,7 @@ namespace GuineaPigCare.Server.Migrations
                 {
                     b.HasOne("GuineaPigCare.Server.Database.Entities.GuineaPig", "GuineaPig")
                         .WithMany("GuineaPigWeights")
-                        .HasForeignKey("GuineaPigId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

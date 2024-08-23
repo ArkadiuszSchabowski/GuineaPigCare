@@ -2,7 +2,8 @@ import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { ToastrService } from 'ngx-toastr';
-import { AddGuineaPigDto } from 'src/app/_models/add-guinea-pig-dto';
+import { finalize } from 'rxjs';
+import { GuineaPigDto } from 'src/app/_models/guinea-pig-dto';
 import { GuineaPigService } from 'src/app/_service/guinea-pig.service';
 import { ThemeHelper } from 'src/app/_service/themeHelper.service';
 import { TokenService } from 'src/app/_service/token.service';
@@ -18,7 +19,7 @@ export class GuineaPigAddProfileComponent
   implements OnInit
 {
   override cloudText: string = 'Dodajesz nowego przyjaciela? Super!';
-  model: AddGuineaPigDto = new AddGuineaPigDto();
+  model: GuineaPigDto = new GuineaPigDto();
   email : string = "";
 
   constructor(guineaPigService: GuineaPigService,
@@ -37,7 +38,11 @@ export class GuineaPigAddProfileComponent
 
     this.email = this.tokenService.getEmailFromToken();
 
-    this.guineaPigService.addGuineaPig(this.email, this.model).subscribe({
+    this.guineaPigService.addGuineaPig(this.email, this.model).pipe(
+      finalize(() => {
+        this.model = new GuineaPigDto();
+      })
+    ).subscribe({
       next: () => {
         this.toastr.success("Profil świnki morskiej został dodany!")
       },

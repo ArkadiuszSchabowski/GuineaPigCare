@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AddGuineaPigDto } from 'src/app/_models/add-guinea-pig-dto';
+import { ToastrService } from 'ngx-toastr';
+import { finalize } from 'rxjs';
 import { GuineaPigDto } from 'src/app/_models/guinea-pig-dto';
 import { GuineaPigService } from 'src/app/_service/guinea-pig.service';
 import { ThemeHelper } from 'src/app/_service/themeHelper.service';
@@ -9,20 +10,24 @@ import { BaseComponent } from 'src/app/_shared/base.component';
 @Component({
   selector: 'app-guinea-pig-update-profile',
   templateUrl: './guinea-pig-update-profile.component.html',
-  styleUrls: ['./guinea-pig-update-profile.component.css']
+  styleUrls: ['./guinea-pig-update-profile.component.css'],
 })
-export class GuineaPigUpdateProfileComponent extends BaseComponent implements OnInit{
+export class GuineaPigUpdateProfileComponent
+  extends BaseComponent
+  implements OnInit
+{
+  override cloudText: string = 'Ej! Przecież moja waga jest dobra!';
 
-  override cloudText: string = "Ej! Przecież moja waga jest dobra!";
-
-  email = "";
-  model: AddGuineaPigDto = new AddGuineaPigDto();
+  email = '';
+  model: GuineaPigDto = new GuineaPigDto();
   guineaPigs: GuineaPigDto[] = [];
-  selectedPig: GuineaPigDto = new GuineaPigDto();
+  selectedPig: GuineaPigDto | null = null;
 
-  constructor(guineaPigService: GuineaPigService,
+  constructor(
+    guineaPigService: GuineaPigService,
     public themeHelper: ThemeHelper,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private toastr: ToastrService
   ) {
     super(guineaPigService);
   }
@@ -35,21 +40,34 @@ export class GuineaPigUpdateProfileComponent extends BaseComponent implements On
   getEmailFromToken() {
     this.email = this.tokenService.getEmailFromToken();
   }
-  getGuineaPigs(){
+  getGuineaPigs() {
     this.guineaPigService.getGuineaPigs(this.email).subscribe({
       next: (response: GuineaPigDto[]) => {
         this.guineaPigs = response;
       },
-      error: error => console.log(error)
-    })
+      error: (error) => console.log(error),
+    });
   }
-  updateGuineaPigProfile(selectedPig: GuineaPigDto){
+  updateGuineaPigProfile(selectedPig: GuineaPigDto | null) {
 
-    selectedPig.weight = this.model.weight;
+    if(selectedPig !== null){
+      selectedPig.weight = this.model.weight;
 
-    this.guineaPigService.updateWeightGuineaPig(this.email, selectedPig).subscribe({
-      next: response => console.log(response),
-      error: error => console.log(error)
-    })
+      this.guineaPigService.updateWeight(this.email, selectedPig).pipe(
+        finalize(() => {
+          console.log("finalize");
+          this.model = new GuineaPigDto();
+          this.selectedPig = null;
+        })
+      ).subscribe({
+        next: () => this.toastr.success('Waga świnki została zaaktualizowana'),
+        error: (error) => {
+          if (error.error.errors) {
+            this.toastr.error("Wprowadzono niepopawne dane!")
+          }
+        },
+      });
+    }
+
   }
 }

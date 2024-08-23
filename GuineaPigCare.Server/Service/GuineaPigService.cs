@@ -15,6 +15,37 @@ namespace GuineaPigCare.Server.Service
         {
             _context = context;
         }
+
+        public void AddNewWeight(string email, GuineaPigDto dto)
+        {
+            var user = _context.Users.FirstOrDefault(x => x.Email == email);
+
+            if (user == null)
+            {
+                throw new NotFoundException("Taki użytkownik nie istnieje w bazie danych");
+            }
+
+            var guineaPig = _context.GuineaPigs.FirstOrDefault(x => x.Name == dto.Name);
+
+            if (guineaPig == null)
+            {
+                throw new NotFoundException("Taka świnka nie istnieje w bazie danych");
+            }
+
+            if (guineaPig.UserId != user.Id)
+            {
+                throw new ForbiddenException("Świnka morska nie należy do tego użytkownika");
+            }
+
+            var guineaPigWeight = new GuineaPigWeight();
+
+            guineaPigWeight.GuineaPigId = guineaPig.Id;
+            guineaPigWeight.Weight = dto.Weight;
+            guineaPigWeight.Date = DateTime.Now;
+
+            _context.GuineaPigWeights.Add(guineaPigWeight);
+            _context.SaveChanges();
+        }
         public void RemoveGuineaPig(RemoveGuineaPigDto dto)
         {
             var user = _context.Users.FirstOrDefault(x => x.Email == dto.Email);

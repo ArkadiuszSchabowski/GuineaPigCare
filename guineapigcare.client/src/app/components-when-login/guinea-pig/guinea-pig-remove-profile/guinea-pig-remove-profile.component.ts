@@ -1,5 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { AddGuineaPigDto } from 'src/app/_models/add-guinea-pig-dto';
+import { Component, OnInit } from '@angular/core';
 import { GuineaPigDto } from 'src/app/_models/guinea-pig-dto';
 import { RemoveGuineaPigDto } from 'src/app/_models/remove-guinea-pig-dto';
 import { GuineaPigService } from 'src/app/_service/guinea-pig.service';
@@ -16,7 +15,7 @@ export class GuineaPigRemoveProfileComponent extends BaseComponent implements On
 
   override cloudText: string = "Pamiętaj, że tej akcji nie można cofnąć!"
 
-  model: AddGuineaPigDto = new AddGuineaPigDto();
+  model: GuineaPigDto = new GuineaPigDto();
   pigs: string[] = [];
   email: string = "";
   guineaPigs: GuineaPigDto[] = [];

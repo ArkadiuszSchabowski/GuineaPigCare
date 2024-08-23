@@ -7,5 +7,6 @@
         public int Weight { get; set; }
         public virtual User User { get; set; }
         public int UserId { get; set; }
+        public List<GuineaPigWeight> GuineaPigWeights { get; set; }
     }
 }

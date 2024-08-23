@@ -13,8 +13,8 @@
             'light-theme-icon': themeHelper.currentTheme,
             'dark-theme-icon': !themeHelper.currentTheme
           }">Wybierz świnkę</mat-label>
-            <mat-select [(value)]="selectedPig">
-              <mat-option *ngFor="let guineapig of guineaPigs" [value]="guineapig.name">
+            <mat-select [(ngModel)]="selectedPig" [(value)]="selectedPig">
+              <mat-option *ngFor="let guineapig of guineaPigs" [value]="guineapig">
                 {{ guineapig.name }}
               </mat-option>
           </mat-select>

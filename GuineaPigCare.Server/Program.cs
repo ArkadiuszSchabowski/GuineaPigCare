@@ -50,18 +50,19 @@ builder.Services.AddScoped<ErrorHandlingMiddleware>();
 
 var app = builder.Build();
 
+if (app.Environment.IsProduction())
+{
 app.UseMiddleware<ErrorHandlingMiddleware>();
+}
+
 
 app.UseCors(x => x.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 

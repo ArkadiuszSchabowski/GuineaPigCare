@@ -53,13 +53,16 @@ namespace GuineaPigCare.Server.Controllers
         public ActionResult AddGuineaPigToUser([FromQuery] string email, [FromBody] GuineaPigDto dto)
         {
             _guineaPigService.AddGuineaPigToUser(email, dto);
-            return Ok();
+            _guineaPigService.AddNewWeight(email, dto);
+            return Ok(new { message = "Profil świnki morskiej został dodany!" });
         }
-        [HttpPatch("update-weight")]
+
+        [HttpPost("update-weight")]
         public ActionResult UpdateGuineaPigWeight([FromQuery] string email, [FromBody] GuineaPigDto dto)
         {
             _guineaPigService.UpdateGuineaPigWeight(email, dto);
-            return Ok();
+            _guineaPigService.AddNewWeight(email, dto);
+            return Ok(new { message = "Waga świnki została zaaktualizowana!" });
         }
 
         [HttpDelete]
