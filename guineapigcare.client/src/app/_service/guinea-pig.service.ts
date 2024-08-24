@@ -7,6 +7,7 @@ import { PaginationDto } from '../_models/pagination-dto';
 import { ProductResult } from '../_models/product-result';
 import { GuineaPigDto } from '../_models/guinea-pig-dto';
 import { RemoveGuineaPigDto } from '../_models/remove-guinea-pig-dto';
+import { GuineaPigWeightsDto } from '../_models/guinea-pigs-weights-dto';
 
 @Injectable({
   providedIn: 'root',
@@ -45,6 +46,30 @@ export class GuineaPigService {
       { params }
     );
   }
+
+  getGuineaPig(email: string, name: string){
+    let params = new HttpParams().set('email', email).set('name', name)
+
+    return this.http.get(environment.apiUrl + "guineapig", { params });
+  }
+
+  getGuineaPigs(email: string) {
+    let params = new HttpParams().set('email', email);
+
+    return this.http.get<GuineaPigDto[]>(
+      environment.apiUrl + 'guineapig/guinea-pigs',
+      { params }
+    );
+  }
+  getGuineaPigWeights(email: string, name: string){
+    let params = new HttpParams().set('email', email).set('name', name)
+
+    return this.http.get<GuineaPigWeightsDto[]>(
+      environment.apiUrl + 'guineapig/weights',
+      { params }
+    );
+  }
+
   addGuineaPig(email: string, guineaPigDto: GuineaPigDto) {
     let params = new HttpParams().set('email', email);
 
@@ -63,18 +88,12 @@ export class GuineaPigService {
     );
   }
 
-  getGuineaPigs(email: string) {
-    let params = new HttpParams().set('email', email);
-
-    return this.http.get<GuineaPigDto[]>(
-      environment.apiUrl + 'guineapig/guinea-pigs',
-      { params }
-    );
-  }
   removeGuineaPig(guineaPig: RemoveGuineaPigDto) {
     let params = new HttpParams()
       .set('email', guineaPig.email)
       .set('name', guineaPig.name);
+
+      console.log(params + "params");
 
     return this.http.delete(environment.apiUrl + 'guineapig', {
       params,

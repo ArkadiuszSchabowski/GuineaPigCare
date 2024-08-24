@@ -1,0 +1,37 @@
+<div id="guinea-pig-container">
+  <form #ngForm="ngForm" (ngSubmit)="getGuineaPigWeights()">
+    <mat-card
+      [ngClass]="{
+        'light-theme': themeHelper.currentTheme,
+        'dark-theme': !themeHelper.currentTheme
+      }"
+    >
+      <mat-card-content>
+        <label class="mat-card-label">Wybierz świnkę</label>
+        <mat-form-field>
+          <mat-label  [ngClass]="{
+            'light-theme-icon': themeHelper.currentTheme,
+            'dark-theme-icon': !themeHelper.currentTheme
+          }">Wybierz świnkę</mat-label>
+          <mat-select [(value)]="selectedPig">
+            <mat-option *ngFor="let guineapig of guineaPigs" [value]="guineapig">
+              {{ guineapig.name }}
+            </mat-option>
+        </mat-select>
+        </mat-form-field>
+
+        <button
+          type="submit"
+          mat-flat-button
+          class="submit-button"
+          [ngClass]="{
+            'light-theme-icon': themeHelper.currentTheme,
+            'dark-theme-icon': !themeHelper.currentTheme
+          }"
+        >
+          OK
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </form>
+</div>

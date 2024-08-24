@@ -15,6 +15,25 @@ namespace GuineaPigCare.Server.Service
         {
             _context = context;
         }
+        public List<GuineaPigWeightsDto> GetWeights(string email, string name)
+        {
+            var guineaPig = _context.GuineaPigs
+                .Include(w => w.GuineaPigWeights)
+                .FirstOrDefault(x => x.Name == name && x.User.Email == email);
+
+            if (guineaPig == null)
+            {
+                throw new NotFoundException("Świnka morska nie istnieje lub nie należy do tego użytkownika.");
+            }
+
+            var weightsDto = guineaPig.GuineaPigWeights.Select(weight => new GuineaPigWeightsDto
+            {
+                Weight = weight.Weight,
+                Date = weight.Date.ToString("yyyy-MM-dd")
+            }).ToList();
+
+            return weightsDto;
+        }
 
         public void AddNewWeight(string email, GuineaPigDto dto)
         {
@@ -95,7 +114,7 @@ namespace GuineaPigCare.Server.Service
             var guineaPigDto = new GuineaPigDto();
 
             guineaPigDto.Name = guineaPig.Name;
-            guineaPig.Weight = guineaPig.Weight;
+            guineaPigDto.Weight = guineaPig.Weight;
 
             return guineaPigDto;
         }

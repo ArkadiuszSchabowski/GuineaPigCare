@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { finalize } from 'rxjs';
 import { GuineaPigDto } from 'src/app/_models/guinea-pig-dto';
 import { RemoveGuineaPigDto } from 'src/app/_models/remove-guinea-pig-dto';
 import { GuineaPigService } from 'src/app/_service/guinea-pig.service';
@@ -23,7 +25,8 @@ export class GuineaPigRemoveProfileComponent extends BaseComponent implements On
 
   constructor(guineaPigService: GuineaPigService,
     public themeHelper: ThemeHelper,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private toastr: ToastrService
   ) {
     super(guineaPigService);
   }
@@ -46,14 +49,24 @@ export class GuineaPigRemoveProfileComponent extends BaseComponent implements On
     })
   }
   removeGuineaPigProfile() {
-
+    
     this.selectedPig.email = this.tokenService.getEmailFromToken();
 
-    this.guineaPigService.removeGuineaPig(this.selectedPig).subscribe({
+
+    this.guineaPigService.removeGuineaPig(this.selectedPig).pipe(
+      finalize(() => {
+
+      })
+    ).subscribe({
       next: () => {
         this.getGuineaPigs();
+        this.toastr.success("Profil świnki został usunięty!");
       },
-      error: error => console.log(error)
+      error: () => {
+         {
+          this.toastr.error("Nie wybrano profilu świnki!");
+        }
+      }
     })
   }
 }

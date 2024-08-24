@@ -18,7 +18,7 @@ namespace GuineaPigCare.Server.Controllers
             _sortService = sortService;
         }
         [HttpGet]
-        public ActionResult<GuineaPigDto> GetGuineaPig([FromQuery] string email, [FromBody] string name)
+        public ActionResult<GuineaPigDto> GetGuineaPig([FromQuery] string email, [FromQuery] string name)
         {
             var guineaPig = _guineaPigService.GetGuineaPig(email, name);
             return Ok(guineaPig);
@@ -28,6 +28,12 @@ namespace GuineaPigCare.Server.Controllers
         {
             List<GuineaPigDto> guineaPigs = _guineaPigService.GetGuineaPigs(email);
             return Ok(guineaPigs);
+        }
+        [HttpGet("weights")]
+        public ActionResult<List<GuineaPigWeightsDto>> GetWeights([FromQuery] string email, [FromQuery] string name)
+        {
+            List<GuineaPigWeightsDto> guineaPigWeights = _guineaPigService.GetWeights(email, name);
+            return Ok(guineaPigWeights);
         }
         [HttpGet("info")]
         public ActionResult GetInformationGuineaPig()
@@ -42,6 +48,7 @@ namespace GuineaPigCare.Server.Controllers
             ProductResult sortProducts = _sortService.SortByName(products, paginationDto);
             return Ok(sortProducts);
         }
+
         [HttpGet("good-products")]
         public ActionResult GetGoodProductsForGuineaPig([FromQuery] PaginationDto paginationDto)
         {

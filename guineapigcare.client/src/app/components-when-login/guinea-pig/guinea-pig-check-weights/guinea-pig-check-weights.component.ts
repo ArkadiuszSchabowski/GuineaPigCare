@@ -8,20 +8,21 @@ import { TokenService } from 'src/app/_service/token.service';
 import { BaseComponent } from 'src/app/_shared/base.component';
 
 @Component({
-  selector: 'app-guinea-pig-update-profile',
-  templateUrl: './guinea-pig-update-profile.component.html',
-  styleUrls: ['./guinea-pig-update-profile.component.css'],
+  selector: 'app-guinea-pig-check-weights',
+  templateUrl: './guinea-pig-check-weights.component.html',
+  styleUrls: ['./guinea-pig-check-weights.component.css'],
 })
-export class GuineaPigUpdateProfileComponent
+export class GuineaPigCheckWeightsComponent
   extends BaseComponent
   implements OnInit
 {
-  override cloudText: string = 'Ej! Przecież moja waga jest dobra!';
+  override cloudText: string = 'Ej! Moja waga przecież jest dobra!';
 
-  email = '';
   model: GuineaPigDto = new GuineaPigDto();
+  pigs: string[] = [];
+  email: string = '';
   guineaPigs: GuineaPigDto[] = [];
-  selectedPig: GuineaPigDto | null = null;
+  selectedPig: GuineaPigDto = new GuineaPigDto();
 
   constructor(
     guineaPigService: GuineaPigService,
@@ -48,29 +49,26 @@ export class GuineaPigUpdateProfileComponent
       error: (error) => console.log(error),
     });
   }
-  updateGuineaPigProfile(selectedPig: GuineaPigDto | null) {
-    if(selectedPig === null){
-      this.toastr.error("Wprowadzono niepoprawne dane!");
+  getGuineaPigWeights() {
+    if (this.selectedPig === null) {
+      this.toastr.error('Nie wybrano profilu świnki');
     }
 
-    if(selectedPig !== null){
-      selectedPig.weight = this.model.weight;
+    this.email = this.tokenService.getEmailFromToken();
 
-      this.guineaPigService.updateWeight(this.email, selectedPig).pipe(
+    this.guineaPigService
+      .getGuineaPigWeights(this.email, this.selectedPig.name)
+      .pipe(
         finalize(() => {
-          console.log("finalize");
-          this.model = new GuineaPigDto();
-          this.selectedPig = null;
+          this.selectedPig = new GuineaPigDto();
         })
-      ).subscribe({
-        next: () => this.toastr.success('Waga świnki została zaaktualizowana'),
-        error: (error) => {
-          if (error.error.errors) {
-            this.toastr.error("Wprowadzono niepopawne dane!")
-          }
+      )
+      .subscribe({
+        next: (response) => {
+          console.log(response);
+          this.getGuineaPigs();
         },
+        error: (error) => this.toastr.error("Nie wybrano profilu świnki!"),
       });
-    }
-
   }
 }
