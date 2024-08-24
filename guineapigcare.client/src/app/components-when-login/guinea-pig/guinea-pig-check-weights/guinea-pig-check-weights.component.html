@@ -7,17 +7,24 @@
       }"
     >
       <mat-card-content>
-        <label class="mat-card-label">Wybierz świnkę</label>
+        <label class="mat-card-label">Sprawdź wagę świnki</label>
         <mat-form-field>
-          <mat-label  [ngClass]="{
-            'light-theme-icon': themeHelper.currentTheme,
-            'dark-theme-icon': !themeHelper.currentTheme
-          }">Wybierz świnkę</mat-label>
+          <mat-label
+            [ngClass]="{
+              'light-theme-icon': themeHelper.currentTheme,
+              'dark-theme-icon': !themeHelper.currentTheme
+            }"
+            >Wybierz świnkę</mat-label
+          >
+
           <mat-select [(value)]="selectedPig">
-            <mat-option *ngFor="let guineapig of guineaPigs" [value]="guineapig">
+            <mat-option
+              *ngFor="let guineapig of guineaPigs"
+              [value]="guineapig"
+            >
               {{ guineapig.name }}
             </mat-option>
-        </mat-select>
+          </mat-select>
         </mat-form-field>
 
         <button
@@ -34,4 +41,5 @@
       </mat-card-content>
     </mat-card>
   </form>
+  <div id="canvas-container"></div>
 </div>

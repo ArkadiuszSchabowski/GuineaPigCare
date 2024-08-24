@@ -15,7 +15,7 @@ export class ChartComponent implements OnInit {
   chart: any;
   chart2: any;
   email: string = "swinka@o2.pl";
-  name: string = "Tola";
+  name: string = "Kreska";
 
   weights: GuineaPigWeightsDto[] = [];
 
@@ -37,6 +37,7 @@ export class ChartComponent implements OnInit {
   }
 
   updateChartData() {
+
     const labels = this.weights.map(weight => weight.date);
     const data = this.weights.map(weight => weight.weight);
 
@@ -63,5 +64,6 @@ export class ChartComponent implements OnInit {
 
     // Tworzenie wykresu po zaktualizowaniu konfiguracji
     this.chart = new Chart("canvas", this.config);
+    this.chart2 = new Chart("canvas2", this.config);
   }
 }

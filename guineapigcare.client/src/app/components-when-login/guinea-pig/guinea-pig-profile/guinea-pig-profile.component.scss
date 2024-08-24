@@ -1,8 +1,14 @@
+#guinea-pig-container{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+}
 .info-text{
-    margin: 20px auto 10px 20px;
+    margin: 20px 10px;
 }
 .info-text-middle{
-    margin: 10px auto 10px 20px;
+    margin: 10px 10px;
 }
 #weight-list{
     margin: 10px auto 10px 35px;

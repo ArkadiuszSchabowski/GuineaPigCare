@@ -3,13 +3,10 @@
     width: 600px;
     height: 600px;
 }
-#canvas, #canvas2{
+#canvas{
     display: flex;
     width: 250px;
     height: 250px;
     padding: 20px;
     background-color: white;
-}
-#canvas2{
-    display: flex;
 }
