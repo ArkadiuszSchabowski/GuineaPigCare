@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: "https://guineapigcareapi.azurewebsites.net/api/"
+    apiUrl: "https://guineapigcare.azurewebsites.net/api/"
   };
