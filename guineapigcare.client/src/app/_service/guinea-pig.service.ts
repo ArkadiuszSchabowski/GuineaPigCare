@@ -1,6 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../_environments/environment_dev';
 import { GuineaPigInformationDto } from '../_models/guinea-pig-information-dto';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { PaginationDto } from '../_models/pagination-dto';
@@ -8,6 +7,7 @@ import { ProductResult } from '../_models/product-result';
 import { GuineaPigDto } from '../_models/guinea-pig-dto';
 import { RemoveGuineaPigDto } from '../_models/remove-guinea-pig-dto';
 import { GuineaPigWeightsDto } from '../_models/guinea-pigs-weights-dto';
+import { environment } from '../_environments/environment_prod';
 
 @Injectable({
   providedIn: 'root',
