@@ -36,11 +36,10 @@ export class GoodProductsComponent extends BaseComponent implements OnInit{
 
     this.guineaPigService.getGoodProducts(this.pagination).subscribe({
       next: response => {
-        console.log(response);
         this.products = response.products;
         this.counter = response.counter;
       },
-      error: error => console.log(error)
+      error: () => {}
     })
   };
   changePage(event: PageEvent){
@@ -54,7 +53,7 @@ export class GoodProductsComponent extends BaseComponent implements OnInit{
         this.counter = response.counter
       },
 
-      error: error => console.log(error)
+      error: () => {}
     })
   }
 }

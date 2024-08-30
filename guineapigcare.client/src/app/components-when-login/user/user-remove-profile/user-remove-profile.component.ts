@@ -47,7 +47,7 @@ export class UserRemoveProfileComponent extends BaseComponent implements OnInit{
           this.toastr.success("Twoje konto zostało usunięte!");
           this.router.navigateByUrl("/");
         },
-      error: error => console.log(error)
+        error: () => {}
     })
   }
 }

@@ -28,9 +28,8 @@ export class BeforeBuyGuineaPigComponent extends BaseComponent implements OnInit
     this.guineaPigService.getInformationGuineaPigs().subscribe({
       next: (response) => {
         this.information = response;
-        console.log(this.information);
       },
-      error: (error) => console.log(error),
+      error: () => {}
     });
   }
 }

@@ -56,7 +56,7 @@ export class UserEditProfileComponent extends BaseComponent implements OnInit {
           this.toastr.success("Twoje dane zostały zaaktualizowane!")
           this.router.navigateByUrl("/user/profile");
         },
-        error: (error) => console.log(error)
+        error: () => {}
       });
     }
   }

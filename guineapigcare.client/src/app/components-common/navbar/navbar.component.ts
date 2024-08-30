@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
       next: (response) => {
         this.currentTheme = response;
       },
-      error: (error) => console.log(error),
+      error: () => {}
     });
   }
 

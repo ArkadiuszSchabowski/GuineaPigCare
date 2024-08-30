@@ -86,25 +86,22 @@ export class GuineaPigCheckWeightsComponent
 
   updateChartData() {
     if (!this.weights.length || !this.selectedPig.name) {
-      return; // Wyjście, jeśli nie ma danych do pokazania
+      return;
     }
 
     const labels = this.weights.map(weight => weight.date);
     const data = this.weights.map(weight => weight.weight);
 
-    // Usuń istniejący wykres, jeśli istnieje
     if (this.chart) {
       this.chart.destroy();
     }
 
-    // Usuń istniejący element canvas, jeśli istnieje
     const canvasContainer = this.el.nativeElement.querySelector('#canvas-container');
 
     if (canvasContainer.firstChild) {
       canvasContainer.removeChild(canvasContainer.firstChild);
     }
     
-    // Tworzenie dynamicznego elementu canvas
     const canvas = this.renderer.createElement('canvas');
     this.renderer.setStyle(canvas, 'display', 'flex');
     this.renderer.setStyle(canvas, 'justify-content', 'center');
@@ -118,7 +115,6 @@ export class GuineaPigCheckWeightsComponent
     this.renderer.appendChild(canvasContainer, canvas);
     this.renderer.appendChild(canvasContainer, canvas);
 
-    // Tworzenie wykresu
     this.config = {
       type: 'line',
       data: {
@@ -141,6 +137,6 @@ export class GuineaPigCheckWeightsComponent
       },
     };
 
-    this.chart = new Chart(canvas, this.config); // Inicjalizacja wykresu z nowym elementem canvas
+    this.chart = new Chart(canvas, this.config);
   }
 }

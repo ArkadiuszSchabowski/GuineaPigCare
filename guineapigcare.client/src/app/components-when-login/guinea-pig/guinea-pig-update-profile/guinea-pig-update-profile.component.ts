@@ -45,7 +45,7 @@ export class GuineaPigUpdateProfileComponent
       next: (response: GuineaPigDto[]) => {
         this.guineaPigs = response;
       },
-      error: (error) => console.log(error),
+      error: () => {},
     });
   }
   updateGuineaPigProfile(selectedPig: GuineaPigDto | null) {

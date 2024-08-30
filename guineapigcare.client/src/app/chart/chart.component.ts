@@ -62,7 +62,6 @@ export class ChartComponent implements OnInit {
       }
     };
 
-    // Tworzenie wykresu po zaktualizowaniu konfiguracji
     this.chart = new Chart("canvas", this.config);
     this.chart2 = new Chart("canvas2", this.config);
   }

@@ -25,7 +25,7 @@ export class FooterNavigationComponent implements OnInit{
   setComponentCloudText() {
     this.guineaPigService.isTextSubject$.subscribe({
       next: response => this.componentText = response,
-      error: error => console.log(error)
+      error: () => {}
     });
   }
 
@@ -34,7 +34,7 @@ export class FooterNavigationComponent implements OnInit{
       next: response => {
         this.currentTheme = response
       },
-      error: error => console.log(error)
+      error: () => {}
     });
   }
   

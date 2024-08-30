@@ -38,7 +38,7 @@ export class BadProductsComponent extends BaseComponent implements OnInit{
         this.products = response.products;
         this.counter = response.counter;
       },
-      error: error => console.log(error)
+      error: () => {}
     })
   };
 
@@ -49,7 +49,7 @@ export class BadProductsComponent extends BaseComponent implements OnInit{
 
     this.guineaPigService.getBadProducts(this.pagination).subscribe({
       next: response => this.products = response.products,
-      error: error => error
+      error: () => {}
     })
   }
 }

@@ -67,7 +67,6 @@ export class RegisterComponent extends BaseComponent implements OnInit {
           }
         },
         error: (error) => {
-          console.log(error);
           this.model = new RegisterUserDto();
           this.toastr.error(error.error + '!');
         },
@@ -102,13 +101,11 @@ export class RegisterComponent extends BaseComponent implements OnInit {
 
   registerUser(): Observable<boolean> {
     return this.accountService.registerUser(this.model).pipe(
-      map(response => {
-        console.log(response);
+      map(() => {
         return true;
       }),
       catchError(error => {
         this.toastr.error(error.error || 'Wystąpił błąd podczas rejestracji.');
-        console.log(error);
         return of(false);
       })
     );
