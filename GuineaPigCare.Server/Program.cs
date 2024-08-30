@@ -7,9 +7,12 @@ using GuineaPigCare.Server.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using NLog.Web;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Host.UseNLog();
 
 builder.Services.AddControllers();
 
