@@ -40,7 +40,7 @@ builder.Services.AddAuthentication(option =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<MyDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("GuineaPigCareConnectionStringProduction")));
+    builder.Services.AddDbContext<MyDbContext>(options => options.UseInMemoryDatabase("MemoryDb"));
 
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IGuineaPigService, GuineaPigService>();
@@ -53,10 +53,10 @@ builder.Services.AddScoped<ErrorHandlingMiddleware>();
 
 var app = builder.Build();
 
-//if (app.Environment.IsProduction())
-//{
-//app.UseMiddleware<ErrorHandlingMiddleware>();
-//}
+if (app.Environment.IsProduction())
+{
+    app.UseMiddleware<ErrorHandlingMiddleware>();
+}
 
 
 app.UseCors(x => x.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
