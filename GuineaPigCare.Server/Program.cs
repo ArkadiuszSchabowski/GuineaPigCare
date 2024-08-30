@@ -53,10 +53,10 @@ builder.Services.AddScoped<ErrorHandlingMiddleware>();
 
 var app = builder.Build();
 
-if (app.Environment.IsProduction())
-{
-app.UseMiddleware<ErrorHandlingMiddleware>();
-}
+//if (app.Environment.IsProduction())
+//{
+//app.UseMiddleware<ErrorHandlingMiddleware>();
+//}
 
 
 app.UseCors(x => x.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
