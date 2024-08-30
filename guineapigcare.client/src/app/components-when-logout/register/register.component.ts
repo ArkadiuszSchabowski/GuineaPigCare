@@ -67,6 +67,7 @@ export class RegisterComponent extends BaseComponent implements OnInit {
           }
         },
         error: (error) => {
+          console.log(error);
           this.model = new RegisterUserDto();
           this.toastr.error(error.error + '!');
         },
