@@ -5,6 +5,7 @@ import { GuineaPigDto } from 'src/app/_models/guinea-pig-dto';
 import { GuineaPigService } from 'src/app/_service/guinea-pig.service';
 import { ThemeHelper } from 'src/app/_service/themeHelper.service';
 import { TokenService } from 'src/app/_service/token.service';
+import { ValidateService } from 'src/app/_service/validate.service';
 import { BaseComponent } from 'src/app/_shared/base.component';
 
 @Component({
@@ -22,12 +23,14 @@ export class GuineaPigUpdateProfileComponent
   model: GuineaPigDto = new GuineaPigDto();
   guineaPigs: GuineaPigDto[] = [];
   selectedPig: GuineaPigDto | null = null;
+  weightGuineaPig: boolean = false;
 
   constructor(
     guineaPigService: GuineaPigService,
     public themeHelper: ThemeHelper,
     private tokenService: TokenService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private validateService: ValidateService
   ) {
     super(guineaPigService);
   }
@@ -49,12 +52,19 @@ export class GuineaPigUpdateProfileComponent
     });
   }
   updateGuineaPigProfile(selectedPig: GuineaPigDto | null) {
+
     if(selectedPig === null){
       this.toastr.error("Wprowadzono niepoprawne dane!");
     }
+    
+    if(selectedPig?.weight !== undefined){
 
-    if(selectedPig !== null){
       selectedPig.weight = this.model.weight;
+
+      this.weightGuineaPig = this.validateService.validateWeightGuineaPig(this.model.weight);
+    }
+
+    if(selectedPig !== null && this.weightGuineaPig){
 
       this.guineaPigService.updateWeight(this.email, selectedPig).pipe(
         finalize(() => {

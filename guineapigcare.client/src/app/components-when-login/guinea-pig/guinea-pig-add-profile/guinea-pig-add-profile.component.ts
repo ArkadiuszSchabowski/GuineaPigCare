@@ -7,6 +7,7 @@ import { GuineaPigDto } from 'src/app/_models/guinea-pig-dto';
 import { GuineaPigService } from 'src/app/_service/guinea-pig.service';
 import { ThemeHelper } from 'src/app/_service/themeHelper.service';
 import { TokenService } from 'src/app/_service/token.service';
+import { ValidateService } from 'src/app/_service/validate.service';
 import { BaseComponent } from 'src/app/_shared/base.component';
 
 @Component({
@@ -21,11 +22,14 @@ export class GuineaPigAddProfileComponent
   override cloudText: string = 'Dodajesz nowego przyjaciela? Super!';
   model: GuineaPigDto = new GuineaPigDto();
   email : string = "";
+  guineaPigName: boolean = false;
+  guineaPigWeight: boolean = false;
 
   constructor(guineaPigService: GuineaPigService,
     public themeHelper: ThemeHelper,
     private toastr: ToastrService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private validateService: ValidateService
   ) {
     super(guineaPigService);
   }
@@ -38,19 +42,27 @@ export class GuineaPigAddProfileComponent
 
     this.email = this.tokenService.getEmailFromToken();
 
-    this.guineaPigService.addGuineaPig(this.email, this.model).pipe(
-      finalize(() => {
-        this.model = new GuineaPigDto();
+    this.guineaPigWeight = this.validateService.validateWeightGuineaPig(this.model.weight);
+    
+    this.guineaPigName = this.validateService.validateName(this.model.name);
+
+
+    if(this.guineaPigWeight){
+
+      this.guineaPigService.addGuineaPig(this.email, this.model).pipe(
+        finalize(() => {
+          this.model = new GuineaPigDto();
+        })
+      ).subscribe({
+        next: () => {
+          this.toastr.success("Profil świnki morskiej został dodany!")
+        },
+        error: error =>{
+          if(error.status === 400){
+            this.toastr.error("Wprowadzono niepoprawne dane!")
+          }
+        } 
       })
-    ).subscribe({
-      next: () => {
-        this.toastr.success("Profil świnki morskiej został dodany!")
-      },
-      error: error =>{
-        if(error.status === 400){
-          this.toastr.error("Wprowadzono niepoprawne dane!")
-        }
-      } 
-    })
-  }
+    }
+    }
 }
