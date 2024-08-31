@@ -10,8 +10,12 @@
 body{
   overflow-x: hidden;
 }
+label {
+  margin-bottom: 20px;
+  color: white !important;
+}
 
-#container {
+.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -109,7 +113,7 @@ mat-card{
 }
 
 mat-card-content{
-  display: flex;
+  display: flex !important;
   flex-direction: column;
   justify-content: center;
   align-items: center;

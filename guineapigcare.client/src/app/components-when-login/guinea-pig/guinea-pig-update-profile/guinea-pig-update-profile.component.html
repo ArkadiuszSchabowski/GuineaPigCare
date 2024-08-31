@@ -1,4 +1,4 @@
-<div id="guinea-pig-container">
+<div class="container">
   <form #ngForm="ngForm" (ngSubmit)="updateGuineaPigProfile(selectedPig)">
     <mat-card
       [ngClass]="{
@@ -7,7 +7,7 @@
       }"
     >
       <mat-card-content>
-        <label class="mat-card-label">Aktualizacja wagi świnki</label>
+        <label class="mat-card-label">Aktualizuj wagę świnki</label>
         <mat-form-field>
           <mat-label  [ngClass]="{
             'light-theme-icon': themeHelper.currentTheme,
