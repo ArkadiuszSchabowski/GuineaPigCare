@@ -1,40 +1,6 @@
-#remove-profile-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-    height: 90%;
-  }
-  mat-card {
-    width: 400px;
-    height: 250px;
-  }
-  mat-card-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  label {
-    margin-top: 20px;
-    margin-bottom: 20px !important;
-    color: white !important;
-  }
+
   @media screen and (min-width: 768px) and (max-width: 1199px) {
-    mat-card-content {
-      display: flex;
-      form {
-        width: 600px;
-        height: 400px;
-      }
-    }
+
   }
   @media screen and (min-width: 1200px) {
   }
