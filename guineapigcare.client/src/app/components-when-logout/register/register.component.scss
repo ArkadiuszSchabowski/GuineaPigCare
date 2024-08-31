@@ -1,3 +1,6 @@
+@use '@angular/material' as mat;
+@use 'src/custom-theme' as theme;
+
 mat-vertical-stepper{
   display: flex;
   flex-direction: column;
@@ -40,6 +43,15 @@ label{
   margin-bottom: 20px;
   font-size: 26px;
 }
+;;ng-deep .light-theme-font-color{
+  color: black !important;
+}
+::ng-deep .dark-theme-font-color{
+  color: white !important;
+}
+// ::ng-deep .mat-step-label{
+
+//   }
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   mat-form-field{

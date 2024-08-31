@@ -1,8 +1,14 @@
 <mat-vertical-stepper linear #stepper>
   <mat-step [editable]="false" [completed]="isFirstStepCompleted">
-    <ng-template matStepLabel >Krok pierwszy - Email oraz hasło</ng-template>
+    <ng-template matStepLabel>
+      <div [ngClass]="{
+        'light-theme-font-color': themeHelper.currentTheme,
+        'dark-theme-font-color': !themeHelper.currentTheme
+      }">Krok pierwszy - Email oraz hasło</div>
+    </ng-template>
     <form #ngForm="ngForm">
-      <mat-card id="mat-card-email-and-password"
+      <mat-card
+        id="mat-card-email-and-password"
         appearance="outlined"
         [ngClass]="{
           'light-theme': themeHelper.currentTheme,
@@ -76,7 +82,7 @@
           <button
             mat-flat-button
             color="primary"
-            (click)="checkEmailAndPassword(stepper);"
+            (click)="checkEmailAndPassword(stepper)"
             class="submit-button"
             [ngClass]="{
               'light-theme-icon': themeHelper.currentTheme,
@@ -91,9 +97,14 @@
   </mat-step>
 
   <mat-step [editable]="false" [completed]="isSecondStepCompleted">
-    <ng-template matStepLabel>Krok drugi - dane personalne</ng-template>
+    <ng-template matStepLabel>
+      <div [ngClass]="{
+        'light-theme-font-color': themeHelper.currentTheme,
+        'dark-theme-font-color': !themeHelper.currentTheme
+      }">Krok drugi - dane personalne</div></ng-template>
     <form #ngForm="ngForm">
-      <mat-card id="mat-card-personal-information"
+      <mat-card
+        id="mat-card-personal-information"
         appearance="outlined"
         [ngClass]="{
           'light-theme': themeHelper.currentTheme,
@@ -120,11 +131,7 @@
               }"
               >Nazwisko:</mat-label
             >
-            <input
-              name="surname"
-              [(ngModel)]="model.surname"
-              matInput
-            />
+            <input name="surname" [(ngModel)]="model.surname" matInput />
           </mat-form-field>
 
           <mat-form-field>
@@ -135,11 +142,7 @@
               }"
               >Miasto:</mat-label
             >
-            <input
-              name="city"
-              [(ngModel)]="model.city"
-              matInput
-            />
+            <input name="city" [(ngModel)]="model.city" matInput />
           </mat-form-field>
 
           <button
@@ -150,17 +153,24 @@
               'dark-theme-icon': !themeHelper.currentTheme
             }"
             color="primary"
-            (click)="checkPersonalInformation(stepper);">
-            Dalej</button>
+            (click)="checkPersonalInformation(stepper)"
+          >
+            Dalej
+          </button>
         </mat-card-content>
       </mat-card>
     </form>
   </mat-step>
 
   <mat-step [editable]="false">
-    <ng-template matStepLabel>Krok trzeci - potwierdzenie</ng-template>
+    <ng-template matStepLabel>
+      <div [ngClass]="{
+        'light-theme-font-color': themeHelper.currentTheme,
+        'dark-theme-font-color': !themeHelper.currentTheme
+      }">Krok trzeci - potwierdzenie</div></ng-template>
     <form #ngForm="ngForm">
-      <mat-card id="mat-card-confirm-register"
+      <mat-card
+        id="mat-card-confirm-register"
         appearance="outlined"
         [ngClass]="{
           'light-theme': themeHelper.currentTheme,
@@ -168,11 +178,9 @@
         }"
       >
         <mat-card-content>
-         
-<label>Twoje konto zostało zarejestrowane!</label>
+          <label>Twoje konto zostało zarejestrowane!</label>
         </mat-card-content>
       </mat-card>
     </form>
   </mat-step>
-
 </mat-vertical-stepper>
