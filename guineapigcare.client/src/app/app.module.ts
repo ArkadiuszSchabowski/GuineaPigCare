@@ -36,7 +36,6 @@ import { UserEditProfileComponent } from './components-when-login/user/user-edit
 import { UserProfileComponent } from './components-when-login/user/user-profile/user-profile.component';
 import { NavbarComponent } from './components-common/navbar/navbar.component';
 import { FooterNavigationComponent } from './components-common/footer-navigation/footer-navigation.component';
-import { GuineaPigManager } from './components-_helpers/guinea-pig-manager/guinea-pig-manager.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorInterceptor } from './_inteceptors/error.interceptor';
@@ -65,7 +64,6 @@ import { GuineaPigCheckWeightsComponent } from './components-when-login/guinea-p
     GuineaPigRemoveProfileComponent,
     UserLayoutComponent,
     GuineaPigLayoutComponent,
-    GuineaPigManager,
     ChartComponent,
     GuineaPigCheckWeightsComponent,
   ],
