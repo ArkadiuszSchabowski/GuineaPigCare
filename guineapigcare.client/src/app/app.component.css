@@ -11,7 +11,7 @@ app-navbar {
   max-width: 100%;
   min-height: 10vh;
   padding-top: 5px;
-  z-index: 1;
+  z-index: 10;
 }
 router-outlet {
   display: flex;
@@ -26,7 +26,7 @@ app-footer-navigation {
   min-height: 250px;
   margin-top: auto;
   padding-bottom: 5px;
-  z-index: 1;
+  z-index: 10;
 }
 @media screen and (min-width: 768px) and (max-width: 1199px) {
   app-navbar, app-footer-navigation {

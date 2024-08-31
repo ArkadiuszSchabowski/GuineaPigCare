@@ -3,7 +3,7 @@
     <div id="title">Ulubione produkty dla świnki morskiej:</div>
     <div id="product-container">
       <ul id="product" *ngFor="let product of products">
-        <div class="container-product-left">
+        <div id="container-product-left">
           <div id="product-imageUrl"><img [ngClass]="{'light-theme-img-green-border': themeHelper.currentTheme, 'dark-theme-img-green-border': !themeHelper.currentTheme}" src="{{ product.imageUrl }} "></div>
           <div id="product-name">{{ product.name }}</div>
         </div>
