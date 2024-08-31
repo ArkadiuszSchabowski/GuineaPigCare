@@ -6,6 +6,8 @@ mat-vertical-stepper{
   flex-direction: column;
   width: 100%;
   height: auto;
+  justify-content: center;
+  align-items: center;
   background-color: transparent;
 }
 mat-step{
@@ -15,10 +17,8 @@ height: 100%;
 }
 mat-card{
   display: flex;
-  height: 300px;
-  width: 300px;
-  height: 375px;
-  width: 350px;
+  width: 280px;
+  height: 380px;
   margin-top: 20px;
 }
 #mat-card-personal-information{
@@ -26,6 +26,9 @@ height: 450px !important;
 }
 #mat-card-confirm-register{
   height: 200px;
+}
+label{
+  margin-bottom: 20px;
 }
 
 mat-card-content{
@@ -37,7 +40,7 @@ mat-card-content{
   font-size: 16px;
 }
 mat-form-field{
-  width: 250px;
+  width: 200px;
 }
 label{
   margin-bottom: 20px;
