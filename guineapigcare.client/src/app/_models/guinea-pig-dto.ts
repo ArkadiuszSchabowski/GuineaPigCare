@@ -1,4 +1,4 @@
 export class GuineaPigDto{
     name: string = "";
-    weight: number = 0;
+    weight: number | null= null;
 }

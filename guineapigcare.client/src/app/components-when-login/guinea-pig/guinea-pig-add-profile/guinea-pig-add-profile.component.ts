@@ -21,11 +21,12 @@ export class GuineaPigAddProfileComponent
 {
   override cloudText: string = 'Dodajesz nowego przyjaciela? Super!';
   model: GuineaPigDto = new GuineaPigDto();
-  email : string = "";
+  email: string = '';
   guineaPigName: boolean = false;
   guineaPigWeight: boolean = false;
 
-  constructor(guineaPigService: GuineaPigService,
+  constructor(
+    guineaPigService: GuineaPigService,
     public themeHelper: ThemeHelper,
     private toastr: ToastrService,
     private tokenService: TokenService,
@@ -39,30 +40,41 @@ export class GuineaPigAddProfileComponent
   }
 
   addGuineaPigProfile() {
-
     this.email = this.tokenService.getEmailFromToken();
 
-    this.guineaPigWeight = this.validateService.validateWeightGuineaPig(this.model.weight);
-    
     this.guineaPigName = this.validateService.validateName(this.model.name);
 
-
-    if(this.guineaPigWeight){
-
-      this.guineaPigService.addGuineaPig(this.email, this.model).pipe(
-        finalize(() => {
-          this.model = new GuineaPigDto();
-        })
-      ).subscribe({
-        next: () => {
-          this.toastr.success("Profil świnki morskiej został dodany!")
-        },
-        error: error =>{
-          if(error.status === 400){
-            this.toastr.error("Wprowadzono niepoprawne dane!")
-          }
-        } 
-      })
+    if (this.guineaPigName) {
+      if (this.model.weight === null) {
+        this.toastr.error('Nie wpisałeś wagi świnki!');
+        return;
+      }
+      if (this.model.weight !== null) {
+        this.guineaPigWeight = this.validateService.validateWeightGuineaPig(
+          this.model.weight
+        );
+      }
     }
+
+    if (this.guineaPigWeight && this.guineaPigName) {
+      this.guineaPigService
+        .addGuineaPig(this.email, this.model)
+        .pipe(
+          finalize(() => {
+            this.model = new GuineaPigDto();
+          })
+        )
+        .subscribe({
+          next: () => {
+            this.toastr.success('Profil świnki morskiej został dodany!');
+          },
+          error: (error) => {
+            if (error.status === 400) {
+              console.log(error)
+              this.toastr.error('Wprowadzono niepoprawne dane!');
+            }
+          },
+        });
     }
+  }
 }

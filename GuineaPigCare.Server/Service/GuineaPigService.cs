@@ -190,7 +190,7 @@ namespace GuineaPigCare.Server.Service
 
             if (existingGuineaPig != null)
             {
-                throw new BadRequestException("Dodano już świnkę o takim imieniu");
+                throw new ConflictException("Dodano już świnkę o takim imieniu");
             }
 
             var newGuineaPig = new GuineaPig();

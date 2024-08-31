@@ -60,8 +60,9 @@ export class GuineaPigUpdateProfileComponent
     if(selectedPig?.weight !== undefined){
 
       selectedPig.weight = this.model.weight;
-
-      this.weightGuineaPig = this.validateService.validateWeightGuineaPig(this.model.weight);
+      if(this.model.weight !== null){
+        this.weightGuineaPig = this.validateService.validateWeightGuineaPig(this.model.weight);
+      }
     }
 
     if(selectedPig !== null && this.weightGuineaPig){

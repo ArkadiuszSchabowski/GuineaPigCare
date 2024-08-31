@@ -3,7 +3,10 @@
     <form #ngForm="ngForm" (ngSubmit)="validateModel()">
       <mat-card
         appearance="outlined"
-        [ngClass]="{ 'light-theme': themeHelper.currentTheme, 'dark-theme': !themeHelper.currentTheme }"
+        [ngClass]="{
+          'light-theme': themeHelper.currentTheme,
+          'dark-theme': !themeHelper.currentTheme
+        }"
       >
         <mat-card-content>
           <label class="mat-card-label">Formularz logowania</label>
@@ -32,14 +35,16 @@
               [type]="hidePassword ? 'password' : 'text'"
             />
             <button
-            type="button"
+              type="button"
               mat-icon-button
               matSuffix
               (click)="changePasswordVisibility()"
               [attr.aria-label]="'Hide password'"
               [attr.aria-pressed]="hidePassword"
             >
-              <mat-icon>{{ hidePassword ? "visibility_off" : "visibility" }}</mat-icon>
+              <mat-icon>{{
+                hidePassword ? "visibility_off" : "visibility"
+              }}</mat-icon>
             </button>
           </mat-form-field>
           <button
