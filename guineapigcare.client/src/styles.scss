@@ -11,21 +11,6 @@ body{
   overflow-x: hidden;
 }
 
-mat-label{
-  color: mat.get-color-from-palette(theme.$guineapigcare_client-primary) !important;
-  width: 200px !important;
-}
-mat-card{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 200px;
-  min-width: 200px;
-  border-radius: 30px !important;
-  border: 5px solid white !important;
-}
-
 #container {
   display: flex;
   flex-direction: column;
@@ -104,11 +89,51 @@ input::-ms-reveal {
   color: black !important;
   border: 2px solid black;
 }
+mat-label{
+  color: mat.get-color-from-palette(theme.$guineapigcare_client-primary) !important;
+  width: 200px !important;
+}
+mat-card{
+  display: flex;
+  flex-direction: column;
+  height: 320px;
+  width: 280px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 200px;
+  min-width: 200px;
+  border-radius: 30px !important;
+  border: 5px solid white !important;
+  margin-top: 20px;
+}
+
+mat-card-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 16px;
+}
+mat-form-field{
+  width: 200px;
+}
 
 @media screen and (min-width: 768px) and (max-width: 1199px) {
-
+  mat-form-field{
+    width: 300px;
+  }
+  mat-card{
+    width: 450px;
+  }
 }
 
 @media screen and (min-width: 1200px) {
-
+  mat-form-field{
+    width: 350px;
+  }
+  mat-card{
+    width: 600px;
+  }
 }
