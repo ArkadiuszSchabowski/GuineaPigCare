@@ -23,7 +23,7 @@ namespace GuineaPigCare.Server.Service
 
             if (guineaPig == null)
             {
-                throw new NotFoundException("Świnka morska nie istnieje lub nie należy do tego użytkownika.");
+                throw new NotFoundException("Świnka morska nie istnieje lub nie należy do tego użytkownika!");
             }
 
             var weightsDto = guineaPig.GuineaPigWeights.Select(weight => new GuineaPigWeightsDto
@@ -41,19 +41,19 @@ namespace GuineaPigCare.Server.Service
 
             if (user == null)
             {
-                throw new NotFoundException("Taki użytkownik nie istnieje w bazie danych");
+                throw new NotFoundException("Taki użytkownik nie istnieje w bazie danych!");
             }
 
             var guineaPig = _context.GuineaPigs.FirstOrDefault(x => x.Name == dto.Name);
 
             if (guineaPig == null)
             {
-                throw new NotFoundException("Taka świnka nie istnieje w bazie danych");
+                throw new NotFoundException("Taka świnka nie istnieje w bazie danych!");
             }
 
             if (guineaPig.UserId != user.Id)
             {
-                throw new ForbiddenException("Świnka morska nie należy do tego użytkownika");
+                throw new ForbiddenException("Świnka morska nie należy do tego użytkownika!");
             }
 
             var guineaPigWeight = new GuineaPigWeight();
@@ -71,19 +71,19 @@ namespace GuineaPigCare.Server.Service
 
             if (user == null)
             {
-                throw new NotFoundException("Taki użytkownik nie istnieje w bazie danych");
+                throw new NotFoundException("Taki użytkownik nie istnieje w bazie danych!");
             }
 
             var guineaPig = _context.GuineaPigs.FirstOrDefault(x => x.Name == dto.Name);
 
             if (guineaPig == null)
             {
-                throw new NotFoundException("Taka świnka nie istnieje w bazie danych");
+                throw new NotFoundException("Taka świnka nie istnieje w bazie danych!");
             }
 
             if (guineaPig.UserId != user.Id)
             {
-                throw new ForbiddenException("Świnka morska nie należy do tego użytkownika");
+                throw new ForbiddenException("Świnka morska nie należy do tego użytkownika!");
             }
 
             _context.GuineaPigs.Remove(guineaPig);
@@ -95,7 +95,7 @@ namespace GuineaPigCare.Server.Service
 
             if (user == null)
             {
-                throw new NotFoundException("Taki użytkownik nie istnieje w bazie danych");
+                throw new NotFoundException("Taki użytkownik nie istnieje w bazie danych!");
             }
 
             var guineaPig = _context.GuineaPigs.FirstOrDefault(x => x.Name == name);
@@ -108,7 +108,7 @@ namespace GuineaPigCare.Server.Service
 
             if (guineaPig.UserId != user.Id)
             {
-                throw new ForbiddenException("Świnka morska nie należy do tego użytkownika");
+                throw new ForbiddenException("Świnka morska nie należy do tego użytkownika!");
             }
 
             var guineaPigDto = new GuineaPigDto();
@@ -126,7 +126,7 @@ namespace GuineaPigCare.Server.Service
 
             if (user == null)
             {
-                throw new NotFoundException("Taki użytkownik nie istnieje w bazie danych");
+                throw new NotFoundException("Taki użytkownik nie istnieje w bazie danych!");
             }
 
             List<GuineaPigDto> guineaPigs = new List<GuineaPigDto>();
@@ -153,19 +153,19 @@ namespace GuineaPigCare.Server.Service
 
             if (user == null)
             {
-                throw new NotFoundException("Taki użytkownik nie istnieje w bazie danych");
+                throw new NotFoundException("Taki użytkownik nie istnieje w bazie danych!");
             }
 
             var guineaPig = _context.GuineaPigs.FirstOrDefault(x => x.Name == dto.Name);
 
             if (guineaPig == null)
             {
-                throw new NotFoundException("Taka świnka nie istnieje w bazie danych");
+                throw new NotFoundException("Taka świnka nie istnieje w bazie danych!");
             }
 
             if (guineaPig.UserId != user.Id)
             {
-                throw new ForbiddenException("Świnka morska nie należy do tego użytkownika");
+                throw new ForbiddenException("Świnka morska nie należy do tego użytkownika!");
             }
             guineaPig.Weight = dto.Weight;
 
@@ -182,7 +182,7 @@ namespace GuineaPigCare.Server.Service
 
             if (user == null)
             {
-                throw new NotFoundException("Taki użytkownik nie istnieje");
+                throw new NotFoundException("Taki użytkownik nie istnieje!");
             }
 
             var existingGuineaPig = user.GuineaPig
@@ -190,7 +190,7 @@ namespace GuineaPigCare.Server.Service
 
             if (existingGuineaPig != null)
             {
-                throw new ConflictException("Dodano już świnkę o takim imieniu");
+                throw new ConflictException("Dodano już świnkę o takim imieniu!");
             }
 
             var newGuineaPig = new GuineaPig();
