@@ -9,7 +9,7 @@ Technology Stack:
 - Communication: REST API
   
 How to Run:
-- Clone the repository: git clone https://github.com/ArkadiuszSchabowski/guinea-pig-care.git
+- Clone the repository
 - Open the solution file GuineaPigCare.sln in Visual Studio.
 - Set up multiple startup projects:
 Right-click on the solution in Solution Explorer and select Properties.
