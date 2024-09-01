@@ -52,36 +52,43 @@ export class GuineaPigUpdateProfileComponent
     });
   }
   updateGuineaPigProfile(selectedPig: GuineaPigDto | null) {
-
-    if(selectedPig === null){
-      this.toastr.error("Wprowadzono niepoprawne dane!");
+    if (selectedPig === null) {
+      this.toastr.error("Nie wybrałeś świnki do aktualizacji!");
+      return;
     }
-    
-    if(selectedPig?.weight !== undefined){
+    if(this.model.weight === null){
+      this.toastr.error("Nie wpisałeś nowej wagi!");
+      return;
+    }
 
-      selectedPig.weight = this.model.weight;
-      if(this.model.weight !== null){
-        this.weightGuineaPig = this.validateService.validateWeightGuineaPig(this.model.weight);
+    if (this.model.weight !== null) {
+      this.weightGuineaPig = this.validateService.validateWeightGuineaPig(
+        this.model.weight
+      );
+      if(this.selectedPig){
+        this.selectedPig.weight = this.model.weight;
       }
     }
 
-    if(selectedPig !== null && this.weightGuineaPig){
-
-      this.guineaPigService.updateWeight(this.email, selectedPig).pipe(
-        finalize(() => {
-          console.log("finalize");
-          this.model = new GuineaPigDto();
-          this.selectedPig = null;
-        })
-      ).subscribe({
-        next: () => this.toastr.success('Waga świnki została zaaktualizowana'),
-        error: (error) => {
-          if (error.error.errors) {
-            this.toastr.error("Wprowadzono niepopawne dane!")
-          }
-        },
-      });
+    if (this.weightGuineaPig) {
+      this.guineaPigService
+        .updateWeight(this.email, selectedPig)
+        .pipe(
+          finalize(() => {
+            console.log('finalize');
+            this.model = new GuineaPigDto();
+            this.selectedPig = null;
+          })
+        )
+        .subscribe({
+          next: () =>
+            this.toastr.success('Waga świnki została zaaktualizowana'),
+          error: (error) => {
+            if (error.error.errors) {
+              this.toastr.error('Wprowadzono niepopawne dane!');
+            }
+          },
+        });
     }
-
   }
 }
