@@ -54,10 +54,10 @@ export class GuineaPigCheckWeightsComponent
 
   getGuineaPigs() {
     this.guineaPigService.getGuineaPigs(this.email).subscribe({
-      next: response => {
+      next: (response) => {
         this.guineaPigs = response;
       },
-      error: error => console.log(error),
+      error: () => {},
     });
   }
 
@@ -77,10 +77,10 @@ export class GuineaPigCheckWeightsComponent
         })
       )
       .subscribe({
-        next: response => {
+        next: (response) => {
           this.weights = response;
         },
-        error: () => this.toastr.error("Nie wybrano profilu świnki!"),
+        error: () => this.toastr.error('Nie wybrano profilu świnki!'),
       });
   }
 
@@ -89,19 +89,20 @@ export class GuineaPigCheckWeightsComponent
       return;
     }
 
-    const labels = this.weights.map(weight => weight.date);
-    const data = this.weights.map(weight => weight.weight);
+    const labels = this.weights.map((weight) => weight.date);
+    const data = this.weights.map((weight) => weight.weight);
 
     if (this.chart) {
       this.chart.destroy();
     }
 
-    const canvasContainer = this.el.nativeElement.querySelector('#canvas-container');
+    const canvasContainer =
+      this.el.nativeElement.querySelector('#canvas-container');
 
     if (canvasContainer.firstChild) {
       canvasContainer.removeChild(canvasContainer.firstChild);
     }
-    
+
     const canvas = this.renderer.createElement('canvas');
     this.renderer.setStyle(canvas, 'display', 'flex');
     this.renderer.setStyle(canvas, 'justify-content', 'center');
