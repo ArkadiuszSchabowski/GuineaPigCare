@@ -17,7 +17,6 @@ import { UserEditProfileComponent } from './components-when-login/user/user-edit
 import { UserProfileComponent } from './components-when-login/user/user-profile/user-profile.component';
 import { UserRemoveProfileComponent } from './components-when-login/user/user-remove-profile/user-remove-profile.component';
 import { authGuard, NoLoginGuard } from './_guards/auth.guard';
-import { ChartComponent } from './chart/chart.component';
 import { GuineaPigCheckWeightsComponent } from './components-when-login/guinea-pig/guinea-pig-check-weights/guinea-pig-check-weights.component';
 
 const routes: Routes = [
@@ -29,7 +28,6 @@ const routes: Routes = [
   {path: "good-products", component: GoodProductsComponent},
   {path: "bad-products", component: BadProductsComponent},
   {path: "info", component: BeforeBuyGuineaPigComponent},
-  {path: "chart", component: ChartComponent},
   {
     path: "user",
     canActivate: [authGuard],

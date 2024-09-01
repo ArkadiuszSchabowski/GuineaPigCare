@@ -40,7 +40,6 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorInterceptor } from './_inteceptors/error.interceptor';
 import { UserRemoveProfileComponent } from './components-when-login/user/user-remove-profile/user-remove-profile.component';
-import { ChartComponent } from './chart/chart.component';
 import { GuineaPigCheckWeightsComponent } from './components-when-login/guinea-pig/guinea-pig-check-weights/guinea-pig-check-weights.component';
 
 @NgModule({
@@ -64,7 +63,6 @@ import { GuineaPigCheckWeightsComponent } from './components-when-login/guinea-p
     GuineaPigRemoveProfileComponent,
     UserLayoutComponent,
     GuineaPigLayoutComponent,
-    ChartComponent,
     GuineaPigCheckWeightsComponent,
   ],
   imports: [
