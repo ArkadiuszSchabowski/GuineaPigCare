@@ -7,6 +7,10 @@ Technology Stack:
 - Backend: ASP.NET Core (C#)
 - Database: Microsoft SQL Server, In-Memory SQL Server (for demo purposes)
 - Communication: REST API
+
+Design Patterns:
+- Observer Pattern (OP)
+- Dependency Injection (DI)
   
 How to Run:
 - Clone the repository.
