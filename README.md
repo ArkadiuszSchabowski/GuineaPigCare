@@ -9,13 +9,13 @@ Technology Stack:
 - Communication: REST API
   
 How to Run:
-- Clone the repository
+- Clone the repository.
 - Open the solution file GuineaPigCare.sln in Visual Studio.
-- Set up multiple startup projects:
-Right-click on the solution in Solution Explorer and select Properties.
-Go to the Startup Project section.
-Select Multiple startup projects.
-Set both GuineaPigCare.Server and GuineaPigCare.Client to Start.
+- Click the green arrow (Run) dropdown in the toolbar and select Configure Startup Projects.
+- In the Common Properties section, select Startup Project.
+- Choose Multiple startup projects.
+- Set GuineaPigCare.Server to Action: Start and Debug Target: Production.
+- Set GuineaPigCare.Client to Action: Start.
 - Build and run the application by pressing F5 or clicking the green compile arrow in the top toolbar.
 
 Demo - To quickly experience the application, simply visit the: https://guineapigcare.azurewebsites.net
