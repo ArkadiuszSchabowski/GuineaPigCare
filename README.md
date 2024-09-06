@@ -9,8 +9,9 @@ Technology Stack:
 - Communication: REST API
 
 Design Patterns:
-- Observer Pattern (OP)
 - Dependency Injection (DI)
+- Observer Pattern (OP)
+- Repository Pattern (RP)
   
 How to Run:
 - Clone the repository.
