@@ -1,25 +1,25 @@
-﻿using GuineaPigCare.Server.Database;
-using GuineaPigCare.Server.Database.Entities;
+﻿using GuineaPigCare.Server.Database.Entities;
 using GuineaPigCare.Server.Exceptions;
 using GuineaPigCare.Server.Interfaces;
 using GuineaPigCare.Server.Models;
-using Microsoft.EntityFrameworkCore;
+using GuineaPigCare.Server.Reposirories;
+using GuineaPigCare.Server.Repositories;
 
 namespace GuineaPigCare.Server.Service
 {
     public class GuineaPigService : IGuineaPigService
     {
-        private readonly MyDbContext _context;
+        private readonly IUserRepository _userRepository;
+        private readonly IGuineaPigRepository _guineaPigRepository;
 
-        public GuineaPigService(MyDbContext context)
+        public GuineaPigService(IUserRepository userRepository, IGuineaPigRepository guineaPigRepository)
         {
-            _context = context;
+            _userRepository = userRepository;
+            _guineaPigRepository = guineaPigRepository;
         }
         public List<GuineaPigWeightsDto> GetWeights(string email, string name)
         {
-            var guineaPig = _context.GuineaPigs
-                .Include(w => w.GuineaPigWeights)
-                .FirstOrDefault(x => x.Name == name && x.User.Email == email);
+            var guineaPig = _guineaPigRepository.GetGuineaPig(email, name);
 
             if (guineaPig == null)
             {
@@ -37,14 +37,14 @@ namespace GuineaPigCare.Server.Service
 
         public void AddNewWeight(string email, GuineaPigDto dto)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Email == email);
+            var user = _userRepository.GetUser(email);
 
             if (user == null)
             {
                 throw new NotFoundException("Taki użytkownik nie istnieje w bazie danych!");
             }
 
-            var guineaPig = _context.GuineaPigs.FirstOrDefault(x => x.Name == dto.Name);
+            var guineaPig = _guineaPigRepository.GetGuineaPig(email, dto.Name);
 
             if (guineaPig == null)
             {
@@ -62,19 +62,18 @@ namespace GuineaPigCare.Server.Service
             guineaPigWeight.Weight = dto.Weight;
             guineaPigWeight.Date = DateTime.Now;
 
-            _context.GuineaPigWeights.Add(guineaPigWeight);
-            _context.SaveChanges();
+            _guineaPigRepository.AddGuineaPigWeight(guineaPigWeight);
         }
         public void RemoveGuineaPig(RemoveGuineaPigDto dto)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Email == dto.Email);
+            var user = _userRepository.GetUser(dto.Email);
 
             if (user == null)
             {
                 throw new NotFoundException("Taki użytkownik nie istnieje w bazie danych!");
             }
 
-            var guineaPig = _context.GuineaPigs.FirstOrDefault(x => x.Name == dto.Name);
+            var guineaPig = _guineaPigRepository.GetGuineaPig(dto.Name, dto.Email);
 
             if (guineaPig == null)
             {
@@ -86,19 +85,18 @@ namespace GuineaPigCare.Server.Service
                 throw new ForbiddenException("Świnka morska nie należy do tego użytkownika!");
             }
 
-            _context.GuineaPigs.Remove(guineaPig);
-            _context.SaveChanges();
+            _guineaPigRepository.RemoveGuineaPig(guineaPig);
         }
         public GuineaPigDto GetGuineaPig(string email, string name)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Email == email);
+            var user = _userRepository.GetUser(email);
 
             if (user == null)
             {
                 throw new NotFoundException("Taki użytkownik nie istnieje w bazie danych!");
             }
 
-            var guineaPig = _context.GuineaPigs.FirstOrDefault(x => x.Name == name);
+            var guineaPig = _guineaPigRepository.GetGuineaPig(name, email);
 
 
             if (guineaPig == null)
@@ -120,9 +118,7 @@ namespace GuineaPigCare.Server.Service
         }
         public List<GuineaPigDto> GetGuineaPigs(string email)
         {
-            var user = _context.Users
-                .Include(u => u.GuineaPig)
-                .FirstOrDefault(x => x.Email == email);
+            var user = _userRepository.GetUserWithGuineaPigs(email);
 
             if (user == null)
             {
@@ -149,14 +145,14 @@ namespace GuineaPigCare.Server.Service
 
         public void UpdateGuineaPigWeight(string email, GuineaPigDto dto)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Email == email);
+            var user = _userRepository.GetUser(email);
 
             if (user == null)
             {
                 throw new NotFoundException("Taki użytkownik nie istnieje w bazie danych!");
             }
 
-            var guineaPig = _context.GuineaPigs.FirstOrDefault(x => x.Name == dto.Name);
+            var guineaPig = _guineaPigRepository.GetGuineaPig(dto.Name, email);
 
             if (guineaPig == null)
             {
@@ -169,16 +165,12 @@ namespace GuineaPigCare.Server.Service
             }
             guineaPig.Weight = dto.Weight;
 
-            _context.GuineaPigs.Update(guineaPig);
-            _context.SaveChanges();
+            _guineaPigRepository.UpdateGuineaPig(guineaPig);
         }
 
         public void AddGuineaPigToUser(string email, GuineaPigDto dto)
         {
-            var user = _context
-                .Users
-                .Include(u => u.GuineaPig)
-                .FirstOrDefault(x => x.Email == email);
+            var user = _userRepository.GetUserWithGuineaPigs(email);
 
             if (user == null)
             {
@@ -199,8 +191,7 @@ namespace GuineaPigCare.Server.Service
             newGuineaPig.Weight = dto.Weight;
             newGuineaPig.UserId = user.Id;
 
-            _context.GuineaPigs.Add(newGuineaPig);
-            _context.SaveChanges();
+            _guineaPigRepository.AddGuineaPig(newGuineaPig);
         }
         public List<ProductDto> GetGoodProductsInformation()
         {

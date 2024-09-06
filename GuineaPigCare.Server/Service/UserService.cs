@@ -4,22 +4,23 @@ using GuineaPigCare.Server.Database.Entities;
 using GuineaPigCare.Server.Exceptions;
 using GuineaPigCare.Server.Interfaces;
 using GuineaPigCare.Server.Models;
+using GuineaPigCare.Server.Reposirories;
 
 namespace GuineaPigCare.Server.Service
 {
     public class UserService : IUserService
     {
-        private readonly MyDbContext _context;
         private readonly IMapper _mapper;
+        private readonly IUserRepository _repository;
 
-        public UserService(MyDbContext context, IMapper mapper)
+        public UserService(IMapper mapper, IUserRepository repository)
         {
-            _context = context;
             _mapper = mapper;
+            _repository = repository;
         }
         public UserDto GetCurrentUser(string email)
         {
-            User? user = _context.Users.FirstOrDefault(x => x.Email == email);
+            User? user = _repository.GetUser(email);
 
             if (user == null)
             {
@@ -32,7 +33,7 @@ namespace GuineaPigCare.Server.Service
 
         public void UpdateUser(UpdateUserDto dto)
         {
-            User? user = _context.Users.FirstOrDefault(x => x.Email == dto.Email);
+            User? user = _repository.GetUser(dto.Email);
 
             if (user == null)
             {
@@ -43,8 +44,7 @@ namespace GuineaPigCare.Server.Service
             user.Surname = dto.Surname;
             user.City = dto.City;
 
-            _context.Update(user);
-            _context.SaveChanges();
+            _repository.UpdateUser(user);
         }
     }
 }

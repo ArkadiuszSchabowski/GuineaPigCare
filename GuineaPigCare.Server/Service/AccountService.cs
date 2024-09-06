@@ -4,6 +4,7 @@ using GuineaPigCare.Server.Database.Entities;
 using GuineaPigCare.Server.Exceptions;
 using GuineaPigCare.Server.Interfaces;
 using GuineaPigCare.Server.Models;
+using GuineaPigCare.Server.Reposirories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -14,48 +15,48 @@ namespace GuineaPigCare.Server.Service
 {
     public class AccountService : IAccountService
     {
-        private readonly MyDbContext _context;
         private readonly IPasswordHasher<User> _hasher;
         private readonly IMapper _mapper;
+        private readonly IUserRepository _repository;
         private readonly AuthenticationSettings _authenticationSettings;
 
-        public AccountService(MyDbContext context, IPasswordHasher<User> hasher, IMapper mapper, AuthenticationSettings authenticationSettings)
+        public AccountService(IPasswordHasher<User> hasher, IMapper mapper, AuthenticationSettings authenticationSettings, IUserRepository repository)
         {
-            _context = context;
             _hasher = hasher;
             _mapper = mapper;
             _authenticationSettings = authenticationSettings;
+            _repository = repository;
         }
 
         public void ChangePassword(ChangePasswordDto dto)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Email == dto.Email);
+            var user = _repository.GetUser(dto.Email);
 
-            if (user == null) {
+            if (user == null)
+            {
                 throw new NotFoundException("Taki użytkownik nie istnieje!");
             }
 
             var result = _hasher.VerifyHashedPassword(user, user.Password, dto.CurrentPassword);
 
-            if(result == PasswordVerificationResult.Failed)
+            if (result == PasswordVerificationResult.Failed)
             {
                 throw new BadRequestException("Wprowadzono niepoprawne hasło!");
             }
 
-            if(dto.NewPassword != dto.RepeatNewPassword)
+            if (dto.NewPassword != dto.RepeatNewPassword)
             {
                 throw new BadRequestException("Wprowadzone hasła nie są zgodne!");
             }
 
             user.Password = _hasher.HashPassword(user, dto.NewPassword);
 
-            _context.Users.Update(user);
-            _context.SaveChanges();
+            _repository.UpdateUser(user);
         }
 
         public string GenerateJWT(LoginUserDto loginUserDto)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Email == loginUserDto.Email);
+            var user = _repository.GetUser(loginUserDto.Email);
 
             if (user == null)
             {
@@ -80,8 +81,8 @@ namespace GuineaPigCare.Server.Service
             var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var expiresDays = DateTime.Now.AddDays(_authenticationSettings.ExpireDays);
 
-            var token = new JwtSecurityToken(_authenticationSettings.JwtIssuer, _authenticationSettings.JwtIssuer, 
-                claims, 
+            var token = new JwtSecurityToken(_authenticationSettings.JwtIssuer, _authenticationSettings.JwtIssuer,
+                claims,
                 expires: expiresDays,
                 signingCredentials: cred);
 
@@ -90,7 +91,7 @@ namespace GuineaPigCare.Server.Service
         }
         public void CheckUserInDatabase(string email)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Email == email);
+            var user = _repository.GetUser(email);
 
             if (user != null)
             {
@@ -100,14 +101,14 @@ namespace GuineaPigCare.Server.Service
 
         public void RegisterUser(RegisterUserDto dto)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Email == dto.Email);
+            var user = _repository.GetUser(dto.Email);
 
-            if(user != null)
+            if (user != null)
             {
                 throw new ConflictException("Taki użytkownik istnieje już w bazie danych");
             }
 
-            if(dto.Password != dto.RepeatPassword)
+            if (dto.Password != dto.RepeatPassword)
             {
                 throw new ConflictException("Wprowadzone hasła są róźne");
             }
@@ -117,18 +118,16 @@ namespace GuineaPigCare.Server.Service
             newUser.Password = _hasher.HashPassword(newUser, dto.Password);
             newUser.RoleId = 1;
 
-            _context.Users.Add(newUser);
-            _context.SaveChanges();
+            _repository.AddUser(newUser);
         }
 
         public void DeleteAccount(string email)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Email == email);
+            var user = _repository.GetUser(email);
 
-            if(user != null)
+            if (user != null)
             {
-            _context.Users.Remove(user);
-            _context.SaveChanges();
+                _repository.RemoveUser(user);
             }
         }
     }

@@ -3,6 +3,8 @@ using GuineaPigCare.Server.Database;
 using GuineaPigCare.Server.Database.Entities;
 using GuineaPigCare.Server.Interfaces;
 using GuineaPigCare.Server.Middleware;
+using GuineaPigCare.Server.Reposirories;
+using GuineaPigCare.Server.Repositories;
 using GuineaPigCare.Server.Service;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -50,6 +52,8 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IGuineaPigRepository, GuineaPigRepository>();
 
 var app = builder.Build();
 
